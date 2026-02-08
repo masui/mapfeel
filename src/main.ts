@@ -4,7 +4,8 @@ import { initMap } from "./map";
 async function main() {
   console.log("Mapfeel starting...");
 
-  const map = initMap();
+  //const map = initMap();
+  initMap();
 
   // ここに将来:
   // const pages = await fetchScrapbox(...)
