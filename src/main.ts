@@ -1,0 +1,16 @@
+import "./style.css";
+import { initMap } from "./map";
+
+async function main() {
+  console.log("Mapfeel starting...");
+
+  const map = initMap();
+
+  // ここに将来:
+  // const pages = await fetchScrapbox(...)
+  // const images = extractGyazo(...)
+  // addImagesToMap(map, images)
+}
+
+main();
+
