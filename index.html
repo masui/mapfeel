@@ -22,8 +22,8 @@
     </div>
     <!-- <script src="/src/main.js"></script> -->
     <script>
-      main();
-      document.querySelector('#div').textContent = 'xxx';
+      var data = main();
+      document.querySelector('#div').textContent = data.pages[0].title;
     </script>
   </body>
 </html>
