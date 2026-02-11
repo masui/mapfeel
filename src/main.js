@@ -39,5 +39,5 @@ async function main() {
     load();
 }
 
-main();
+// main();
 
