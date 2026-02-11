@@ -5,7 +5,7 @@ async function main() {
   console.log("Mapfeel starting...");
 
   //const map = initMap();
-  //initMap();
+  initMap();
 
   // ここに将来:
   // Scrapboxからフェッチする
