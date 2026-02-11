@@ -34,7 +34,8 @@ async function main() {
 	
 	// 既存のマーカー処理につなげる
     }
-    
+
+    console.log("load...");
     load();
 }
 
