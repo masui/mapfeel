@@ -1,5 +1,5 @@
 //import "./style.css";
-import { initMap } from "./map";
+//import { initMap } from "./map";
 
 async function main() {
   console.log("Mapfeel starting...");

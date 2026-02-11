@@ -1,3 +1,15 @@
+function initMap() {
+  const map = L.map("map").setView([35.319, 139.550], 13);
+
+  L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { attribution: "© OpenStreetMap contributors" }
+  ).addTo(map);
+
+  return map;
+}
+
+/*
 import L from "leaflet";
 
 export function initMap() {
@@ -29,3 +41,4 @@ export function addImageMarker(
 
   return marker;
 }
+*/
