@@ -1,4 +1,4 @@
-import "./style.css";
+//import "./style.css";
 import { initMap } from "./map";
 
 async function main() {
