@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   const url = `https://scrapbox.io/api/pages/${project}`;
 
   const r = await fetch(url);
+  console.log(r)
   const data = await r.json();
 
   res.setHeader("Access-Control-Allow-Origin", "*");
