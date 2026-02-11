@@ -17,14 +17,15 @@ async function main() {
     }
     
     async function load() {
-	const project = getProject();
+	var project = getProject();
 	
 	if (!project) {
 	    alert("URLにプロジェクト名を指定してください");
 	    return;
 	}
 	project = "masuimap"
-	
+
+	console.log(project)
 	const res = await fetch(`/api/scrapbox/${project}`);
 	console.log(res)
 	
