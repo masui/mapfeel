@@ -31,6 +31,8 @@ async function main() {
 	const data = await res.json();
 	
 	console.log(data);
+
+	return data;
 	
 	// 既存のマーカー処理につなげる
     }
