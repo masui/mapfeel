@@ -21,7 +21,7 @@ async function main() {
 	
 	if (!project) {
 	    alert("URLにプロジェクト名を指定してください");
-	    return;
+	    // return;
 	}
 	project = "masuimap"
 
