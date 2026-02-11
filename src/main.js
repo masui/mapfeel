@@ -24,6 +24,7 @@ async function main() {
 	    alert("URLにプロジェクト名を指定してください");
 	    return;
 	}
+	project = "masuimap"
 	
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
