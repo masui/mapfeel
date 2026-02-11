@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/scrapbox/:project", "destination": "/api/scrapbox.js?project=:project" },
+    { "source": "/:project", "destination": "/" }
+  ]
+}
