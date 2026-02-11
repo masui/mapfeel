@@ -38,7 +38,7 @@ async function main() {
     }
 
     console.log("load...");
-    load();
+    return load();
 }
 
 // main();
