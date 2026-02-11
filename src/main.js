@@ -29,7 +29,8 @@ async function main() {
 
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
-	
+
+	console.log('after await')
 	console.log(data);
 
 	return data;
