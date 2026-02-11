@@ -13,7 +13,6 @@ async function main() {
     // addImagesToMap(map, images)
     
     function getProject() {
-	alert(location.pathname)
 	return location.pathname.replace(/^\//, "");
     }
     
@@ -27,6 +26,8 @@ async function main() {
 	project = "masuimap"
 	
 	const res = await fetch(`/api/scrapbox/${project}`);
+	console.log(res)
+	
 	const data = await res.json();
 	
 	console.log(data);
