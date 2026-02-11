@@ -25,10 +25,7 @@ async function main() {
 	}
 	project = "masuimap"
 
-	console.log(project)
 	const res = await fetch(`/api/scrapbox/${project}`);
-	console.log(res)
-	
 	const data = await res.json();
 	
 	console.log(data);
