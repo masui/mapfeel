@@ -14,6 +14,7 @@ async function main() {
     // addImagesToMap(map, images)
     
     function getProject() {
+	alert(location.pathname);
 	return location.pathname.replace(/^\//, "");
     }
     
