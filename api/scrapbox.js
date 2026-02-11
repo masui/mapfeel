@@ -16,7 +16,7 @@
 export default async function handler(req, res) {
   const { project } = req.query;
 
-  const url = `https://scrapbox.io/api/pages/${project}`;
+  const url = `https://scrapbox.io/api/pages/${project}?limit=1000`;
 
   const r = await fetch(url);
   const data = await r.json();
