@@ -41,7 +41,8 @@ export async function main() {
 	//getValidData(data)
 
 	console.log('after await')
-	console.log(data.pages[0]);
+	//console.log(data.pages[0]);
+	console.log(data);
 
 	return data;
     }
