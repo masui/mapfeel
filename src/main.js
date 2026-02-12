@@ -3,6 +3,11 @@
 
 import { initMap } from "/src/map.js";
 
+function getValidData(data){
+    let datalist = []
+    console.log(data[0])
+}
+
 export async function main() {
     console.log("Mapfeel starting...");
     
@@ -33,12 +38,12 @@ export async function main() {
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
 
+	//getValidData(data)
+
 	console.log('after await')
 	console.log(data.pages[0]);
 
 	return data;
-	
-	// 既存のマーカー処理につなげる
     }
 
     console.log("load...");
