@@ -34,7 +34,7 @@ export async function main() {
 	const data = await res.json();
 
 	console.log('after await')
-	console.log(data);
+	console.log(data.pages[0]);
 
 	return data;
 	
