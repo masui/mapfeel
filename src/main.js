@@ -25,9 +25,9 @@ function getValidData(data){
 	    if(match){
 		let pos = {}
 		pos.latitude = Number(match[2])
-		if (match[1] == 'S') curpos.latitude = -curpos.latitude
+		if (match[1] == 'S') pos.latitude = -pos.latitude
 		pos.longitude = Number(match[4])
-		if (match[3] == 'W') curpos.longitude = -curpos.longitude
+		if (match[3] == 'W') pos.longitude = -pos.longitude
 		pos.zoom = 12
 		if (match[6]) pos.zoom = Number(match[6])
 		entry.pos = pos
