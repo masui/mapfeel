@@ -17,9 +17,29 @@ function getValidData(data){
     data.pages.map((page) => {
 	let entry = {}
 	entry.title = page.title;
-	entry.descriptions = page.descriptions;
+	//entry.descriptions = page.descriptions;
+
+	entry.description = ""
+	page.descriptions.map((description) => {
+	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
+	    if(match){
+		let pos = {}
+		pos.latitude = Number(match[2])
+		if (match[1] == 'S') curpos.latitude = -curpos.latitude
+		pos.longitude = Number(match[4])
+		if (match[3] == 'W') curpos.longitude = -curpos.longitude
+		pos.zoom = 12
+		if (match[6]) pos.zoom = Number(match[6])
+		entry.pos = pos
+	    }
+	    else {
+		entry.description += description
+	    }
+	});
 	entry.image = page.image
-	datalist.push(entry)
+	if(entry.pos){
+	    datalist.push(entry)
+	}
     })
     console.log(datalist)
 }
