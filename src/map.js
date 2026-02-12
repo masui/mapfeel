@@ -1,4 +1,4 @@
-function initMap() {
+export function initMap() {
   const map = L.map("map").setView([35.319, 139.550], 13);
 
   L.tileLayer(
