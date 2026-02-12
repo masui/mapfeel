@@ -9,7 +9,7 @@ function getValidData(data){
 	let entry = {}
 	entry.title = data.pages[i].title;
 	entry.descriptions = data.pages[i].descriptions;
-	entry.image = data.page[i].image
+	entry.image = data.pages[i].image
 	datalist.push(entry)
     }
     console.log(datalist)
@@ -45,8 +45,8 @@ export async function main() {
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
 
-	//getValidData(data)
-	console.log(data)
+	getValidData(data)
+	//console.log(data)
 
 	console.log('after await')
 	//console.log(data.pages[0]);
