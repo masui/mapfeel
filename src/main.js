@@ -44,5 +44,5 @@ async function main() {
     return load();
 }
 
-main();
+//main();
 
