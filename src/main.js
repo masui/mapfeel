@@ -14,11 +14,11 @@ function getValidData(data){
 	datalist.push(entry)
     }
     */
-    data.map((e) => {
+    data.pages.map((page) => {
 	let entry = {}
-	entry.title = e.title;
-	entry.descriptions = e.descriptions;
-	entry.image = e.image
+	entry.title = page.title;
+	entry.descriptions = page.descriptions;
+	entry.image = page.image
 	datalist.push(entry)
     })
     console.log(datalist)
