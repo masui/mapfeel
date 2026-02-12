@@ -3,12 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>Mapfeel</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   </head>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="/src/map.js"></script>
   <script src="/src/main.js"></script>
@@ -22,17 +20,7 @@
     </div>
     <!-- <script src="/src/main.js"></script> -->
     <script>
-      var data;
-      async function xxx(){
-          data = await main();
-      }
-      xxx();
-      console.log('main()')
-      console.log(data);
-      console.log('data...')
-      console.log(data.pages)
-      //document.querySelector('#div').textContent = data.pages[0].title;
-      document.querySelector('#div').textContent = 'xxxxx';
+      $('#div').text('aaa')
     </script>
   </body>
 </html>

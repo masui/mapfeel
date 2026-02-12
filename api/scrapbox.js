@@ -1,4 +1,8 @@
 //
+// Vercelのサーバ(?)で動く関数
+// CORS問題に対応するため使ってる
+// (サーバからはScrapboxのAPIを呼べるため)
+//
 // Expressでいうところの
 // app.get("/api/scrapbox", handler)
 // みたいなのがVercelで自動的に動く
@@ -9,7 +13,7 @@
 // const res = await fetch(`/api/scrapbox/${project}`);
 // みたいに使う
 //
-// 決め打ちの規則ばかりで気持ち悪い
+// 決め打ちの規則ばかりで気持ち悪いが
 // api/, export default, etc.
 //
 
@@ -22,34 +26,11 @@ export default async function handler(req, res) {
   const data = await r.json();
 
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.status(200).json(data);
-}
-
-
-/*
-export default async function handler(req, res) {
-  const { project } = req.query;
-
-  if (!project) {
-    res.status(400).json({ error: "project required" });
-    return;
-  }
-
-  const url = `https://scrapbox.io/api/pages/${project}`;
-
-  try {
-    const r = await fetch(url);
-    const data = await r.json();
-
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    /*
     res.setHeader(
       "Cache-Control",
       "s-maxage=60, stale-while-revalidate"
     );
-
-    res.status(200).json(data);
-  } catch (e) {
-    res.status(500).json({ error: e.toString() });
-  }
+    */
+  res.status(200).json(data);
 }
-*/
