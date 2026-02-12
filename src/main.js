@@ -18,7 +18,7 @@ async function main() {
 	return location.pathname.replace(/^\//, "");
     }
     
-    async function load() {
+    export async function load() {
 	var project = getProject();
 	
 	if (!project) {
