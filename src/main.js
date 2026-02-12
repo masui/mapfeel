@@ -6,7 +6,7 @@ import { initMap } from "/src/map.js";
 function getValidData(data){
     let datalist = []
     for(let i=0;i<data.pages.length;i++){
-	entry = {}
+	let entry = {}
 	entry.title = data.pages[i].title;
 	datalist.push(entry)
     }
