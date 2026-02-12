@@ -5,7 +5,12 @@ import { initMap } from "/src/map.js";
 
 function getValidData(data){
     let datalist = []
-    console.log(data[0])
+    for(let i=0;i<data.pages.length;i++){
+	entry = {}
+	entry['title'] = data.pages[i].title;
+	datalist.push(entry)
+    }
+    console.log(datalist)
 }
 
 export async function main() {
@@ -38,7 +43,7 @@ export async function main() {
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
 
-	//getValidData(data)
+	getValidData(data)
 
 	console.log('after await')
 	//console.log(data.pages[0]);
