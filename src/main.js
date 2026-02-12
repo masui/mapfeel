@@ -42,7 +42,7 @@ export async function main() {
 
 	console.log('after await')
 	//console.log(data.pages[0]);
-	console.log(data);
+	console.log(data.pages.length);
 
 	return data;
     }
