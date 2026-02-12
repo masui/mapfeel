@@ -5,6 +5,7 @@ import { initMap } from "/src/map.js";
 
 function getValidData(data){
     let datalist = []
+    /*
     for(let i=0;i<data.pages.length;i++){
 	let entry = {}
 	entry.title = data.pages[i].title;
@@ -12,6 +13,14 @@ function getValidData(data){
 	entry.image = data.pages[i].image
 	datalist.push(entry)
     }
+    */
+    data.map((e) => {
+	let entry = {}
+	entry.title = e.title;
+	entry.descriptions = e.descriptions;
+	entry.image = e.image
+	datalist.push(entry)
+    })
     console.log(datalist)
 }
 
