@@ -9,6 +9,7 @@ function getValidData(data){
 	let entry = {}
 	entry.title = data.pages[i].title;
 	entry.descriptions = data.pages[i].descriptions;
+	entry.image = data.page[i].image
 	datalist.push(entry)
     }
     console.log(datalist)
