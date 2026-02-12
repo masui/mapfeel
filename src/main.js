@@ -8,7 +8,7 @@ function getValidData(data){
     for(let i=0;i<data.pages.length;i++){
 	let entry = {}
 	entry.title = data.pages[i].title;
-	entry.description = data.pages[i].description;
+	entry.descriptions = data.pages[i].descriptions;
 	datalist.push(entry)
     }
     console.log(datalist)
