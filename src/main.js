@@ -2,7 +2,7 @@
 //import "./style.css";
 //import { initMap } from "./map";
 
-async function main() {
+export async function main() {
     console.log("Mapfeel starting...");
     
     //const map = initMap();
@@ -18,7 +18,7 @@ async function main() {
 	return location.pathname.replace(/^\//, "");
     }
     
-    export async function load() {
+    async function load() {
 	var project = getProject();
 	
 	if (!project) {
