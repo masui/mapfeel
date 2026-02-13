@@ -1,8 +1,7 @@
-
-//import "./style.css";
-
 import { initMap } from "/src/map.js";
+import { getData } from "/src/data.js";
 
+/*
 function getValidData(data){
     // Mapfeelに関係するページだけdatalistに入れる
     const datalist = []
@@ -38,10 +37,11 @@ function getValidData(data){
     })
     // console.log(datalist.length)
     // console.log(data.pages.length)
-    console.log(datalist)
+    // console.log(datalist)
 
     return datalist;
-}
+    }
+*/
 
 export async function main() {
     console.log("Mapfeel starting...");
@@ -64,21 +64,23 @@ export async function main() {
 	
 	if (!project) {
 	    alert("URLにプロジェクト名を指定してください");
-	    // return;
+	    return;
 	}
 	// project = "masuimap"
 
 	console.log(project)
 
+	/*
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const sbdata = await res.json();
 	console.log('after await')
+	*/
 
-	const data = getValidData(sbdata)
+	const validdata = getData(project)
 
-	console.log(data);
+	console.log(validdata);
 
-	return data;
+	return validdata;
     }
 
     console.log("load...");
