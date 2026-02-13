@@ -69,7 +69,7 @@
               var entry = data[i]
               entry.distance = distance(entry.lat, entry.lng, curpos.lat, curpos.lng)
 	  }
-	  data.sort((a, b) => { // 近い順にソート
+	  data = data.sort((a, b) => { // 近い順にソート
               return a.distance > b.distance ? 1 : -1;
 	  })
 
