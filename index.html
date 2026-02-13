@@ -56,7 +56,8 @@
 	  lng1 *= R;
 	  lat2 *= R;
 	  lng2 *= R;
-	  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
+	  // return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
+	  return lat1 - lat2;
       }
       
       map.on('moveend', function () {
