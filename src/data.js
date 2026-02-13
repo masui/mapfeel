@@ -43,7 +43,7 @@ export async function getData(project) {
 
     const validdata = getValidData(sbdata)
     
-    console.log(validdata);
+    // console.log(validdata);
     
     return validdata;
 }
