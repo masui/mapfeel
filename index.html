@@ -17,8 +17,7 @@
     </div>
     <!-- <script type="module" src="/src/main.js"></script> -->
     <div id="div">
-      <ul>
-	<li id="li"></li>
+      <ul id="poilist">
       </ul>
     </div>
     <!-- <script src="/src/main.js"></script> -->
@@ -35,8 +34,11 @@
       var data = await main(project);
 
       console.log(data[0]);
-      
-      $('#li').text(data[0].title)
+
+      var li = $('li')
+      li.text(data[0].title)
+      $('#poilist').append(li)
+
     </script>
   </body>
 </html>
