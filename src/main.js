@@ -76,7 +76,7 @@ export async function main() {
 	console.log('after await')
 	*/
 
-	const validdata = getData(project)
+	const validdata = await getData(project)
 
 	console.log(validdata);
 

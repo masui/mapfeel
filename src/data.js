@@ -42,8 +42,9 @@ export async function getData(project) {
     const sbdata = await res.json();
 
     const validdata = getValidData(sbdata)
-    
-    // console.log(validdata);
+
+    console.log('getData()')
+    console.log(validdata);
     
     return validdata;
 }
