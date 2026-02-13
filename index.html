@@ -15,9 +15,7 @@
     <div id="app">
       <div id="map" style="width:400px; height:400px;"></div>
     </div>
-    <div id="div">
-      <ul id="poilist">
-      </ul>
+    <div id="poilist">
     </div>
 
     <!-- <script type="module" src="/src/main.js"></script> -->
@@ -44,9 +42,14 @@
 
       $('#poilist').empty()
       for(var i=0;i<data.length;i++){
+		     /*
 	  var li = $('<li>')
 	  li.text(data[i].title)
-	  $('#poilist').append(li)
+		     $('#poilist').append(li)
+		     */
+          var e = ${'<div>');
+          e.text(data[i].title);		     
+	  ${'#poilist').append(e);
       }
       
       map.on('moveend', function () {
@@ -63,10 +66,13 @@
 	  })
 
 	  $('#poilist').empty();
-	  for(var i=0;i<data.length;i++){
-	      var li = $('<li>')
-	      li.text(data[i].title + ' ' + data[i].description);
-	      $('#poilist').append(li)
+          for(var i=0;i<data.length;i++){
+	      var div = $('<div>')       
+	      div.text(data[i].title + ' ' + data[i].description);
+	      $('#poilist').append(div)
+	      //var li = $('<li>')
+	      //li.text(data[i].title + ' ' + data[i].description);
+	      //$('#poilist').append(li)
 	  }
       });
 
