@@ -17,8 +17,6 @@ export async function main(project) {
 
 	return validdata;
     }
-
-    console.log("load...");
     
     return load(project);
 }

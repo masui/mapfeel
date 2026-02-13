@@ -32,9 +32,9 @@
 	  return;
       }
       
-      main(project);
+      var data = main(project);
       
-      $('#li').text('Do the main thing.')
+      $('#li').text(data[0].title)
     </script>
   </body>
 </html>
