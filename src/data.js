@@ -42,6 +42,8 @@ export async function getData(project) {
     const res = await fetch(`/api/scrapbox/${project}`);
     const sbdata = await res.json();
 
+    console.log(sbdata);
+
     const validdata = getValidData(sbdata)
 
     return validdata;
