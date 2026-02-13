@@ -27,6 +27,8 @@
       // import { main } from "/src/main.js"
       import { getData } from "/src/data.js";
 
+      var curpos = {}
+
       console.log('地図表示')
       const map = initMap();
 
@@ -49,8 +51,8 @@
 
       map.on('moveend', function () {
 	  console.log("地図が動き終わった");
-	  const center = map.getCenter();
-	  console.log(center);
+	  curpos = map.getCenter();
+	  console.log(curpos);
       });
 
     </script>
