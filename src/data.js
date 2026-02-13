@@ -12,10 +12,10 @@ function getValidData(data){
 	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
 	    if(match){
 		let pos = {}
-		pos.latitude = Number(match[2])
-		if (match[1] == 'S') pos.latitude = -pos.latitude
-		pos.longitude = Number(match[4])
-		if (match[3] == 'W') pos.longitude = -pos.longitude
+		pos.lat = Number(match[2])
+		if (match[1] == 'S') pos.lat = -pos.lat
+		pos.lng = Number(match[4])
+		if (match[3] == 'W') pos.lng = -pos.lng
 		pos.zoom = 12
 		if (match[6]) pos.zoom = Number(match[6])
 		entry.pos = pos

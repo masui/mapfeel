@@ -43,6 +43,7 @@
       //var data = await main(project);
       var data = await getData(project);
 
+      $('#poilist').empty()
       for(var i=0;i<data.length;i++){
 	  var li = $('<li>')
 	  li.text(data[i].title)
