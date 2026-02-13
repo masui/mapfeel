@@ -46,7 +46,7 @@ function getValidData(data){
 	}
     })
     console.log(datalist.length)
-    console.log(data.length)
+    console.log(data.pages.length)
 }
 
 export async function main() {
