@@ -39,6 +39,8 @@ function getValidData(data){
     // console.log(datalist.length)
     // console.log(data.pages.length)
     console.log(datalist)
+
+    return datalist;
 }
 
 export async function main() {
@@ -69,14 +71,12 @@ export async function main() {
 	console.log(project)
 
 	const res = await fetch(`/api/scrapbox/${project}`);
-	const data = await res.json();
+	const sbdata = await res.json();
 	console.log('after await')
 
-	getValidData(data)
+	const data = getValidData(sbdata)
 
-	//console.log(data.pages[0]);
-	//console.log(data.pages.length);
-	//console.log(data)
+	console.log(data);
 
 	return data;
     }
