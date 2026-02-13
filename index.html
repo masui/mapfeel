@@ -30,10 +30,6 @@
       console.log('地図表示')
       const map = initMap();
 
-      map.on('moveend', function () {
-	  console.log("地図が動き終わった");
-      });
-
       console.log('プロジェクト名取得')
       var project = location.pathname.replace(/^\//, "");
       if (!project) {
@@ -50,6 +46,12 @@
 	  li.text(data[i].title)
 	  $('#poilist').append(li)
       }
+
+      map.on('moveend', function () {
+	  console.log("地図が動き終わった");
+	  const center = map.getCenter();
+	  console.log(center);
+      });
 
     </script>
   </body>
