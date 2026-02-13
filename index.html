@@ -23,7 +23,7 @@
     <!-- <script type="module" src="/src/main.js"></script> -->
     
     <script type="module">
-      import { initMap, getCenter } from "/src/map.js"
+      import { initMap, distance, getCenter } from "/src/map.js"
       // import { main } from "/src/main.js"
       import { getData } from "/src/data.js";
 
@@ -49,7 +49,7 @@
 	  li.text(data[i].title)
 	  $('#poilist').append(li)
       }
-
+     /*
       function distance(lat1, lng1, lat2, lng2) {
 	  const R = Math.PI / 180;
 	  lat1 *= R; // ラジアンに変換
@@ -57,10 +57,11 @@
 	  lat2 *= R;
 	  lng2 *= R;
 	  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
-      }
+		     }
+      */
       
       map.on('moveend', function () {
-	  console.log("地図が動き終わった");
+          console.log("地図が動き終わった");
 	  curpos = map.getCenter();
 
 	  // dataをソート
