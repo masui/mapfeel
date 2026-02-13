@@ -7,19 +7,13 @@ export async function main() {
     //const map = initMap();
     initMap();
     
-    function getProject() {
-	alert(location.pathname);
-	return location.pathname.replace(/^\//, "");
-    }
-    
     async function load() {
-	var project = getProject();
+	var project = location.pathname.replace(/^\//, "");
 	
 	if (!project) {
 	    alert("URLにプロジェクト名を指定してください");
 	    return;
 	}
-	console.log(project)
 
 	// ScrapboxからMapfeel用データを取得
 	const validdata = await getData(project)
