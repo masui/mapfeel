@@ -65,7 +65,7 @@
 	  $('#poilist').empty();
 	  for(var i=0;i<data.length;i++){
 	      var li = $('<li>')
-	      li.text(data[i].title + ' ' + data[i].descriptions.join('/'))
+	      li.text(data[i].title + ' ' + data[i].description);
 	      $('#poilist').append(li)
 	  }
       });
