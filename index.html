@@ -33,11 +33,13 @@
       
       var data = await main(project);
 
-      console.log(data[0]);
+      // console.log(data[0]);
 
-      var li = $('<li>')
-      li.text(data[1].title)
-      $('#poilist').append(li)
+      for(var i=0;i<data.length;i++){
+	  var li = $('<li>')
+	  li.text(data[i].title)
+	  $('#poilist').append(li)
+      }
 
     </script>
   </body>
