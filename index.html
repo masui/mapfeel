@@ -25,14 +25,17 @@
       import { initMap } from "/src/map.js"
       import { main } from "/src/main.js"
 
+      console.log('地図表示')
       initMap();
-      
+
+      console.log('プロジェクト名取得')
       var project = location.pathname.replace(/^\//, "");
       if (!project) {
 	  alert("URLにプロジェクト名を指定してください");
 	  // return;
       }
-      
+
+      console.log('データ取得')
       var data = await main(project);
 
       // console.log(data[0]);
