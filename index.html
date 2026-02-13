@@ -50,12 +50,35 @@
 	  $('#poilist').append(li)
       }
 
+      function distance(lat1, lng1, lat2, lng2) {
+	  const R = Math.PI / 180;
+	  lat1 *= R; // ラジアンに変換
+	  lng1 *= R;
+	  lat2 *= R;
+	  lng2 *= R;
+	  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
+      }
+      
       map.on('moveend', function () {
 	  console.log("地図が動き終わった");
 	  curpos = map.getCenter();
 	  console.log(curpos);
 
+	  // dataをソート
+	  for (var i = 0; i < data.length; i++) {
+              var entry = data[i]
+              entry.distance = distance(entry.lat, entry.lng, curpos.lat, curpos.lng)
+	  }
+	  data.sort((a, b) => { // 近い順にソート
+              return a.distance > b.distance ? 1 : -1;
+	  })
+
 	  $('#poilist').empty();
+	  for(var i=0;i<data.length;i++){
+	      var li = $('<li>')
+	      li.text(data[i].title)
+	      $('#poilist').append(li)
+	  }
       });
 
     </script>
