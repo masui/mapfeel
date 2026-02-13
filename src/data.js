@@ -1,5 +1,5 @@
 function getValidData(data){
-    // Mapfeelに関係するページだけdatalistに入れる
+    // Mapfeelに関係するページだけ抽出する
     const datalist = []
     data.pages.map((page) => {
 	let entry = {}
@@ -36,16 +36,11 @@ function getValidData(data){
 }
 
 export async function getData(project) {
-    console.log(project)
-
     const res = await fetch(`/api/scrapbox/${project}`);
     const sbdata = await res.json();
 
     const validdata = getValidData(sbdata)
 
-    //console.log('getData()')
-    //console.log(validdata);
-    
     return validdata;
 }
 
