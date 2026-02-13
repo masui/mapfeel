@@ -22,8 +22,10 @@
     </div>
     <!-- <script src="/src/main.js"></script> -->
     <script type="module">
-      // import { initMap } from "/src/map.js"
+      import { initMap } from "/src/map.js"
       import { main } from "/src/main.js"
+
+      initMap();
       
       var project = location.pathname.replace(/^\//, "");
       if (!project) {

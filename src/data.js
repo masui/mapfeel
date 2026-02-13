@@ -1,3 +1,6 @@
+//
+// Scrapboxのプロジェクトのデータを取得するモジュール
+//
 function getValidData(data){
     // Mapfeelに関係するページだけ抽出する
     const datalist = []

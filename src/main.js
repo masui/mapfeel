@@ -5,15 +5,11 @@ export async function main(project) {
     console.log("Mapfeel starting...");
     
     //const map = initMap();
-    initMap();
+    //initMap();
     
     async function load(project) {
-	// var project = location.pathname.replace(/^\//, "");
-
 	// ScrapboxからMapfeel用データを取得
 	const validdata = await getData(project)
-
-	//console.log(validdata);
 
 	return validdata;
     }
