@@ -14,6 +14,7 @@ function getValidData(data){
 	datalist.push(entry)
     }
     */
+    // Mapfeelに関係するページだけ使う
     data.pages.map((page) => {
 	let entry = {}
 	entry.title = page.title;
@@ -33,7 +34,12 @@ function getValidData(data){
 		entry.pos = pos
 	    }
 	    else {
-		entry.description += description
+		// 画像の行などは飛ばす
+		if(description.match(/gyazo.com/i)){
+		}
+		else {
+		    entry.description += description
+		}
 	    }
 	});
 	entry.image = page.image
