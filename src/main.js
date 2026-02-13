@@ -18,8 +18,6 @@ function getValidData(data){
     data.pages.map((page) => {
 	let entry = {}
 	entry.title = page.title;
-	//entry.descriptions = page.descriptions;
-
 	entry.description = ""
 	page.descriptions.map((description) => {
 	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
@@ -47,7 +45,8 @@ function getValidData(data){
 	    datalist.push(entry)
 	}
     })
-    console.log(datalist)
+    console.log(datalist.length)
+    console.log(data.length)
 }
 
 export async function main() {
