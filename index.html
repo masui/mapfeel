@@ -26,7 +26,13 @@
       // import { initMap } from "/src/map.js"
       import { main } from "/src/main.js"
       
-      main();
+      var project = location.pathname.replace(/^\//, "");
+      if (!project) {
+	  alert("URLにプロジェクト名を指定してください");
+	  return;
+      }
+      
+      main(project);
       
       $('#li').text('Do the main thing.')
     </script>

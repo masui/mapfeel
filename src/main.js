@@ -1,19 +1,14 @@
 import { initMap } from "/src/map.js";
 import { getData } from "/src/data.js";
 
-export async function main() {
+export async function main(project) {
     console.log("Mapfeel starting...");
     
     //const map = initMap();
     initMap();
     
-    async function load() {
-	var project = location.pathname.replace(/^\//, "");
-	
-	if (!project) {
-	    alert("URLにプロジェクト名を指定してください");
-	    return;
-	}
+    async function load(project) {
+	// var project = location.pathname.replace(/^\//, "");
 
 	// ScrapboxからMapfeel用データを取得
 	const validdata = await getData(project)
@@ -24,7 +19,8 @@ export async function main() {
     }
 
     console.log("load...");
-    return load();
+    
+    return load(project);
 }
 
 
