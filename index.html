@@ -40,7 +40,6 @@
       }
 
       console.log('データ取得')
-      //var data = await main(project);
       var data = await getData(project);
 
       $('#poilist').empty()
@@ -49,16 +48,6 @@
 	  li.text(data[i].title)
 	  $('#poilist').append(li)
       }
-     /*
-      function distance(lat1, lng1, lat2, lng2) {
-	  const R = Math.PI / 180;
-	  lat1 *= R; // ラジアンに変換
-	  lng1 *= R;
-	  lat2 *= R;
-	  lng2 *= R;
-	  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
-		     }
-      */
       
       map.on('moveend', function () {
           console.log("地図が動き終わった");
@@ -76,7 +65,7 @@
 	  $('#poilist').empty();
 	  for(var i=0;i<data.length;i++){
 	      var li = $('<li>')
-	      li.text(data[i].title)
+	      li.text(data[i].title + ' ' + data[i].descriptions.join('/'))
 	      $('#poilist').append(li)
 	  }
       });
