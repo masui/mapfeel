@@ -36,8 +36,9 @@ function getValidData(data){
 	    datalist.push(entry)
 	}
     })
-    console.log(datalist.length)
-    console.log(data.pages.length)
+    // console.log(datalist.length)
+    // console.log(data.pages.length)
+    console.log(datalist)
 }
 
 export async function main() {
