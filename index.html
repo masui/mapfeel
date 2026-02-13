@@ -56,14 +56,12 @@
 	  lng1 *= R;
 	  lat2 *= R;
 	  lng2 *= R;
-	  console.log(6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2)));
 	  return 6371 * Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1) + Math.sin(lat1) * Math.sin(lat2));
       }
       
       map.on('moveend', function () {
 	  console.log("地図が動き終わった");
 	  curpos = map.getCenter();
-	  console.log(curpos);
 
 	  // dataをソート
 	  for (var i = 0; i < data.length; i++) {
