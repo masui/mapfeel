@@ -13,7 +13,7 @@ export async function main(project) {
 	// ScrapboxからMapfeel用データを取得
 	const validdata = await getData(project)
 
-	console.log(validdata);
+	//console.log(validdata);
 
 	return validdata;
     }
