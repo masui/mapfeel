@@ -4,17 +4,8 @@
 import { initMap } from "/src/map.js";
 
 function getValidData(data){
-    let datalist = []
-    /*
-    for(let i=0;i<data.pages.length;i++){
-	let entry = {}
-	entry.title = data.pages[i].title;
-	entry.descriptions = data.pages[i].descriptions;
-	entry.image = data.pages[i].image
-	datalist.push(entry)
-    }
-    */
-    // Mapfeelに関係するページだけ使う
+    // Mapfeelに関係するページだけdatalistに入れる
+    const datalist = []
     data.pages.map((page) => {
 	let entry = {}
 	entry.title = page.title;
@@ -78,11 +69,10 @@ export async function main() {
 
 	const res = await fetch(`/api/scrapbox/${project}`);
 	const data = await res.json();
+	console.log('after await')
 
 	getValidData(data)
-	//console.log(data)
 
-	console.log('after await')
 	//console.log(data.pages[0]);
 	//console.log(data.pages.length);
 	//console.log(data)
