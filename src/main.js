@@ -105,17 +105,6 @@ map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
 
-    const olddata = Array.from(data);
-
-    for(var i=0;i<8;i++){
-	// 画像クリックで移動
-	$('#img'+i).on('click', function(e){
-	    curpos.lat = olddata[i].pos.lat
-	    curpos.lng = olddata[i].pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	});
-    }
-    
     // dataをソート
     data.map((e) => {
         e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
@@ -126,6 +115,15 @@ map.on('moveend', function () {
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
+	$('#img'+i).attr('lat',data[i].pos.lat)
+	$('#img'+i).attr('lng',data[i].pos.lng)
+	
+	// 画像クリックで移動
+	$('#img'+i).on('click', function(e){
+	    curpos.lat = $('#img'+i).attr('lat')
+	    curpos.lng = $('#img'+i).attr('lng')
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	})
     }
 
     showlist()
