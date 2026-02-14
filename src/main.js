@@ -101,7 +101,7 @@ function showlist(){
 	$('#img'+i).on('click', function(e){
 	    curpos.lat = data[i].pos.lat
 	    curpos.lng = data[i].pos.lng
-	    alert(data[i].title)
+	    alert(`i=${i} ` + data[i].title)
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
 	$('#img'+i).hover(function () {
