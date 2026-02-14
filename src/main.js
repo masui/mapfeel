@@ -104,12 +104,14 @@ showlist()
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
-    
+
+    const olddata = Array.from(data);
+
     for(var i=0;i<8;i++){
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    curpos.lat = data[i].pos.lat
-	    curpos.lng = data[i].pos.lng
+	    curpos.lat = olddata[i].pos.lat
+	    curpos.lng = olddata[i].pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	});
     }
