@@ -122,7 +122,7 @@ map.on('moveend', function () {
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
 	    alert(poslist)
-	    alert(poslist[0])
+	    console.log(poslist[0])
 	    curpos.lat = poslist[i].lat
 	    curpos.lng = poslist[i].lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
