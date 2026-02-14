@@ -1,8 +1,9 @@
 //
 // Scrapboxのプロジェクトのデータを取得するモジュール
 //
+
+// Mapfeelに関係するページだけ抽出する
 function getValidData(data){
-    // Mapfeelに関係するページだけ抽出する
     const datalist = []
     data.pages.map((page) => {
 	let entry = {}
@@ -30,7 +31,8 @@ function getValidData(data){
 	    }
 	});
 	entry.image = page.image
-	if(entry.pos){
+	
+	if(entry.pos){ // validなエントリ
 	    datalist.push(entry)
 	}
     })
