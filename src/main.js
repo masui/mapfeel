@@ -87,14 +87,10 @@ map.on('moveend', function () {
 
     $('#img0').src = data[0].image
     console.log(data[0].image)
-    
-    /*
-    alert(data[0].image)
-    */
-    $('#img0').attr('src',data[0].image)
-    $('#img1').attr('src',data[1].image)
-    $('#img2').attr('src',data[2].image)
-    $('#img3').attr('src',data[3].image)
+
+    for(var i=0;i<8;i++){
+	$('#img'+i).attr('src',data[i].image)
+    }
 
     showlist()
 });
