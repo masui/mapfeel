@@ -59,14 +59,17 @@ function dirIcon(angle) {
 function showlist(){
     $('#poilist').empty()
     data.map((e) => {
-	var div = $('<div>')
-	div.on('click', function(){
+	var span = $('<span>')
+	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
+	span.on('click', function(){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
-	div.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
-	    e.title + ' ' + e.description);
+	var div = $('<div>')
+	
+	div.append(span);
+	div.text(e.title + ' ' + e.description);
 	$('#poilist').append(div)
     })
 }
