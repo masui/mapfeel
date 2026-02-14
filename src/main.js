@@ -85,6 +85,7 @@ function showlist(){
     });
     // マーカー表示
     for(var i=0;i<8;i++){
+	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = data[i].pos.lat
 	$('#img'+i)[0].lng = data[i].pos.lng
 	
@@ -102,20 +103,10 @@ function showlist(){
 	$('#img'+i).attr('src',data[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    //curpos.lat = data[i].pos.lat
-	    //curpos.lng = data[i].pos.lng
-	    console.log(e)
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
-	    //alert(`i=${i} ` + data[i].title)
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
-	/*
-	$('#img'+i).hover(function () {
-	    const url = $(this).data('url');
-	    $(this).attr('title', url);
-	    });
-	*/
     }
 }
 
