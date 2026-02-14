@@ -120,8 +120,8 @@ map.on('moveend', function () {
 	
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    curpos.lat = $('#img'+i).attr('lat')
-	    curpos.lng = $('#img'+i).attr('lng')
+	    curpos.lat = Number($('#img'+i).attr('lat'))
+	    curpos.lng = Number($('#img'+i).attr('lng'))
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
     }
