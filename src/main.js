@@ -86,6 +86,7 @@ map.on('moveend', function () {
     })
 
     $('#img0').src = data[0].image
+    console.log(data[0].image)
     
     /*
     alert(data[0].image)
