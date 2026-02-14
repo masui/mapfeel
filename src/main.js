@@ -85,8 +85,8 @@ map.on('moveend', function () {
         return a.distance > b.distance ? 1 : -1;
     })
 
-    alert(data[0].image)
     /*
+    alert(data[0].image)
     $('#img0').src = data[0].image
     $('#img1').src = data[1].image
     $('#img2').src = data[2].image
