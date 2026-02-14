@@ -44,8 +44,5 @@ export async function getData(project) {
 
     console.log(sbdata);
 
-    const validdata = getValidData(sbdata)
-
-    return validdata;
+    return getValidData(sbdata)
 }
-
