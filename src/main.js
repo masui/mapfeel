@@ -85,6 +85,9 @@ function showlist(){
     });
     // マーカー表示
     for(var i=0;i<8;i++){
+	$('#img'+i)[0].lat = data[i].pos.lat
+	$('#img'+i)[0].lng = data[i].pos.ng
+	
 	var page = data[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
 	// hoverで内容を表示
@@ -99,15 +102,19 @@ function showlist(){
 	$('#img'+i).attr('src',data[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    curpos.lat = data[i].pos.lat
-	    curpos.lng = data[i].pos.lng
-	    alert(`i=${i} ` + data[i].title)
+	    //curpos.lat = data[i].pos.lat
+	    //curpos.lng = data[i].pos.lng
+	    curpos.lat = e[0].lat
+	    curpos.lng = e[0].lng
+	    //alert(`i=${i} ` + data[i].title)
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
+	/*
 	$('#img'+i).hover(function () {
 	    const url = $(this).data('url');
 	    $(this).attr('title', url);
-	});
+	    });
+	*/
     }
 }
 
