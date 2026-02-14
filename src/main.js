@@ -70,9 +70,9 @@ function showlist(){
 	
 	div.append(span);
 
-	var span2 = $('<span>')
-	span2.text(' ' + e.title + ' ' + e.description);
-	div.append(span2)
+	span = $('<span>')
+	span.text(' ' + e.title + ' ' + e.description);
+	div.append(span)
 	
 	$('#poilist').append(div)
     })
@@ -87,8 +87,9 @@ function showlist(){
     for(var i=0;i<8;i++){
 	var page = data[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
-	//marker.addTo(map).bindPopup(page.title);
+	// hoverで内容を表示
 	marker.addTo(map).bindTooltip(page.title);
+	// マーカークリックで移動
 	marker.on('click', function (e) {
 	    curpos.lat = e.latlng.lat;
 	    curpos.lng = e.latlng.lng;
