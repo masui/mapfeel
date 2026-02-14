@@ -101,7 +101,7 @@ function showlist(){
 
 showlist()
 
-var poslist = []
+//var poslist = []
 
 map.on('moveend', function () {
     console.log("地図が動き終わった");
@@ -117,19 +117,20 @@ map.on('moveend', function () {
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
-	poslist[i] = { lat: data[i].pos.lat, lng: data[i].pos.lng }
+	//poslist[i] = { lat: data[i].pos.lat, lng: data[i].pos.lng }
 	
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    alert(poslist)
-	    console.log(poslist[i])
-	    curpos.lat = Number(poslist[i].lat)
-	    curpos.lng = Number(poslist[i].lng)
-	    console.log(curpos)
+	    //console.log(poslist[i])
+	    //curpos.lat = Number(poslist[i].lat)
+	    //curpos.lng = Number(poslist[i].lng)
+	    curpos.lat = data[i].pos.lat
+	    curpos.lng = data[i].pos.lng
+	    //console.log(curpos)
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
     }
-    alert(poslist)
+    //alert(poslist)
 
     showlist()
 
