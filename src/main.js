@@ -117,7 +117,7 @@ map.on('moveend', function () {
 	$('#img'+i).attr('src',data[i].image)
 	$('#img'+i).attr('lat',data[i].pos.lat)
 	$('#img'+i).attr('lng',data[i].pos.lng)
-	alert($('#img'+i).attr('lat',data[i].pos.lat))
+	alert($('#img'+i).attr('lat'))
 	
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
