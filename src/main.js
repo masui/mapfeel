@@ -77,16 +77,18 @@ function showlist(){
 	$('#poilist').append(div)
     })
 
-    // マーカー表示
+    // マーカー全部消す
     map.eachLayer(layer => {
 	if (layer instanceof L.Marker) {
 	    map.removeLayer(layer);
 	}
     });
+    // マーカー表示
     for(var i=0;i<8;i++){
 	var page = data[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
-	marker.addTo(map).bindPopup(page.title);
+	//marker.addTo(map).bindPopup(page.title);
+	marker.addTo(map).bindTooltip(page.title);
 	marker.on('click', function (e) {
 	    curpos.lat = e.latlng.lat;
 	    curpos.lng = e.latlng.lng;
