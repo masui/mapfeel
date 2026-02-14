@@ -90,9 +90,9 @@ map.on('moveend', function () {
     
     /*
     alert(data[0].image)
-    $('#img1').src = data[1].image
-    $('#img2').src = data[2].image
     */
+    $('#img0').attr('src',data[1].image)
+    $('#img1').attr('src',data[2].image)
 
     showlist()
 });
