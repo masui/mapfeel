@@ -85,7 +85,7 @@ function showlist(){
     });
     for(var i=0;i<8;i++){
 	var page = data[i]
-	L.marker([page.lat, page.lng])
+	L.marker([page.pos.lat, page.pos.lng])
 	    .addTo(map)
 	    .bindPopup(page.title);
     }
