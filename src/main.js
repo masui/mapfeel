@@ -1,18 +1,18 @@
 //
 // Mapfeelのメイン処理
 //
-import { initMap, distance, getCenter } from "/src/map.js"
+import { initMap, distance } from "/src/map.js"
 import { getData } from "/src/data.js";
 
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
-  (pos) => {
-    curpos.lat = pos.coords.latitude;
-    curpos.lng = pos.coords.longitude;
-  },
-  (err) => {
-    console.error(err);
-  }
+    (pos) => {
+	curpos.lat = pos.coords.latitude;
+	curpos.lng = pos.coords.longitude;
+    },
+    (err) => {
+	console.error(err);
+    }
 );
 
 console.log('地図表示')
@@ -95,6 +95,14 @@ function showlist(){
 	    curpos.lng = e.latlng.lng;
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	});
+
+	// 画像クリックでも移動
+	$('#img'+i).on('click'. function(e){
+	    curpos.lat = data[i].pos.lat
+	    curpos.lng = data[i].pos.lng
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	});
+
     }
 }
 
