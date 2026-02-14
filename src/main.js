@@ -36,11 +36,17 @@ map.on('moveend', function () {
     curpos = map.getCenter();
     
     // dataをソート
+    data.map((e) => {
+        e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+    })
+	
+    /*
     for (var i = 0; i < data.length; i++) {
         var entry = data[i]
         entry.distance = distance(entry.pos.lat, entry.pos.lng, curpos.lat, curpos.lng)
-    }
-    data = data.sort((a, b) => { // 近い順にソート
+	}
+    */
+    data.sort((a, b) => { // 近い順にソート
         return a.distance > b.distance ? 1 : -1;
     })
     
