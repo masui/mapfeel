@@ -5,6 +5,15 @@ import { initMap, distance, getCenter } from "/src/map.js"
 import { getData } from "/src/data.js";
 
 var curpos = {}
+navigator.geolocation.getCurrentPosition(
+  (pos) => {
+    curpos.lat = pos.coords.latitude;
+    curpos.lng = pos.coords.longitude;
+  },
+  (err) => {
+    console.error(err);
+  }
+);
 
 console.log('地図表示')
 const map = initMap();
