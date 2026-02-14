@@ -96,12 +96,6 @@ function showlist(){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	});
 
-	// 画像クリックでも移動
-	$('#img'+i).on('click', function(e){
-	    curpos.lat = data[i].pos.lat
-	    curpos.lng = data[i].pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	});
     }
 }
 
@@ -121,8 +115,15 @@ map.on('moveend', function () {
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
+	// 画像クリックで移動
+	$('#img'+i).on('click', function(e){
+	    curpos.lat = data[i].pos.lat
+	    curpos.lng = data[i].pos.lng
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	});
     }
 
     showlist()
+
 });
 
