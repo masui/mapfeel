@@ -97,7 +97,7 @@ function showlist(){
 	});
 
 	// 画像クリックでも移動
-	$('#img'+i).on('click'. function(e){
+	$('#img'+i).on('click', function(e){
 	    curpos.lat = data[i].pos.lat
 	    curpos.lng = data[i].pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
