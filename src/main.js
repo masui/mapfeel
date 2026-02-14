@@ -91,8 +91,10 @@ map.on('moveend', function () {
     /*
     alert(data[0].image)
     */
-    $('#img0').attr('src',data[1].image)
-    $('#img1').attr('src',data[2].image)
+    $('#img0').attr('src',data[0].image)
+    $('#img1').attr('src',data[1].image)
+    $('#img2').attr('src',data[2].image)
+    $('#img3').attr('src',data[3].image)
 
     showlist()
 });
