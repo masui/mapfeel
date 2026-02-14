@@ -54,7 +54,7 @@ function showlist(){
 	div.on('click', function(){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
-	    flyTo([curpos.lat, curpos.long], 12)
+	    map.flyTo([curpos.lat, curpos.long], 12)
 	})
 	div.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
 	    e.title + ' ' + e.description);
