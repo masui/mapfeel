@@ -116,7 +116,7 @@ map.on('moveend', function () {
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
 	$('#img'+i).lat = data[i].pos.lat
-	alert($(data[i].pos.lat)
+	alert(data[i].pos.lat)
 	$('#img'+i).lng = data[i].pos.lng
 	alert($('#img'+i).lat)
 	
