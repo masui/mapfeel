@@ -51,6 +51,7 @@ function showlist(){
     $('#poilist').empty()
     data.map((e) => {
 	var div = $('<div>')
+	div.on('click', function(){ alert(100) });
 	div.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
 	    e.title + ' ' + e.description);
 	$('#poilist').append(div)
