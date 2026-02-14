@@ -76,6 +76,19 @@ function showlist(){
 	
 	$('#poilist').append(div)
     })
+
+    // マーカー表示
+    map.eachLayer(layer => {
+	if (layer instanceof L.Marker) {
+	    map.removeLayer(layer);
+	}
+    });
+    for(var i=0;i<8;i++){
+	var page = data[i]
+	L.marker([page.lat, page.lng])
+	    .addTo(map)
+	    .bindPopup(page.title);
+    }
 }
 
 showlist()
