@@ -13,23 +13,22 @@ console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
 if (!project) {
     alert("URLにプロジェクト名を指定してください");
-    // return;
+    project = "masuimap"
 }
 
 console.log('データ取得')
 var data = await getData(project);
 
-$('#poilist').empty()
-for(var i=0;i<data.length;i++){
-    /*
-      var li = $('<li>')
-      li.text(data[i].title)
-      $('#poilist').append(li)
-    */
-    var e = $('<div>');
-    e.text(data[i].title);		     
-    $('#poilist').append(e);
+function showlist(){
+    $('#poilist').empty()
+    data.map((e) => {
+	var div = $('<div>')       
+	div.text(e.title + ' ' + e.description);
+	$('#poilist').append(div)
+    })
 }
+
+showlist()
 
 map.on('moveend', function () {
     console.log("地図が動き終わった");
@@ -39,30 +38,10 @@ map.on('moveend', function () {
     data.map((e) => {
         e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
     })
-	
-    /*
-    for (var i = 0; i < data.length; i++) {
-        var entry = data[i]
-        entry.distance = distance(entry.pos.lat, entry.pos.lng, curpos.lat, curpos.lng)
-	}
-    */
-    data.sort((a, b) => { // 近い順にソート
+    data.sort((a, b) => { // curposに近い順にソート
         return a.distance > b.distance ? 1 : -1;
     })
-    
-    $('#poilist').empty();
-    data.map((e) => {
-	var div = $('<div>')       
-	div.text(e.title + ' ' + e.description);
-	$('#poilist').append(div)
-    })
-    
-    /*
-    for(var i=0;i<data.length;i++){
-	var div = $('<div>')       
-	div.text(data[i].title + ' ' + data[i].description);
-	$('#poilist').append(div)
-	}
-    */
+
+    showlist()
 });
 
