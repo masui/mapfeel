@@ -69,7 +69,11 @@ function showlist(){
 	var div = $('<div>')
 	
 	div.append(span);
-	div.text(e.title + ' ' + e.description);
+
+	var span2 = $('<span>')
+	span2.text(e.title + ' ' + e.description);
+	div.append(span2)
+	
 	$('#poilist').append(div)
     })
 }
