@@ -115,14 +115,14 @@ map.on('moveend', function () {
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
-	$('#img'+i).attr('lat',data[i].pos.lat)
-	$('#img'+i).attr('lng',data[i].pos.lng)
-	alert($('#img'+i).attr('lat'))
+	$('#img'+i).lat = data[i].pos.lat
+	$('#img'+i).lng = data[i].pos.lng
+	alert($('#img'+i).lat
 	
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    curpos.lat = Number($('#img'+i).attr('lat'))
-	    curpos.lng = Number($('#img'+i).attr('lng'))
+	    curpos.lat = $('#img'+i).lat
+	    curpos.lng = $('#img'+i).lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
     }
