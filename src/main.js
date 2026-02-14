@@ -34,7 +34,7 @@ function angle(lat1, lng1, lat2, lng2) {
 }
 
 // 方位角を方角アイコンに変える
-function diricon(angle) {
+function dirIcon(angle) {
     if (angle < 22.5) return '⬆️'
     if (angle < 67.5) return '↗️'
     if (angle < 112.5) return '➡️'
@@ -51,7 +51,7 @@ function showlist(){
     $('#poilist').empty()
     data.map((e) => {
 	var div = $('<div>')
-	div.text(divicon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
+	div.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
 	    e.title + ' ' + e.description);
 	$('#poilist').append(div)
     })
