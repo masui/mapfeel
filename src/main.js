@@ -101,6 +101,8 @@ function showlist(){
 
 showlist()
 
+var poslist = []
+
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
@@ -115,15 +117,12 @@ map.on('moveend', function () {
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
-	$('#img'+i).lat = data[i].pos.lat
-	alert(data[i].pos.lat)
-	console.log($('#img'+i))
-	$('#img'+i).lng = data[i].pos.lng
+	poslist[i] = { lat: data[i].pos.lat, lng: data[i].pos.lng }
 	
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    curpos.lat = $('#img'+i).lat
-	    curpos.lng = $('#img'+i).lng
+	    curpos.lat = poslist[i].lat
+	    curpos.lng = poslist[i].lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
     }
