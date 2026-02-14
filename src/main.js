@@ -104,6 +104,7 @@ function showlist(){
 	$('#img'+i).on('click', function(e){
 	    //curpos.lat = data[i].pos.lat
 	    //curpos.lng = data[i].pos.lng
+	    console.log(e)
 	    curpos.lat = e[0].lat
 	    curpos.lng = e[0].lng
 	    //alert(`i=${i} ` + data[i].title)
