@@ -122,6 +122,7 @@ map.on('moveend', function () {
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
 	    alert(poslist)
+	    console.log(poslist[i])
 	    curpos.lat = Number(poslist[i].lat)
 	    curpos.lng = Number(poslist[i].lng)
 	    console.log(curpos)
