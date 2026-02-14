@@ -127,6 +127,7 @@ map.on('moveend', function () {
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
     }
+    alert(poslist)
 
     showlist()
 
