@@ -1,3 +1,6 @@
+//
+// Mapfeelのメイン処理
+//
 import { initMap, distance, getCenter } from "/src/map.js"
 import { getData } from "/src/data.js";
 
