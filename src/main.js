@@ -86,7 +86,7 @@ function showlist(){
     // マーカー表示
     for(var i=0;i<8;i++){
 	$('#img'+i)[0].lat = data[i].pos.lat
-	$('#img'+i)[0].lng = data[i].pos.ng
+	$('#img'+i)[0].lng = data[i].pos.lng
 	
 	var page = data[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
@@ -105,8 +105,8 @@ function showlist(){
 	    //curpos.lat = data[i].pos.lat
 	    //curpos.lng = data[i].pos.lng
 	    console.log(e)
-	    curpos.lat = e[0].lat
-	    curpos.lng = e[0].lng
+	    curpos.lat = e.target.lat
+	    curpos.lng = e.target.lng
 	    //alert(`i=${i} ` + data[i].title)
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
