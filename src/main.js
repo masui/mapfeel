@@ -85,9 +85,13 @@ function showlist(){
     });
     for(var i=0;i<8;i++){
 	var page = data[i]
-	L.marker([page.pos.lat, page.pos.lng])
-	    .addTo(map)
-	    .bindPopup(page.title);
+	var marker = L.marker([page.pos.lat, page.pos.lng]);
+	marker.addTo(map).bindPopup(page.title);
+	marker.on('click', function (e) {
+	    curpos.lat = e.latlng.lat;
+	    curpos.lng = e.latlng.lng;
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	});
     }
 }
 
@@ -104,9 +108,6 @@ map.on('moveend', function () {
     data.sort((a, b) => { // curposに近い順にソート
         return a.distance > b.distance ? 1 : -1;
     })
-
-    $('#img0').src = data[0].image
-    console.log(data[0].image)
 
     for(var i=0;i<8;i++){
 	$('#img'+i).attr('src',data[i].image)
