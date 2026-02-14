@@ -19,11 +19,40 @@ if (!project) {
 console.log('データ取得')
 var data = await getData(project);
 
+function angle(lat1, lng1, lat2, lng2) {
+    const R = Math.PI / 180;
+    lat1 *= R
+    lng1 *= R
+    lat2 *= R
+    lng2 *= R
+    let deltax = lng2 - lng1
+    let y = Math.sin(deltax)
+    let x = Math.cos(lat1) * Math.tan(lat2) - Math.sin(lat1) * Math.cos(deltax)
+    let psi = Math.atan2(y, x) * 180 / Math.PI
+    if (psi < 0) psi += 360
+    return psi
+}
+
+// 方位角を方角アイコンに変える
+function diricon(angle) {
+    if (angle < 22.5) return '⬆️'
+    if (angle < 67.5) return '↗️'
+    if (angle < 112.5) return '➡️'
+    if (angle < 157.5) return '↘️'
+    if (angle < 202.5) return '⬇️'
+    if (angle < 247.5) return '↙️'
+    if (angle < 292.5) return '⬅️'
+    if (angle < 337.5) return '↖️'
+    return '⬆️'
+}
+
+
 function showlist(){
     $('#poilist').empty()
     data.map((e) => {
-	var div = $('<div>')       
-	div.text(e.title + ' ' + e.description);
+	var div = $('<div>')
+	div.text(divicon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) + ' ' +
+	    e.title + ' ' + e.description);
 	$('#poilist').append(div)
     })
 }
