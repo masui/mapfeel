@@ -103,6 +103,10 @@ function showlist(){
 	    curpos.lng = data[i].pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
+	$('#img'+i).hover(function () {
+	    const url = $(this).data('url');
+	    $(this).attr('title', url);
+	});
     }
 }
 
