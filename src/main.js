@@ -102,7 +102,6 @@ function showlist(){
 	    curpos.lng = data[i].pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	});
-
     }
 }
 
