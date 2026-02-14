@@ -45,13 +45,18 @@ map.on('moveend', function () {
     })
     
     $('#poilist').empty();
+    data.map((e) => {
+	var div = $('<div>')       
+	div.text(e.title + ' ' + e.description);
+	$('#poilist').append(div)
+    })
+    
+    /*
     for(var i=0;i<data.length;i++){
 	var div = $('<div>')       
 	div.text(data[i].title + ' ' + data[i].description);
 	$('#poilist').append(div)
-	//var li = $('<li>')
-	//li.text(data[i].title + ' ' + data[i].description);
-	//$('#poilist').append(li)
-    }
+	}
+    */
 });
 
