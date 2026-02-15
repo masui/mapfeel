@@ -169,6 +169,7 @@ map.on('moveend', function () {
 
 });
 
+/*
 $(window).keydown(function(e){
     e.preventDefault()
     // 38 が上, 40 が下
@@ -213,3 +214,4 @@ $(window).keydown(function(e){
         //history.pushState(state, null, `?loc=${locstr}`)
     }
 })
+*/
