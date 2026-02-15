@@ -64,6 +64,7 @@ function dirIcon(angle) {
 
 // 画像リストのDOMを生成
 function setImages(size){
+    $('#images').empty();
     for(var i=0;i<NIMAGES;i++){
 	var img = $(`<img id="img${i}" style="height: ${size}px; width: ${size}px; object-fit: cover;">`)
 	var div = $('<div style="margin: 0px 5px 5px; cursor: zoom-in;">')
