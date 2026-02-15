@@ -202,6 +202,7 @@ $(window).keydown(function(e){
 	//locSelected = true
 
 	console.log(`topindex=${topIndex}`)
+        console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
         showlist(data.slice(topIndex,data.length))
 
 	setImages(400); // 拡大表示
