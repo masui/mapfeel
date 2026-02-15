@@ -4,14 +4,14 @@
 import { initMap, distance } from "/src/map.js"
 import { getData } from "/src/data.js";
 
-// 右上に表示する画像の数
+// 表示する画像/マーカーの数
 const NIMAGES = 20
 
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 //var locSelected = false // 明示的に選択されたらtrueになる
 
-var curpos = {}
+var curpos = {} // 地図の中心座標
 navigator.geolocation.getCurrentPosition(
     (pos) => {
 	curpos.lat = pos.coords.latitude;
@@ -76,30 +76,38 @@ function setImages(size){
 setImages(195); // 小さい画像を表示
 // setImages(400) // 大きい画像を表示
 
+//
+// POIリストの表示
+//
 function showlist(list){
-    console.log(`showlist: listlen = ${list.length}`)
-    
     $('#poilist').empty()
     list.map((e) => {
 	var div = $('<div>')
+	var span;
 
-	var span = $('<span>')
-	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) +
-		  '　' + e.title + '　');
+	// 矢印表示
+	span = $('<span>')
+	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
+	span.on('click', function(evt){ //クリックで移動
+	    setImages(400); // 拡大表示
+	    curpos.lat = e.pos.lat
+	    curpos.lng = e.pos.lng
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	})
+	div.append(span)
+		
+	div.append($('<span>　</span>'))
+
+	span = $('<span>')
+	span.text(e.title)
 	span.on('click', function(evt){
-	    if (evt.shiftKey) {
-		// ShiftでScrapboxページを表示
-		window.open(`https://scrapbox.io/${project}/${e.title}`)
-	    }
-	    else {
-		setImages(400); // 拡大表示
-		curpos.lat = e.pos.lat
-		curpos.lng = e.pos.lng
-		map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    }
+	    window.open(`https://scrapbox.io/${project}/${e.title}`)
 	})
 	div.append(span)
 	
+	div.append($('<span>　</span>'))
+
+	// description表示
 	span = $('<span style="color:#666">')
 	span.text(e.descriptions.join('・'));
 	div.append(span)
@@ -107,13 +115,12 @@ function showlist(list){
 	$('#poilist').append(div)
     })
 
-    // マーカー全部消す
-    map.eachLayer(layer => {
+    // マーカー表示
+    map.eachLayer(layer => { // マーカー全部消す
 	if (layer instanceof L.Marker) {
 	    map.removeLayer(layer);
 	}
     });
-    // マーカー表示
     for(var i=0;i<NIMAGES && i<list.length;i++){
 	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
