@@ -98,7 +98,7 @@ function showlist(list){
 		
 	div.append($('<span>　</span>'))
 
-	span = $('<span>')
+	span = $('<span style="color:#ddf;">')
 	span.text(e.title)
 	span.on('click', function(evt){
 	    window.open(`https://scrapbox.io/${project}/${e.title}`)
@@ -116,7 +116,7 @@ function showlist(list){
     })
 
     // マーカー表示
-    map.eachLayer(layer => { // マーカー全部消す
+    map.eachLayer(layer => {
 	if (layer instanceof L.Marker) {
 	    map.removeLayer(layer);
 	}
