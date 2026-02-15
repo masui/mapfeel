@@ -58,10 +58,9 @@ function dirIcon(angle) {
 for(var i=0;i<8;i++){
     var img = $(`<img id="img${i}" style="height: 195px; width: 195px; object-fit: cover;">`)
     var div = $('<div style="margin: 0px 5px 5px; cursor: zoom-in;">')
-    img.append(div)
+    div.append(img)
     $('#images').append(div)
 }
-
 
 function showlist(){
     $('#poilist').empty()
