@@ -72,7 +72,6 @@ function showlist(){
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
 
 	var div = $('<div>')
-	
 	div.append(span);
 	div.on('click', function(evt){
 	    if (evt.shiftKey) {
@@ -91,7 +90,11 @@ function showlist(){
 	//})
 
 	span = $('<span>')
-	span.text(' ' + e.title + ' ' + e.descriptions.join(' | '));
+	span.text(' ' + e.title + ' ');
+	div.append(span)
+	
+	span = $('<span style="color:#444">')
+	span.text(e.descriptions.join(' ・ '));
 	div.append(span)
 	
 	$('#poilist').append(div)
