@@ -145,7 +145,7 @@ map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
 
-    setImages(195)
+    // setImages(195)
 
     // dataをソート
     data.map((e) => {
