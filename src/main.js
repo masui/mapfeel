@@ -98,7 +98,7 @@ function showlist(list){
 		
 	div.append($('<span>　</span>'))
 
-	span = $('<span style="color:#ddf;">')
+	span = $('<span style="color:#33f;">')
 	span.text(e.title)
 	span.on('click', function(evt){
 	    window.open(`https://scrapbox.io/${project}/${e.title}`)
