@@ -181,6 +181,7 @@ $(window).keydown(function(e){
         if(! sortedByTitle){
             sortedByTitle = true
             var curtitle = data[0].title
+	    console.log('sort data');
             data.sort((a, b) => {
                 return a.title > b.title ? 1 : -1;
             })
