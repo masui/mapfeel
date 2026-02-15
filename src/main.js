@@ -4,7 +4,7 @@
 import { initMap, distance } from "/src/map.js"
 import { getData } from "/src/data.js";
 
-const NIMAGES = 10
+const NIMAGES = 20
 
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
