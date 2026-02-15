@@ -31,7 +31,7 @@ function getValidData(data){
 		}
 		else {
 		    var s = description
-		    s = s.replace(/\[\S\.icon\]/g, "🟨")
+		    s = s.replace(/\[.*\.icon\]/g, "🟨")
 		    s = s.replace(/\[([^\]]+)\]/g, "$1")
 		    entry.descriptions.push(s)
 		}
