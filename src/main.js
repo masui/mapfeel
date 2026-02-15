@@ -92,7 +92,7 @@ function showlist(){
 	//})
 
 	span = $('<span>')
-	span.text('　' + e.title + ' ');
+	span.text('　' + e.title + '　');
 	span.on('click', function(evt){
 	    if (evt.shiftKey) {
 		// ShiftでScrapboxページを表示
