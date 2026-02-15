@@ -155,7 +155,7 @@ map.on('moveend', function () {
 
     console.log("Moved");
 
-    if(sortedByTItle){
+    if(sortedByTitle){
 	console.log('sortedByTitle');
         showlist(data.slice(topIndex,data.length))
     }
