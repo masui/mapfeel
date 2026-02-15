@@ -9,7 +9,7 @@ const NIMAGES = 20
 
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
-var locSelected = false // 明示的に選択されたらtrueになる
+//var locSelected = false // 明示的に選択されたらtrueになる
 
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
@@ -76,9 +76,9 @@ function setImages(size){
 setImages(195); // 小さい画像を表示
 // setImages(400) // 大きい画像を表示
 
-function showlist(){
+function showlist(list){
     $('#poilist').empty()
-    data.map((e) => {
+    list.map((e) => {
 	var div = $('<div>')
 
 	var span = $('<span>')
@@ -112,8 +112,8 @@ function showlist(){
 	}
     });
     // マーカー表示
-    for(var i=0;i<NIMAGES && i<data.length;i++){
-	var page = data[i]
+    for(var i=0;i<NIMAGES && i<list.length;i++){
+	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
 	// hoverで内容を表示
 	marker.addTo(map).bindTooltip(page.title);
@@ -126,10 +126,10 @@ function showlist(){
 	});
 
 	// 画像の属性として緯度経度を記録しておく
-	$('#img'+i)[0].lat = data[i].pos.lat
-	$('#img'+i)[0].lng = data[i].pos.lng
+	$('#img'+i)[0].lat = list[i].pos.lat
+	$('#img'+i)[0].lng = list[i].pos.lng
 	
- 	$('#img'+i).attr('src',data[i].image)
+ 	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
 	    setImages(400); // 拡大表示
@@ -140,7 +140,7 @@ function showlist(){
     }
 }
 
-showlist()
+showlist(data)
 
 map.on('dragstart', () => {
     // ドラッグすると縮小画像を表示
@@ -159,7 +159,7 @@ map.on('moveend', function () {
         return a.distance > b.distance ? 1 : -1;
     })
 
-    showlist()
+    showlist(data)
 
 });
 
@@ -197,9 +197,9 @@ $(window).keydown(function(e){
             .attr('class', 'largeimage')
             .appendTo('#images')
 	*/
-	locSelected = true
+	//locSelected = true
 	
-        showlist()
+        showlist(data)
 
 	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
