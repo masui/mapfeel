@@ -72,7 +72,7 @@ function setImages(size){
     }
 }
 
-setImages(300);
+setImages(195);
 
 function showlist(){
     $('#poilist').empty()
