@@ -161,6 +161,7 @@ map.on('moveend', function () {
         return a.distance > b.distance ? 1 : -1;
     })
 
+    console.log("Moved");
     showlist(data)
 
 });
@@ -192,13 +193,6 @@ $(window).keydown(function(e){
             }
         }
 
-	/*
-        $('#images').empty()
-        $('<img>')
-            .attr('src', `${data[topIndex].photo}/raw`)
-            .attr('class', 'largeimage')
-            .appendTo('#images')
-	*/
 	//locSelected = true
 
 	console.log(`topindex=${topIndex}`)
