@@ -199,7 +199,7 @@ $(window).keydown(function(e){
 	*/
 	//locSelected = true
 	
-        showlist(data)
+        showlist(data.slice(topIndex,data.length))
 
 	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
