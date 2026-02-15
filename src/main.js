@@ -9,7 +9,6 @@ const NIMAGES = 20
 
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
-//var locSelected = false // 明示的に選択されたらtrueになる
 
 var curpos = {} // 地図の中心座標
 navigator.geolocation.getCurrentPosition(
@@ -120,7 +119,7 @@ function showlist(list){
 	$('#poilist').append(div)
     })
 
-    // マーカー表示
+    // 地図にマーカー表示
     map.eachLayer(layer => {
 	if (layer instanceof L.Marker) {
 	    map.removeLayer(layer);
@@ -211,8 +210,6 @@ $(window).keydown(function(e){
                 }
             }
         }
-
-	//locSelected = true
 
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)

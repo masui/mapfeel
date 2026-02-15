@@ -32,7 +32,7 @@ function getValidData(data){
 		else {
 		    var s = description
 		    s = s.replace(/\[.*\.icon\]/g, "😐")
-		    s = s.replace(/\[([^\]]+)\]/g, "$1")
+		    s = s.replace(/\[([^\]]+)\]/g, "$1") // []は削除
 		    s = s.replace(/#(\S*)/g, "($1)")
 		    entry.descriptions.push(s)
 		}
@@ -52,7 +52,7 @@ export async function getData(project) {
     const res = await fetch(`/api/scrapbox/${project}`);
     const sbdata = await res.json();
 
-    // console.log(sbdata);
+    console.log(sbdata);
 
     return getValidData(sbdata)
 }
