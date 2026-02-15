@@ -70,14 +70,15 @@ function showlist(){
     data.map((e) => {
 	var span = $('<span>')
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
-	span.on('click', function(){
+
+	var div = $('<div>')
+	
+	div.append(span);
+	div.on('click', function(){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
-	var div = $('<div>')
-	
-	div.append(span);
 
 	span = $('<span>')
 	span.text(' ' + e.title + ' ' + e.description);
