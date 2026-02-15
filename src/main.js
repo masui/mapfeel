@@ -80,7 +80,7 @@ function showlist(){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
 	div.on('dblclick', function(){
-	    console.log(`https://scrapbox.io/${project}/${e.title}`)
+	    window.open(`https://scrapbox.io/${project}/${e.title}`)
 	})
 
 	span = $('<span>')
