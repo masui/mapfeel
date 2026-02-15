@@ -141,8 +141,7 @@ function showlist(){
 	$('#img'+i)[0].lat = data[i].pos.lat
 	$('#img'+i)[0].lng = data[i].pos.lng
 	
-	console.log(`set img${i}`)
-	$('#img'+i).attr('src',data[i].image)
+ 	$('#img'+i).attr('src',data[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
 	    curpos.lat = e.target.lat
