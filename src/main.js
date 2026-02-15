@@ -74,8 +74,8 @@ function showlist(){
 	var div = $('<div>')
 	
 	div.append(span);
-	div.on('click', function(){
-	    if (e.ctrlKey) {
+	div.on('click', function(evt){
+	    if (evt.ctrlKey) {
 		// Scrapboxページを表示
 		window.open(`https://scrapbox.io/${project}/${e.title}`)
 	    }
