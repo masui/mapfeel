@@ -79,6 +79,9 @@ function showlist(){
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
+	div.on('dblclick', function(){
+	    alert('double')
+	})
 
 	span = $('<span>')
 	span.text(' ' + e.title + ' ' + e.description);
