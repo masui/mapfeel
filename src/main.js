@@ -207,6 +207,10 @@ $(window).keydown(function(e){
         showlist(data.slice(topIndex,data.length))
 
 	setImages(400); // 拡大表示
+
+	curpos.lat = data[topIndex].pos.lat 
+	curpos.lng = data[topIndex].pos.lng 
+	
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
