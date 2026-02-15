@@ -27,6 +27,8 @@ function getValidData(data){
 		// 画像の行などは飛ばす
 		if(description.match(/gyazo.com/i)){
 		}
+		else if(description.match(/\[.*\.jpeg\]/){
+		}
 		else {
 		    var s = description.replace(/\[([^\]]+)\]/g, "$1")
 		    entry.descriptions.push(s)
