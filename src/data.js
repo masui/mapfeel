@@ -30,7 +30,9 @@ function getValidData(data){
 		else if(description.match(/\[.*\.jpeg\]/)){
 		}
 		else {
-		    var s = description.replace(/\[([^\]]+)\]/g, "$1")
+		    var s = description
+		    s = s.replace(/\[\w\.icon\]/g, "🟨")
+		    s = s.replace(/\[([^\]]+)\]/g, "$1")
 		    entry.descriptions.push(s)
 		}
 	    }
