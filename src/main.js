@@ -111,7 +111,6 @@ function showlist(list){
 	span = $('<span style="color:#666">')
 	span.text(e.descriptions.join('・'));
 	span.on('click', function(evt){ //クリックで移動
-	    setImages(400); // 拡大表示
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
