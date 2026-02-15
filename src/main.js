@@ -141,6 +141,11 @@ function showlist(){
 
 showlist()
 
+map.on('dragstart', () => {
+    setImages(195)
+
+});
+
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
