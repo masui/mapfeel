@@ -200,14 +200,14 @@ $(window).keydown(function(e){
             .appendTo('#images')
 	*/
 	//locSelected = true
-	
+
+	console.log(`topindex=${topIndex}`)
         showlist(data.slice(topIndex,data.length))
 
 	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
-	console.log(`topindex=${topIndex}`)
 
         let ind = topIndex
         let locstr = (data[ind].pos.lat > 0 ? `N${data[ind].pos.lat}` : `S${-data[ind].pos.lat}`)
