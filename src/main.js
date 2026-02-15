@@ -108,7 +108,7 @@ function showlist(){
 
 	
 	span = $('<span style="color:#888">')
-	span.text(e.descriptions.join('・'));
+	span.text(e.descriptions.join('//'));
 	div.append(span)
 	
 	$('#poilist').append(div)
