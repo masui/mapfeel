@@ -133,10 +133,10 @@ function showlist(list){
 	marker.addTo(map).bindTooltip(page.title);
 	// マーカークリックで移動
 	marker.on('click', function (e) {
-	    setImages(400); // 拡大表示
 	    curpos.lat = e.latlng.lat;
 	    curpos.lng = e.latlng.lng;
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    setImages(400); // 拡大表示
 	});
 
 	// 画像の属性として緯度経度を記録しておく
@@ -146,17 +146,17 @@ function showlist(list){
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    setImages(400); // 拡大表示
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    setImages(400); // 拡大表示
 	})
     }
 }
 
 showlist(data)
 
-map.on('dragstart', () => {
+map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
     setImages(195)
 });
