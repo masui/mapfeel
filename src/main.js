@@ -162,7 +162,12 @@ map.on('moveend', function () {
     })
 
     console.log("Moved");
-    showlist(data)
+
+    if(sortedByTitle){
+        showlist(data.slice(topIndex,data.length))
+    } else {
+	showlist(data)
+    }
 
 });
 
