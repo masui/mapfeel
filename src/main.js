@@ -89,6 +89,7 @@ function showlist(){
 		window.open(`https://scrapbox.io/${project}/${e.title}`)
 	    }
 	    else {
+		setImages(400); // 拡大表示
 		curpos.lat = e.pos.lat
 		curpos.lng = e.pos.lng
 		map.flyTo([curpos.lat, curpos.lng], map.getZoom())
@@ -117,6 +118,7 @@ function showlist(){
 	marker.addTo(map).bindTooltip(page.title);
 	// マーカークリックで移動
 	marker.on('click', function (e) {
+	    setImages(400); // 拡大表示
 	    curpos.lat = e.latlng.lat;
 	    curpos.lng = e.latlng.lng;
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
@@ -195,6 +197,7 @@ $(window).keydown(function(e){
 	
         showlist()
 
+	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
         let ind = topIndex
