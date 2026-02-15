@@ -73,7 +73,8 @@ function setImages(size){
     }
 }
 
-setImages(195);
+setImages(195); // 小さい画像を表示
+// setImages(400) // 大きい画像を表示
 
 function showlist(){
     $('#poilist').empty()
@@ -142,15 +143,13 @@ function showlist(){
 showlist()
 
 map.on('dragstart', () => {
+    // ドラッグすると縮小画像を表示
     setImages(195)
-
 });
 
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
-
-    // setImages(195)
 
     // dataをソート
     data.map((e) => {
