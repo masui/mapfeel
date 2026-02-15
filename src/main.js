@@ -153,20 +153,20 @@ map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
 
-    // dataをソート
-    data.map((e) => {
-        e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-    })
-    data.sort((a, b) => { // curposに近い順にソート
-        return a.distance > b.distance ? 1 : -1;
-    })
-
     console.log("Moved");
 
-    if(sortedByTitle){
+    if(sortedByTItle){
 	console.log('sortedByTitle');
         showlist(data.slice(topIndex,data.length))
-    } else {
+    }
+    else {
+	// dataをソート
+	data.map((e) => {
+            e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+	})
+	data.sort((a, b) => { // curposに近い順にソート
+            return a.distance > b.distance ? 1 : -1;
+	})
 	showlist(data)
     }
 
