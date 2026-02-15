@@ -75,7 +75,7 @@ function showlist(){
     data.map((e) => {
 	var div = $('<div>')
 
-	span = $('<span>')
+	var span = $('<span>')
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) +
 		  '　' + e.title + '　');
 	span.on('click', function(evt){
