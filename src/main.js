@@ -179,7 +179,7 @@ $(window).keydown(function(e){
         if(! sortedByTitle){
             sortedByTitle = true
             var curtitle = data[0].title
-            locations.sort((a, b) => {
+            data.sort((a, b) => {
                 return a.title > b.title ? 1 : -1;
             })
             for(topIndex = 0; data[topIndex].title != curtitle; topIndex++);
