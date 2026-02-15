@@ -164,3 +164,9 @@ map.on('moveend', function () {
 
 });
 
+$(window).keydown(function(e){
+    e.preventDefault()
+    // 38 が上, 40 が下
+    alert(`keyCode = ${e.keyCode)`)
+    //if(e.keyCode == 38 || e.keyCode == 40){
+})
