@@ -4,6 +4,8 @@
 import { initMap, distance } from "/src/map.js"
 import { getData } from "/src/data.js";
 
+const NIMAGES = 10
+
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
     (pos) => {
@@ -55,7 +57,8 @@ function dirIcon(angle) {
     return '⬆️'
 }
 
-for(var i=0;i<8;i++){
+// 画像リストのDOMを生成
+for(var i=0;i<NIMAGES;i++){
     var img = $(`<img id="img${i}" style="height: 195px; width: 195px; object-fit: cover;">`)
     var div = $('<div style="margin: 0px 5px 5px; cursor: zoom-in;">')
     div.append(img)
@@ -90,7 +93,7 @@ function showlist(){
 	}
     });
     // マーカー表示
-    for(var i=0;i<8;i++){
+    for(var i=0;i<NIMAGES;i++){
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = data[i].pos.lat
 	$('#img'+i)[0].lng = data[i].pos.lng
@@ -118,8 +121,6 @@ function showlist(){
 
 showlist()
 
-//var poslist = []
-
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
@@ -131,25 +132,6 @@ map.on('moveend', function () {
     data.sort((a, b) => { // curposに近い順にソート
         return a.distance > b.distance ? 1 : -1;
     })
-
-    /*
-    for(var i=0;i<8;i++){
-	$('#img'+i).attr('src',data[i].image)
-	//poslist[i] = { lat: data[i].pos.lat, lng: data[i].pos.lng }
-	
-	// 画像クリックで移動
-	$('#img'+i).on('click', function(e){
-	    //console.log(poslist[i])
-	    //curpos.lat = Number(poslist[i].lat)
-	    //curpos.lng = Number(poslist[i].lng)
-	    curpos.lat = data[i].pos.lat
-	    curpos.lng = data[i].pos.lng
-	    //console.log(curpos)
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	})
-    }
-    //alert(poslist)
-    */
 
     showlist()
 
