@@ -204,6 +204,7 @@ $(window).keydown(function(e){
 	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
+	console.log(`sortedByTitle=${sortedByTitle}`)
 	console.log(`topindex=${topIndex}`)
 
         let ind = topIndex
