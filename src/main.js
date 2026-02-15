@@ -125,7 +125,7 @@ function showlist(){
 	}
     });
     // マーカー表示
-    for(var i=0;i<NIMAGES;i++){
+    for(var i=0;i<NIMAGES && i<data.length;i++){
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = data[i].pos.lat
 	$('#img'+i)[0].lng = data[i].pos.lng
