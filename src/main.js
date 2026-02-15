@@ -75,13 +75,20 @@ function showlist(){
 	
 	div.append(span);
 	div.on('click', function(){
-	    curpos.lat = e.pos.lat
-	    curpos.lng = e.pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    if (e.ctrlKey) {
+		// Scrapboxページを表示
+		window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    }
+	    else {
+		curpos.lat = e.pos.lat
+		curpos.lng = e.pos.lng
+		map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    }
 	})
-	div.on('dblclick', function(){
-	    window.open(`https://scrapbox.io/${project}/${e.title}`)
-	})
+	// ダブルクリックでScrapboxを開くのが難しい
+	//div.on('dblclick', function(){
+	//    window.open(`https://scrapbox.io/${project}/${e.title}`)
+	//})
 
 	span = $('<span>')
 	span.text(' ' + e.title + ' ' + e.description);
