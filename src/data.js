@@ -28,7 +28,7 @@ function getValidData(data){
 		if(description.match(/gyazo.com/i)){
 		}
 		else {
-		    entry.description.push(description)
+		    entry.descriptions.push(description)
 		}
 	    }
 	});
