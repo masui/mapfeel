@@ -4,7 +4,12 @@
 import { initMap, distance } from "/src/map.js"
 import { getData } from "/src/data.js";
 
+// 右上に表示する画像の数
 const NIMAGES = 20
+
+var sortedByTitle = false
+var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
+
 
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
@@ -169,4 +174,42 @@ $(window).keydown(function(e){
     // 38 が上, 40 が下
     console.log(`keyCode = ${e.keyCode}`)
 
+    if(e.keyCode == 38 || e.keyCode == 40){
+        if(! sortedByTitle){
+            sortedByTitle = true
+            var curtitle = data[0].title
+            locations.sort((a, b) => {
+                return a.title > b.title ? 1 : -1;
+            })
+            for(topIndex = 0; data[topIndex].title != curtitle; topIndex++);
+        }
+        else {
+            if(e.keyCode == 38){
+                if (topIndex > 0) {
+                    topIndex -= 1
+                }
+            }
+            else { // keyCode = 40
+                if (topIndex < data.length - 1) {
+                    topIndex += 1
+                }
+            }
+        }
+        $('#images').empty()
+        $('<img>')
+            .attr('src', `${data[topIndex].photo}/raw`)
+            .attr('class', 'largeimage')
+            .appendTo('#images')
+	locSelected = true
+	
+        showlist()
+
+	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+        let ind = topIndex
+        let locstr = (data[ind].pos.lat > 0 ? `N${data[ind].pos.lat}` : `S${-data[ind].pos.lat}`)
+            + (data[ind].pos.lng > 0 ? `E${data[ind].pos.lng}` : `W${-data[ind].pos.lng}`)
+        locstr += `Z${map.getZoom()}`
+        //history.pushState(state, null, `?loc=${locstr}`)
+    }
 })
