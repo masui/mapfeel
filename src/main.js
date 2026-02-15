@@ -204,7 +204,7 @@ $(window).keydown(function(e){
 	setImages(400); // 拡大表示
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
-	console.log(`topindex=${topindex}`)
+	console.log(`topindex=${topIndex}`)
 
         let ind = topIndex
         let locstr = (data[ind].pos.lat > 0 ? `N${data[ind].pos.lat}` : `S${-data[ind].pos.lat}`)
