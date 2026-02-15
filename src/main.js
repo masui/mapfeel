@@ -105,14 +105,11 @@ function showlist(){
 	    }
 	})
 	div.append(span)
-
 	
 	span = $('<span style="color:#888">')
 	span.text(e.descriptions.join('//'));
 	div.append(span)
 
-	xxxxxx();
-	
 	$('#poilist').append(div)
     })
 
