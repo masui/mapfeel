@@ -9,7 +9,7 @@ const NIMAGES = 20
 
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
-
+var locSelected = false // 明示的に選択されたらtrueになる
 
 var curpos = {}
 navigator.geolocation.getCurrentPosition(
