@@ -129,6 +129,7 @@ function showlist(){
  	$('#img'+i).attr('src',data[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
+	    setImages(400); // 拡大表示
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
