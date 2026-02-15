@@ -89,10 +89,10 @@ function showlist(list){
 	span = $('<span>')
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
 	span.on('click', function(evt){ //クリックで移動
-	    setImages(400); // 拡大表示
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    setImages(400); // 拡大表示
 	})
 	div.append(span)
 		
@@ -218,12 +218,12 @@ $(window).keydown(function(e){
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
         showlist(data.slice(topIndex,data.length))
 
-	setImages(400); // 拡大表示
-
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
 	
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	
+	setImages(400); // 拡大表示
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
 
