@@ -80,7 +80,7 @@ function showlist(){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	})
 	div.on('dblclick', function(){
-	    alert('double')
+	    console.log(e)
 	})
 
 	span = $('<span>')
