@@ -8,7 +8,9 @@ function getValidData(data){
     data.pages.map((page) => {
 	let entry = {}
 	entry.title = page.title;
-	entry.description = ""
+	entry.descriptions = []
+
+	// page.descriptions にはScrapboxページの最初の5行だけ格納されるらしい
 	page.descriptions.map((description) => {
 	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
 	    if(match){
@@ -26,7 +28,7 @@ function getValidData(data){
 		if(description.match(/gyazo.com/i)){
 		}
 		else {
-		    entry.description += (' / ' + description)
+		    entry.description.push(description)
 		}
 	    }
 	});
