@@ -77,7 +77,7 @@ setImages(195); // 小さい画像を表示
 // setImages(400) // 大きい画像を表示
 
 function showlist(list){
-    console.log(`listlen = ${list.length}`)
+    console.log(`showlist: listlen = ${list.length}`)
     
     $('#poilist').empty()
     list.map((e) => {
