@@ -73,31 +73,11 @@ for(var i=0;i<NIMAGES;i++){
 function showlist(){
     $('#poilist').empty()
     data.map((e) => {
-	var span = $('<span>')
-	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
-
 	var div = $('<div>')
-	div.append(span);
-	/*
-	div.on('click', function(evt){
-	    if (evt.shiftKey) {
-		// ShiftでScrapboxページを表示
-		window.open(`https://scrapbox.io/${project}/${e.title}`)
-	    }
-	    else {
-		curpos.lat = e.pos.lat
-		curpos.lng = e.pos.lng
-		map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    }
-	    })
-	    */
-	// ダブルクリックでScrapboxを開くのは難しい
-	//div.on('dblclick', function(){
-	//    window.open(`https://scrapbox.io/${project}/${e.title}`)
-	//})
 
 	span = $('<span>')
-	span.text('　' + e.title + '　');
+	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)) +
+		  '　' + e.title + '　');
 	span.on('click', function(evt){
 	    if (evt.shiftKey) {
 		// ShiftでScrapboxページを表示
