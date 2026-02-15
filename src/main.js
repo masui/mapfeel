@@ -20,7 +20,7 @@ navigator.geolocation.getCurrentPosition(
     (err) => {
 	console.error(err);
     }
-});
+)
 
 console.log('地図表示')
 const map = initMap();
