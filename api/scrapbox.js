@@ -18,19 +18,23 @@
 //
 
 export default async function handler(req, res) {
-  const { project } = req.query;
+    const { project } = req.query;
 
-  const url = `https://scrapbox.io/api/pages/${project}?limit=1000`;
+    const url = `https://scrapbox.io/api/pages/${project}?limit=1000`;
 
-  const r = await fetch(url);
-  const data = await r.json();
+    const r = await fetch(url);
+    const data = await r.json();
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
+    const html = await fetch("https://scrapbox.io/${project}").then(r => r.text());
+    const title = html.match(/<title>(.*?)<\/title>/i)[1];
+    data.title = title
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
     /*
     res.setHeader(
       "Cache-Control",
       "s-maxage=60, stale-while-revalidate"
     );
     */
-  res.status(200).json(data);
+    res.status(200).json(data);
 }
