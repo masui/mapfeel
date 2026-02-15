@@ -32,7 +32,7 @@ if (!project) {
     project = "masuimap"
 }
 
-console.log('データ取得')
+console.log('Scrapboxのデータ取得')
 var data = await getData(project);
 
 function angle(lat1, lng1, lat2, lng2) {
@@ -126,12 +126,6 @@ function showlist(){
     });
     // マーカー表示
     for(var i=0;i<NIMAGES && i<data.length;i++){
-	// 画像の属性として緯度経度を記録しておく
-	console.log(`i = ${i}`);
-	console.log(data)
-	$('#img'+i)[0].lat = data[i].pos.lat
-	$('#img'+i)[0].lng = data[i].pos.lng
-	
 	var page = data[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
 	// hoverで内容を表示
@@ -143,6 +137,10 @@ function showlist(){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	});
 
+	// 画像の属性として緯度経度を記録しておく
+	$('#img'+i)[0].lat = data[i].pos.lat
+	$('#img'+i)[0].lng = data[i].pos.lng
+	
 	console.log(`set img${i}`)
 	$('#img'+i).attr('src',data[i].image)
 	// 画像クリックで移動
@@ -198,11 +196,14 @@ $(window).keydown(function(e){
                 }
             }
         }
+
+	/*
         $('#images').empty()
         $('<img>')
             .attr('src', `${data[topIndex].photo}/raw`)
             .attr('class', 'largeimage')
             .appendTo('#images')
+	*/
 	locSelected = true
 	
         showlist()
