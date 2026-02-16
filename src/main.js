@@ -35,7 +35,7 @@ if (args.loc) {
 }
 if(! curpos.lat){
     // 現在地の緯度経度を取得
-    navigator.geolocation.getCurrentPosition(
+    await navigator.geolocation.getCurrentPosition(
 	(pos) => {
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
