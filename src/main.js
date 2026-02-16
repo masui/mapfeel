@@ -112,6 +112,12 @@ function locstr(){
         + `Z${map.getZoom()}`
 }
 
+window.addEventListener('popstate', (event) => {
+    console.log(event)
+    console.log(location + ", state: " + JSON.stringify(event.state))
+    location.href = location
+})
+
 //
 // POIリストの表示
 //
@@ -284,4 +290,3 @@ $(window).keydown(function(e){
         //history.pushState(state, null, `?loc=${locstr}`)
     }
 })
-
