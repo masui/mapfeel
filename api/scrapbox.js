@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     const html = await fetch("https://scrapbox.io/${project}/").then(r => r.text());
     const title = html.match(/(<title>(.*?)<\/title>)/i)[1];
-    data.title = title
+    data.title = html
 
     res.setHeader("Access-Control-Allow-Origin", "*");
     /*
