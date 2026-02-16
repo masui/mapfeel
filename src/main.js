@@ -39,7 +39,7 @@ if(! curpos.lat){
 	(pos) => {
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
-	    console.log(`geolocation: curpos=${curpos}`)
+	    console.log(`geolocation: curpos=${curpos.lat}, ${curpos.lng}`)
 	},
 	(err) => {
 	    console.error(err);
