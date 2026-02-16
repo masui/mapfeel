@@ -95,6 +95,7 @@ function showlist(list){
 		console.log('flyTo 完了');
 		setImages(400); // 拡大表示
 	    });
+	    setImages(400); // 拡大表示
 	})
 	div.append(span)
 		
