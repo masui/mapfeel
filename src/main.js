@@ -10,6 +10,8 @@ const NIMAGES = 20
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 
+var state = {}
+
 var curpos = {} // 地図の中心座標
 
 // 引数解析
@@ -127,6 +129,12 @@ function showlist(list){
 		});
 		*/
 	    setImages(400); // 拡大表示
+
+	    let locstr = (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
+		+ (curpos.lng > 0 ? `E${curpos.lng.toFixed(5)}` : `W${-curpos.lng.toFixed(5)}`)
+            locstr += `Z${map.getZoom()}`
+            history.pushState(state,null,`?loc=${locstr}`)
+
 	})
 	div.append(span)
 		
