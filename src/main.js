@@ -45,10 +45,10 @@ if(! curpos.lat){
 	}
     )
 }
-console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
+//console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
 console.log('地図表示')
-const map = initMap();
+const map = initMap(curpos.lat, curpos.lng);
 
 console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
