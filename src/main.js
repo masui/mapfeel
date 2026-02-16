@@ -279,10 +279,14 @@ $(window).keydown(function(e){
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
 
+	/*
         let ind = topIndex
         let locstr = (data[ind].pos.lat > 0 ? `N${data[ind].pos.lat}` : `S${-data[ind].pos.lat}`)
             + (data[ind].pos.lng > 0 ? `E${data[ind].pos.lng}` : `W${-data[ind].pos.lng}`)
         locstr += `Z${map.getZoom()}`
         //history.pushState(state, null, `?loc=${locstr}`)
+	*/
+	
+        history.pushState(state,null,`?loc=${locstr()}`)
     }
 })
