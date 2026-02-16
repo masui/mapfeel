@@ -11,15 +11,40 @@ var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 
 var curpos = {} // 地図の中心座標
-navigator.geolocation.getCurrentPosition(
-    (pos) => {
-	curpos.lat = pos.coords.latitude;
-	curpos.lng = pos.coords.longitude;
-    },
-    (err) => {
-	console.error(err);
+
+// 引数解析
+let args = {}
+document.location.search.substring(1).split('&').forEach((s) => {
+    if (s != '') {
+        let [name, value] = s.split('=')
+        args[name] = decodeURIComponent(value)
     }
-)
+})
+if (args.loc) {
+    var match
+    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/) // e.g. S35.12E135.12Z13
+    console.log(`match=${match}`)
+    if (match) {
+        curpos.lat = Number(match[2])
+        if (match[1] == 'S') curpos.lat = -curpos.lat
+        curpos.lng = Number(match[4])
+        if (match[3] == 'W') curpos.lng = -curpos.lng
+        curpos.zoom = 12
+        if (match[6])curpos.zoom = Number(match[6])
+    }
+}
+if(! curpos.lat){
+    navigator.geolocation.getCurrentPosition(
+	(pos) => {
+	    curpos.lat = pos.coords.latitude;
+	    curpos.lng = pos.coords.longitude;
+	},
+	(err) => {
+	    console.error(err);
+	}
+    )
+}
+console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
 console.log('地図表示')
 const map = initMap();
