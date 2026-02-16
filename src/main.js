@@ -33,8 +33,21 @@ if (args.loc) {
         if (match[6])curpos.zoom = Number(match[6])
     }
 }
+
+function getCurrentPositionAsync(options) {
+    return new Promise((resolve, reject) => {
+	navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+}
+//const pos = await getCurrentPositionAsync();
+//console.log(pos.coords.latitude);
+
 if(! curpos.lat){
     // 現在地の緯度経度を取得
+    const pos = await getCurrentPositionAsync();
+    curpos.lat = pos.coords.latitude;
+    curpos.lng = pos.coords.longitude;
+    /*
     navigator.geolocation.getCurrentPosition(
 	(pos) => {
 	    curpos.lat = pos.coords.latitude;
@@ -44,7 +57,8 @@ if(! curpos.lat){
 	(err) => {
 	    console.error(err);
 	}
-    )
+	)
+    */
 }
 
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
