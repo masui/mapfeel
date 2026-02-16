@@ -10,10 +10,7 @@ const NIMAGES = 20
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
-var curpos = {} // 地図の中心座標
-
-curpos.lat = 35
-curpos.lng = 136
+var curpos = { lat:35, lng:135 } // 地図の中心座標
 
 // URLの引数解析
 let args = {}
@@ -36,10 +33,9 @@ if (args.loc) {
         if (match[6])curpos.zoom = Number(match[6])
     }
 }
-/*
 if(! curpos.lat){
     // 現在地の緯度経度を取得
-    await navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.getCurrentPosition(
 	(pos) => {
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
@@ -49,8 +45,7 @@ if(! curpos.lat){
 	    console.error(err);
 	}
     )
-    }
-    */
+}
 
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
