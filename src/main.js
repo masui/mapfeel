@@ -136,6 +136,7 @@ function showlist(list){
 		*/
 	    setImages(400); // 拡大表示
 
+	    console.log(locstr())
             history.pushState(state,null,`?loc=${locstr()}`)
 
 	})
