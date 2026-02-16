@@ -22,7 +22,7 @@ document.location.search.substring(1).split('&').forEach((s) => {
 })
 if (args.loc) {
     var match
-    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/) // e.g. S35.12E135.12Z13
+    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/) // e.g. N35.12E135.12Z13
     console.log(`match=${match}`)
     if (match) {
         curpos.lat = Number(match[2])
@@ -36,6 +36,7 @@ if (args.loc) {
 if(! curpos.lat){
     navigator.geolocation.getCurrentPosition(
 	(pos) => {
+	    alert(pos)
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
 	},
