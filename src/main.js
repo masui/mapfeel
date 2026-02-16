@@ -11,7 +11,7 @@ var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
 //var curpos = { lat:35, lng:135 } // 地図の中心座標
-var curpos = {}
+var curpos = {}  // 地図の中心座標
 
 // URLの引数解析
 let args = {}
@@ -37,7 +37,7 @@ if (args.loc) {
 
 function getCurrentPositionAsync(options) {
     return new Promise((resolve, reject) => {
-	navigator.geolocation.getCurrentPosition(resolve, reject, options);
+	navigator.geolocation.getCurrentPosition(resolve, reject, options); // これは非同期関数らしい
     });
 }
 if(! curpos.lat){
@@ -259,12 +259,8 @@ $(window).keydown(function(e){
             for(topIndex = 0; data[topIndex].title != curtitle; topIndex++);
         }
         else {
-            if(e.keyCode == UP){
-                if (topIndex > 0) { topIndex -= 1 }
-            }
-            else { // keyCode = DOWN
-                if (topIndex < data.length - 1) { topIndex += 1 }
-            }
+            if(e.keyCode == UP && topIndex > 0) { topIndex -= 1 }
+            if(e.keyCode == DOWN && topIndex < data.length - 1) { topIndex += 1 }
         }
 
 	console.log(`topindex=${topIndex}`)
