@@ -36,9 +36,9 @@ if (args.loc) {
 if(! curpos.lat){
     navigator.geolocation.getCurrentPosition(
 	(pos) => {
-	    alert(pos)
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
+	    console.log(curpos)
 	},
 	(err) => {
 	    console.error(err);
