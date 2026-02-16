@@ -12,6 +12,9 @@ var topIndex = 0 // タイトルでソートしたときのトップ行のイン
 var state = {} // pushState() で使うもの
 var curpos = {} // 地図の中心座標
 
+curpos.lat = 35
+curpos.lng = 136
+
 // URLの引数解析
 let args = {}
 document.location.search.substring(1).split('&').forEach((s) => {
@@ -33,6 +36,7 @@ if (args.loc) {
         if (match[6])curpos.zoom = Number(match[6])
     }
 }
+/*
 if(! curpos.lat){
     // 現在地の緯度経度を取得
     await navigator.geolocation.getCurrentPosition(
@@ -45,7 +49,8 @@ if(! curpos.lat){
 	    console.error(err);
 	}
     )
-}
+    }
+    */
 
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
