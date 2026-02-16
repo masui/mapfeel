@@ -9,12 +9,10 @@ const NIMAGES = 20
 
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
-
-var state = {}
-
+var state = {} // pushState() で使うもの
 var curpos = {} // 地図の中心座標
 
-// 引数解析
+// URLの引数解析
 let args = {}
 document.location.search.substring(1).split('&').forEach((s) => {
     if (s != '') {
@@ -36,18 +34,20 @@ if (args.loc) {
     }
 }
 if(! curpos.lat){
+    // 現在地の緯度経度を取得
     navigator.geolocation.getCurrentPosition(
 	(pos) => {
 	    curpos.lat = pos.coords.latitude;
 	    curpos.lng = pos.coords.longitude;
-	    console.log(curpos)
+	    console.log(`geolocation: curpos=${curpos}`)
 	},
 	(err) => {
 	    console.error(err);
 	}
     )
 }
-//console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
+
+console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
 console.log('地図表示')
 const map = initMap(curpos.lat, curpos.lng);
@@ -259,14 +259,10 @@ $(window).keydown(function(e){
         }
         else {
             if(e.keyCode == 38){
-                if (topIndex > 0) {
-                    topIndex -= 1
-                }
+                if (topIndex > 0) { topIndex -= 1 }
             }
             else { // keyCode = 40
-                if (topIndex < data.length - 1) {
-                    topIndex += 1
-                }
+                if (topIndex < data.length - 1) { topIndex += 1 }
             }
         }
 
