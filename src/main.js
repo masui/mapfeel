@@ -2,7 +2,7 @@
 // Mapfeelのメイン処理
 //
 import { initMap, distance } from "/src/map.js"
-import { getData } from "/src/data.js";
+import { getScrapboxData } from "/src/data.js";
 
 // 表示する画像/マーカーの数
 const NIMAGES = 20
@@ -40,26 +40,11 @@ function getCurrentPositionAsync(options) {
 	navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
 }
-//const pos = await getCurrentPositionAsync();
-//console.log(pos.coords.latitude);
-
 if(! curpos.lat){
     // 現在地の緯度経度を取得
     const pos = await getCurrentPositionAsync();
     curpos.lat = pos.coords.latitude;
     curpos.lng = pos.coords.longitude;
-    /*
-    navigator.geolocation.getCurrentPosition(
-	(pos) => {
-	    curpos.lat = pos.coords.latitude;
-	    curpos.lng = pos.coords.longitude;
-	    console.log(`geolocation: curpos=${curpos.lat}, ${curpos.lng}`)
-	},
-	(err) => {
-	    console.error(err);
-	}
-	)
-    */
 }
 
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
@@ -78,7 +63,7 @@ if (!project) {
 }
 
 console.log('Scrapboxのデータ取得')
-var data = await getData(project);
+var data = await getScrapboxData(project);
 
 function angle(lat1, lng1, lat2, lng2) {
     const R = Math.PI / 180;
