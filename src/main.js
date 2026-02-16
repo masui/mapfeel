@@ -50,6 +50,8 @@ if(! curpos.lat){
 console.log('地図表示')
 const map = initMap(curpos.lat, curpos.lng);
 
+map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
 console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
 if (!project) {
