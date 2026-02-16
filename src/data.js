@@ -53,7 +53,6 @@ export async function getData(project) {
     const sbdata = await res.json();
 
     console.log(sbdata);
-    console.log(sbdata.title);
 
     return getValidData(sbdata)
 }
