@@ -10,7 +10,8 @@ const NIMAGES = 20
 var sortedByTitle = false
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
-var curpos = { lat:35, lng:135 } // 地図の中心座標
+//var curpos = { lat:35, lng:135 } // 地図の中心座標
+var curpos = {}
 
 // URLの引数解析
 let args = {}
