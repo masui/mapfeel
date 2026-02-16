@@ -244,10 +244,11 @@ map.on('moveend', function () {
 
 $(window).keydown(function(e){
     e.preventDefault()
-    // 38 が上, 40 が下
+    const UP = 38
+    const DOWN = 40
     console.log(`keyCode = ${e.keyCode}`)
 
-    if(e.keyCode == 38 || e.keyCode == 40){
+    if(e.keyCode == UP || e.keyCode == DOWN){
         if(! sortedByTitle){
             sortedByTitle = true
             var curtitle = data[0].title
@@ -258,10 +259,10 @@ $(window).keydown(function(e){
             for(topIndex = 0; data[topIndex].title != curtitle; topIndex++);
         }
         else {
-            if(e.keyCode == 38){
+            if(e.keyCode == UP){
                 if (topIndex > 0) { topIndex -= 1 }
             }
-            else { // keyCode = 40
+            else { // keyCode = DOWN
                 if (topIndex < data.length - 1) { topIndex += 1 }
             }
         }
