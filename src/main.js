@@ -81,14 +81,14 @@ function angle(lat1, lng1, lat2, lng2) {
 
 // 方位角を方角アイコンに変える
 function dirIcon(angle) {
-    if (angle < 22.5) return '⬆️'
-    if (angle < 67.5) return '↗️'
-    if (angle < 112.5) return '➡️'
-    if (angle < 157.5) return '↘️'
-    if (angle < 202.5) return '⬇️'
-    if (angle < 247.5) return '↙️'
-    if (angle < 292.5) return '⬅️'
-    if (angle < 337.5) return '↖️'
+    if (angle < 360.0 * 1 / 16 /* 22.5 */) return '⬆️'
+    if (angle < 360.0 * 3 / 16 /* 67.5 */) return '↗️'
+    if (angle < 360.0 * 5 / 16 /* 112.5 */) return '➡️'
+    if (angle < 360.0 * 7 / 16 /* 157.5 */) return '↘️'
+    if (angle < 360.0 * 9 / 16 /* 202.5 */) return '⬇️'
+    if (angle < 360.0 * 11 / 16 /* 247.5 */) return '↙️'
+    if (angle < 360.0 * 13 / 16 /* 292.5 */) return '⬅️'
+    if (angle < 360.0 * 15 / 16 /* 337.5 */) return '↖️'
     return '⬆️'
 }
 
