@@ -91,7 +91,10 @@ function showlist(list){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    setImages(400); // 拡大表示
+	    map.once('moveend', () => {
+		console.log('flyTo 完了');
+		setImages(400); // 拡大表示
+	    });
 	})
 	div.append(span)
 		
