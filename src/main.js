@@ -106,6 +106,12 @@ function setImages(size){
 setImages(195); // 小さい画像を表示
 // setImages(400) // 大きい画像を表示
 
+function locstr(){
+    (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
+	+ (curpos.lng > 0 ? `E${curpos.lng.toFixed(5)}` : `W${-curpos.lng.toFixed(5)}`)
+        + `Z${map.getZoom()}`
+}
+
 //
 // POIリストの表示
 //
@@ -130,10 +136,7 @@ function showlist(list){
 		*/
 	    setImages(400); // 拡大表示
 
-	    let locstr = (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
-		+ (curpos.lng > 0 ? `E${curpos.lng.toFixed(5)}` : `W${-curpos.lng.toFixed(5)}`)
-            locstr += `Z${map.getZoom()}`
-            history.pushState(state,null,`?loc=${locstr}`)
+            history.pushState(state,null,`?loc=${locstr()}`)
 
 	})
 	div.append(span)
