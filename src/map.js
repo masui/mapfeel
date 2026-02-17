@@ -2,6 +2,7 @@ var map = null;
 
 export function initMap(lat, lng) {
     //map = L.map("map").setView([35.319, 139.550], 13);
+    // キー操作を全部ディスエーブルしてみる
     map = L.map("map", { keyboard: false })
 	.setView([lat, lng], 13)
 

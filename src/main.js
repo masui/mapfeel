@@ -21,15 +21,17 @@ document.location.search.substring(1).split('&').forEach((s) => {
         args[name] = decodeURIComponent(value)
     }
 })
-if (args.loc) {
+if (args.loc) { // ?loc=N35.12E135.12Z13 のように指定されていた場合
     var match
-    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/) // e.g. N35.12E135.12Z13
+    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/)
     console.log(`match=${match}`)
     if (match) {
-        curpos.lat = Number(match[2])
-        if (match[1] == 'S') curpos.lat = -curpos.lat
-        curpos.lng = Number(match[4])
-        if (match[3] == 'W') curpos.lng = -curpos.lng
+        //curpos.lat = Number(match[2])
+        //if (match[1] == 'S') curpos.lat = -curpos.lat
+        curpos.lat = Number(match[2]) * (match[1] == 'N' ? 1 : -1)
+        //curpos.lng = Number(match[4])
+        //if (match[3] == 'W') curpos.lng = -curpos.lng
+        curpos.lng = Number(match[4]) * (match[5] == 'E' ? 1 : -1)
         curpos.zoom = 12
         if (match[6])curpos.zoom = Number(match[6])
     }
@@ -226,10 +228,11 @@ map.getContainer().addEventListener('keydown', (e) => {
 	e.preventDefault();
     }
 });
-
+/*
 map.on('keydown', (e) => { //地図上でのkeydown
     console.log(e)
-});
+    });
+*/
 
 map.on('moveend', function () {
     console.log("地図が動き終わった");
