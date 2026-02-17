@@ -199,11 +199,11 @@ function showimages(list){
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
-	    //map.on('moveend', function () {
-	    //setImages(400); // 拡大表示
-	    //})
+	    map.on('moveend', function () {
+		setImages(400); // 拡大表示
+	    })
 
-	    setImages(400); // 拡大表示
+	    //setImages(400); // 拡大表示
 	})
     }
 }
@@ -226,6 +226,7 @@ map.getContainer().addEventListener('keydown', (e) => {
     });
 */
 
+/*
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
@@ -246,7 +247,8 @@ map.on('moveend', function () {
 	showlist(data)
 	showimages(data)
     }
-});
+    });
+    */
 
 
 $(window).keydown(function(e){
