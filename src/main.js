@@ -172,6 +172,7 @@ function showlist(list){
 }
 
 function showimages(list){
+    console.log(`showimages: listlen=${list.length}`)
     for(var i=0;i<NIMAGES && i<list.length;i++){
 	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
