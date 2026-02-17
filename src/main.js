@@ -196,10 +196,12 @@ function showimages(list){
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    /*
 	    map.on('moveend', function () {
 		setImages(400); // 拡大表示
-	    })
-	    //setImages(400); // 拡大表示
+		})
+		*/
+	    setImages(400); // 拡大表示
 	})
     }
 }
