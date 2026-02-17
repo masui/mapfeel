@@ -220,6 +220,7 @@ map.on('dragend', () => {
 });
 
 map.on('keydown', (e) => { //地図上でのkeydown
+    e.preventDefault()
     console.log(e)
 });
 
