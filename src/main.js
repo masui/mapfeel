@@ -220,6 +220,8 @@ map.on('dragend', () => {
 });
 
 map.getContainer().addEventListener('keydown', (e) => {
+    console.log('----')
+    console.log(e)
     if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
 	e.preventDefault();
     }
