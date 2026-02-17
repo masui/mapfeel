@@ -219,8 +219,8 @@ map.on('dragend', () => {
     setImages(195)
 });
 
-map.on('keydown', () => {
-    alert('keydown')
+map.on('keydown', (e) => { //地図上でのkeydown
+    console.log(e)
 });
 
 map.on('moveend', function () {
