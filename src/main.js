@@ -224,6 +224,7 @@ map.getContainer().addEventListener('keydown', (e) => {
     });
 */
 
+/*
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
@@ -244,7 +245,8 @@ map.on('moveend', function () {
 	showlist(data)
 	showimages(data)
     }
-});
+    });
+    */
 
 $(window).keydown(function(e){
     e.preventDefault()
