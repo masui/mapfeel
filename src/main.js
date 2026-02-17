@@ -219,8 +219,13 @@ map.on('dragend', () => {
     setImages(195)
 });
 
+map.getContainer().addEventListener('keydown', (e) => {
+    if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+	e.preventDefault();
+    }
+});
+
 map.on('keydown', (e) => { //地図上でのkeydown
-    e.preventDefault()
     console.log(e)
 });
 
