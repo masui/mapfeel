@@ -219,6 +219,10 @@ map.on('dragend', () => {
     setImages(195)
 });
 
+map.on('keydown', () => {
+    alert('keydown')
+});
+
 map.on('moveend', function () {
     console.log("地図が動き終わった");
     curpos = map.getCenter();
