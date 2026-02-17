@@ -131,12 +131,6 @@ function showlist(list){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    /*
-	    map.on('moveend', () => {
-		console.log('flyTo 完了');
-		setImages(400); // 拡大表示
-		});
-		*/
 	    setImages(400); // 拡大表示
 
 	    console.log(`locstr = ${locstr()}`)
@@ -170,11 +164,14 @@ function showlist(list){
     })
 
     // 地図にマーカー表示
-    map.eachLayer(layer => {
+    map.eachLayer(layer => { // マーカーを全部消す
 	if (layer instanceof L.Marker) {
 	    map.removeLayer(layer);
 	}
     });
+}
+
+function showimages(list){
     for(var i=0;i<NIMAGES && i<list.length;i++){
 	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
@@ -187,6 +184,7 @@ function showlist(list){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    setImages(400); // 拡大表示
 	});
+	
 
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = list[i].pos.lat
@@ -198,18 +196,13 @@ function showlist(list){
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    /*
-	    map.on('moveend', () => {
-		console.log('flyTo 完了');
-		setImages(400); // 拡大表示
-		});
-		*/
 	    setImages(400); // 拡大表示
 	})
     }
 }
 
 showlist(data)
+showimages(data)
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
@@ -233,6 +226,7 @@ map.on('moveend', function () {
     if(sortedByTitle){
 	console.log('sortedByTitle');
         showlist(data.slice(topIndex,data.length))
+	showimages(data.slice(topIndex,data.length))
     }
     else {
 	// dataをソート
@@ -243,6 +237,7 @@ map.on('moveend', function () {
             return a.distance > b.distance ? 1 : -1;
 	})
 	showlist(data)
+	showimages(data)
     }
 });
 
@@ -270,6 +265,7 @@ $(window).keydown(function(e){
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
         showlist(data.slice(topIndex,data.length))
+	showimages(data.slice(topIndex,data.length))
 
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
