@@ -31,7 +31,7 @@ if (args.loc) { // ?loc=N35.12E135.12Z13 のように指定されていた場合
         curpos.lat = Number(match[2]) * (match[1] == 'N' ? 1 : -1)
         //curpos.lng = Number(match[4])
         //if (match[3] == 'W') curpos.lng = -curpos.lng
-        curpos.lng = Number(match[4]) * (match[5] == 'E' ? 1 : -1)
+        curpos.lng = Number(match[4]) * (match[3] == 'E' ? 1 : -1)
         curpos.zoom = 12
         if (match[6])curpos.zoom = Number(match[6])
     }
