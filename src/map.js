@@ -2,7 +2,9 @@ var map = null;
 
 export function initMap(lat, lng) {
     //map = L.map("map").setView([35.319, 139.550], 13);
-    map = L.map("map").setView([lat, lng], 13);
+    map = L.map("map"){
+	keyboard: false
+    }.setView([lat, lng], 13)
 
     L.tileLayer(
 	"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
