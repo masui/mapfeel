@@ -228,6 +228,7 @@ map.getContainer().addEventListener('keydown', (e) => {
 });
 
 map.on('keydown', (e) => { //地図上でのkeydown
+    e.target.preventDefault();
     console.log(e)
 });
 
