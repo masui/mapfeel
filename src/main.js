@@ -189,7 +189,8 @@ function showimages(list){
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = list[i].pos.lat
 	$('#img'+i)[0].lng = list[i].pos.lng
-	
+
+	console.log(list[i].image);
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
