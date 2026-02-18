@@ -226,6 +226,7 @@ function showImages(list){
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	    console.log(data[0])
 	    showImages(data)
 	    showMarkers(data)
 
