@@ -209,7 +209,7 @@ function showImages(list){
 }
 
 showPOIList(data)
-//showImages(data)
+showImages(data)
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
