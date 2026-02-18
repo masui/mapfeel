@@ -133,6 +133,9 @@ function showPOIList(list){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    setImages(400); // 拡大表示
 
+	    showImages(list)
+	    showMarkers(list)
+
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
 
@@ -235,6 +238,7 @@ function showImages(list){
 
 showPOIList(data)
 showImages(data)
+showMarkers(data)
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
