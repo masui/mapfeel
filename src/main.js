@@ -222,6 +222,7 @@ function showImages(list){
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
+	    console.log('image click')
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
