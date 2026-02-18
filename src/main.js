@@ -227,7 +227,7 @@ function showImages(list){
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    showImages(data)
-	    showMarkers(data))
+	    showMarkers(data)
 
 	    map.on('moveend', function () {
 		setImages(400); // 拡大表示
