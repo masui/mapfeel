@@ -7,10 +7,9 @@ import { getScrapboxData } from "/src/data.js";
 // 表示する画像/マーカーの数
 const NIMAGES = 20
 
-var sortedByTitle = false
+var sortedByTitle = false // カーソルでPOI移動してるかどうか
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
-//var curpos = { lat:35, lng:135 } // 地図の中心座標
 var curpos = {}  // 地図の中心座標
 
 // URLの引数解析
@@ -199,7 +198,7 @@ function showMarkers(list){  // 地図にマーカー表示
 
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
-    for(var i=0;i<NIMAGES && i<list.length;i++){
+    for(var  i=0;i<NIMAGES && i<list.length;i++){
 	/*
 	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
@@ -219,7 +218,7 @@ function showImages(list){
 	$('#img'+i)[0].lat = list[i].pos.lat
 	$('#img'+i)[0].lng = list[i].pos.lng
 
-	console.log(list[i].image);
+	// console.log(list[i].image);
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
