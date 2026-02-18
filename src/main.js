@@ -118,8 +118,8 @@ window.addEventListener('popstate', (event) => {
 //
 // POIリストの表示
 //
-function showlist(list){
-    $('#poilist').empty()
+function showPOIList(list){
+    $('#POIlist').empty()
     list.map((e) => {
 	var div = $('<div>')
 	var span;
@@ -160,7 +160,7 @@ function showlist(list){
 	})
 	div.append(span)
 
-	$('#poilist').append(div)
+	$('#POIlist').append(div)
     })
 
     // 地図にマーカー表示
@@ -171,8 +171,8 @@ function showlist(list){
     });
 }
 
-function showimages(list){
-    console.log(`showimages: listlen=${list.length}`)
+function showImages(list){
+    console.log(`showImages: listlen=${list.length}`)
     for(var i=0;i<NIMAGES && i<list.length;i++){
 	var page = list[i]
 	var marker = L.marker([page.pos.lat, page.pos.lng]);
@@ -208,8 +208,8 @@ function showimages(list){
     }
 }
 
-showlist(data)
-showimages(data)
+showPOIList(data)
+showImages(data)
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
@@ -233,8 +233,8 @@ map.on('moveend', function () {
 
     if(sortedByTitle){
 	console.log('sortedByTitle');
-        showlist(data.slice(topIndex,data.length))
-	showimages(data.slice(topIndex,data.length))
+        showPOIList(data.slice(topIndex,data.length))
+	showImages(data.slice(topIndex,data.length))
     }
     else {
 	// dataをソート
@@ -244,8 +244,8 @@ map.on('moveend', function () {
 	data.sort((a, b) => { // curposに近い順にソート
             return a.distance > b.distance ? 1 : -1;
 	})
-	showlist(data)
-	showimages(data)
+	showPOIList(data)
+	showImages(data)
     }
     });
     */
@@ -274,8 +274,8 @@ $(window).keydown(function(e){
 
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
-        showlist(data.slice(topIndex,data.length))
-	showimages(data.slice(topIndex,data.length))
+        showPOIList(data.slice(topIndex,data.length))
+	showImages(data.slice(topIndex,data.length))
 
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
