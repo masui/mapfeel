@@ -365,7 +365,7 @@ $(window).keydown(function(e){
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
         showPOIList(data.slice(topIndex,data.length))
-	//showImages(data.slice(topIndex,data.length))
+	showImages(data.slice(topIndex,data.length))
 
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
