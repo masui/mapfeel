@@ -362,8 +362,12 @@ $(window).keydown(function(e){
             if(e.keyCode == DOWN && topIndex < data.length - 1) { topIndex += 1 }
         }
 
+	imageSize = 400
+	setImages(imageSize); // 拡大表示
+	
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
+	
         showPOIList(data.slice(topIndex,data.length))
 	showImages(data.slice(topIndex,data.length))
 	showMarkers(data.slice(topIndex,data.length))
@@ -373,19 +377,9 @@ $(window).keydown(function(e){
 	
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
-	imageSize = 400
-	setImages(imageSize); // 拡大表示
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
 
-	/*
-        let ind = topIndex
-        let locstr = (data[ind].pos.lat > 0 ? `N${data[ind].pos.lat}` : `S${-data[ind].pos.lat}`)
-            + (data[ind].pos.lng > 0 ? `E${data[ind].pos.lng}` : `W${-data[ind].pos.lng}`)
-        locstr += `Z${map.getZoom()}`
-        //history.pushState(state, null, `?loc=${locstr}`)
-	*/
-	
         history.pushState(state,null,`?loc=${locstr()}`)
     }
 })
