@@ -266,6 +266,10 @@ function showImages(list){
 		return a.distance > b.distance ? 1 : -1;
 	    })
 	    console.log(data[0])
+
+	    imageSize = 400
+	    setImages(imageSize)
+	    
 	    showImages(data)
 	    showPOIList(data)
 	    showMarkers(data)
