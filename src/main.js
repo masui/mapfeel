@@ -140,8 +140,8 @@ function showPOIList(list){
 	    list.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
-	    showPOIList(data)
-	    showImages(data)
+	    showPOIList(list)
+	    showImages(list)
 	    showMarkers(list)
 
 	    console.log(`locstr = ${locstr()}`)
