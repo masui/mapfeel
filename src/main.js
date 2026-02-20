@@ -264,6 +264,8 @@ function showImages(list){
 	    showImages(data)
 	    showPOIList(data)
 	    showMarkers(data)
+	    
+            history.pushState(state,null,`?loc=${locstr()}`)
 	})
     }
 }
