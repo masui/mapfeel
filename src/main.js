@@ -132,7 +132,7 @@ function showPOIList(list){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
 	    imageSize = 400
-	    //setImages(400); // 拡大表示
+	    setImages(imageSize); // 拡大表示
 
 
 	    // listをソート
@@ -173,6 +173,7 @@ function showPOIList(list){
 
 
 	    imageSize = 400
+	    setImages(imageSize)
 	    //setImages(400); // 拡大表示
 
 
