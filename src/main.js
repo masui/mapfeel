@@ -238,6 +238,8 @@ function showMarkers(list){  // 地図にマーカー表示
 
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
+    setImages(195)
+    
     for(var  i=0;i<NIMAGES && i<list.length;i++){
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = list[i].pos.lat
