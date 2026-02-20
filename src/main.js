@@ -247,17 +247,17 @@ function showImages(list){
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    console.log('image click')
+	    console.log(`image clicked i = ${i}`)
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    console.log(data[0])
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
+	    console.log(data[0])
 	    showImages(data)
 	    showPOIList(data)
 	    showMarkers(data)
