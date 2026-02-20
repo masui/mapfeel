@@ -99,8 +99,8 @@ function setImages(size){
     }
 }
 
-setImages(195); // 小さい画像を表示
-// setImages(400) // 大きい画像を表示
+var imageSize = 195 // 195または400
+setImages(imageSize); // 小さい画像を表示
 
 function locstr(){
     return (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
@@ -130,7 +130,9 @@ function showPOIList(list){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    setImages(400); // 拡大表示
+
+	    imageSize = 400
+	    //setImages(400); // 拡大表示
 
 
 	    // listをソート
@@ -170,8 +172,8 @@ function showPOIList(list){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
 
-
-	    setImages(400); // 拡大表示
+	    imageSize = 400
+	    //setImages(400); // 拡大表示
 
 
 	    // listをソート
@@ -221,7 +223,8 @@ function showMarkers(list){  // 地図にマーカー表示
 	    curpos.lat = e.latlng.lat;
 	    curpos.lng = e.latlng.lng;
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    setImages(400); // 拡大表示
+	    imageSize = 400
+	    setImages(imageSize); // 拡大表示
 
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
@@ -238,7 +241,8 @@ function showMarkers(list){  // 地図にマーカー表示
 
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
-    setImages(195)
+    imageSize = 195
+    setImages(imageSize)
     
     for(var  i=0;i<NIMAGES && i<list.length;i++){
 	// 画像の属性として緯度経度を記録しておく
@@ -282,7 +286,8 @@ showMarkers(data)
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
-    setImages(195)
+    imageSize = 195
+    setImages(imageSize)
     
     curpos = map.getCenter();
     data.map((e) => {
@@ -361,8 +366,9 @@ $(window).keydown(function(e){
 	curpos.lng = data[topIndex].pos.lng 
 	
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	
-	setImages(400); // 拡大表示
+
+	imageSize = 400
+	setImages(imageSize); // 拡大表示
 
 	console.log(`sortedByTitle=${sortedByTitle}`)
 
