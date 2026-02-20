@@ -4,6 +4,10 @@
 import { initMap, distance } from "/src/map.js"
 import { getScrapboxData } from "/src/data.js";
 
+window.addEventListener('keydown', event => {
+}, /* useCapture= */ false)
+
+
 // 表示する画像/マーカーの数
 const NIMAGES = 20
 
