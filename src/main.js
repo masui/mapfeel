@@ -168,7 +168,28 @@ function showPOIList(list){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+
+
+	    setImages(400); // 拡大表示
+
+
+	    // listをソート
+	    list.map((e) => {
+		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+	    })
+	    list.sort((a, b) => { // curposに近い順にソート
+		return a.distance > b.distance ? 1 : -1;
+	    })
+	    showPOIList(list)
+	    showImages(list)
+	    showMarkers(list)
+
+	    console.log(`locstr = ${locstr()}`)
+            history.pushState(state,null,`?loc=${locstr()}`)
+
 	})
+	
 	div.append(span)
 
 	$('#POIlist').append(div)
