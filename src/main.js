@@ -239,21 +239,6 @@ function showMarkers(list){  // 地図にマーカー表示
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
     for(var  i=0;i<NIMAGES && i<list.length;i++){
-	/*
-	var page = list[i]
-	var marker = L.marker([page.pos.lat, page.pos.lng]);
-	// hoverで内容を表示
-	marker.addTo(map).bindTooltip(page.title);
-	// マーカークリックで移動
-	marker.on('click', function (e) {
-	    curpos.lat = e.latlng.lat;
-	    curpos.lng = e.latlng.lng;
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-	    setImages(400); // 拡大表示
-	    });
-	    }
-	    */
-
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = list[i].pos.lat
 	$('#img'+i)[0].lng = list[i].pos.lng
@@ -270,9 +255,11 @@ function showImages(list){
 	    showImages(data)
 	    showMarkers(data)
 
+	    /*
 	    map.on('moveend', function () {
 		setImages(400); // 拡大表示
-	    })
+		})
+		*/
 
 	    //setImages(400); // 拡大表示
 	})
