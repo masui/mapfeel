@@ -252,6 +252,12 @@ function showImages(list){
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    console.log(data[0])
+	    data.map((e) => {
+		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+	    })
+	    data.sort((a, b) => { // curposに近い順にソート
+		return a.distance > b.distance ? 1 : -1;
+	    })
 	    showImages(data)
 	    showPOIList(data)
 	    showMarkers(data)
