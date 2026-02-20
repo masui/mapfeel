@@ -134,15 +134,15 @@ function showPOIList(list){
 
 
 	    // listをソート
-	    list.map((e) => {
+	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
-	    list.sort((a, b) => { // curposに近い順にソート
+	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
-	    showPOIList(list)
-	    showImages(list)
-	    showMarkers(list)
+	    showPOIList(data)
+	    showImages(data)
+	    showMarkers(data)
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -175,15 +175,15 @@ function showPOIList(list){
 
 
 	    // listをソート
-	    list.map((e) => {
+	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
-	    list.sort((a, b) => { // curposに近い順にソート
+	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
-	    showPOIList(list)
-	    showImages(list)
-	    showMarkers(list)
+	    showPOIList(data)
+	    showImages(data)
+	    showMarkers(data)
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
