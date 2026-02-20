@@ -222,6 +222,16 @@ function showMarkers(list){  // 地図にマーカー表示
 	    curpos.lng = e.latlng.lng;
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    setImages(400); // 拡大表示
+
+	    data.map((e) => {
+		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+	    })
+	    data.sort((a, b) => { // curposに近い順にソート
+		return a.distance > b.distance ? 1 : -1;
+	    })
+	    showPOIList(data)
+	    showImages(data)
+	    showMarkers(data)
 	});
     }
 }
