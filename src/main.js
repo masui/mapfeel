@@ -109,6 +109,7 @@ function locstr(){
 }
 
 window.addEventListener('popstate', (event) => {
+    console.log('popstate')
     console.log(event)
     console.log(location + ", state: " + JSON.stringify(event.state))
     location.href = location
