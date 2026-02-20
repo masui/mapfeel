@@ -47,8 +47,6 @@ if(! curpos.lat){
     curpos.lng = pos.coords.longitude;
 }
 
-console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
-
 console.log('地図表示')
 const map = initMap(curpos.lat, curpos.lng);
 
@@ -65,6 +63,7 @@ if (!project) {
 console.log('Scrapboxのデータ取得')
 var data = await getScrapboxData(project);
 
+// 方向の角度計算
 function angle(lat1, lng1, lat2, lng2) {
     const R = Math.PI / 180;
     lat1 *= R
@@ -176,11 +175,8 @@ function showPOIList(list){
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
-
 	    imageSize = 400
 	    setImages(imageSize)
-	    //setImages(400); // 拡大表示
-
 
 	    // listをソート
 	    data.map((e) => {
@@ -266,8 +262,8 @@ function showImages(list){
 	    imageSize = 400
 	    setImages(imageSize)
 	    
-	    showImages(data)
 	    showPOIList(data)
+	    showImages(data)
 	    showMarkers(data)
 	    
             history.pushState(state,null,`?loc=${locstr()}`)
