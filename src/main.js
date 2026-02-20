@@ -242,8 +242,8 @@ function showMarkers(list){  // 地図にマーカー表示
 
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
-    imageSize = 195
-    setImages(imageSize)
+    //imageSize = 195
+    //setImages(imageSize)
     
     for(var  i=0;i<NIMAGES && i<list.length;i++){
 	// 画像の属性として緯度経度を記録しておく
