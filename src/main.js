@@ -253,6 +253,7 @@ function showImages(list){
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	    console.log(data[0])
 	    showImages(data)
+	    showPOIList(data)
 	    showMarkers(data)
 
 	    /*
