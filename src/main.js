@@ -157,7 +157,6 @@ function showPOIList(list){
 	    sortData(data)
 	    showData(data)
 
-	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
 
 	})
@@ -189,7 +188,6 @@ function showPOIList(list){
 	    sortData(data)
 	    showData(data)
 
-	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
 
 	})
@@ -269,13 +267,11 @@ $(window).keydown(function(e){
     e.preventDefault()
     const UP = 38
     const DOWN = 40
-    console.log(`keyCode = ${e.keyCode}`)
 
     if(e.keyCode == UP || e.keyCode == DOWN){
         if(! sortedByTitle){
             sortedByTitle = true
             var curtitle = data[0].title
-	    console.log('sort data');
             data.sort((a, b) => {
                 return a.title > b.title ? 1 : -1;
             })
