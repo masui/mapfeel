@@ -155,14 +155,6 @@ function showPOIList(list){
 
 	    // listをソート
 	    sortData(data)
-	    /*
-	    data.map((e) => {
-		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-	    })
-	    data.sort((a, b) => { // curposに近い順にソート
-		return a.distance > b.distance ? 1 : -1;
-		})
-	    */
 	    showData(data)
 
 	    console.log(`locstr = ${locstr()}`)
@@ -195,14 +187,6 @@ function showPOIList(list){
 
 	    // listをソート
 	    sortData(data)
-	    /*
-	    data.map((e) => {
-		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-	    })
-	    data.sort((a, b) => { // curposに近い順にソート
-		return a.distance > b.distance ? 1 : -1;
-	    })
-	    */
 	    showData(data)
 
 	    console.log(`locstr = ${locstr()}`)
@@ -236,14 +220,6 @@ function showMarkers(list){  // 地図にマーカー表示
 	    setImages(imageSize); // 拡大表示
 
 	    sortData(data)
-	    /*
-	    data.map((e) => {
-		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-	    })
-	    data.sort((a, b) => { // curposに近い順にソート
-		return a.distance > b.distance ? 1 : -1;
-	    })
-	    */
 	    showData(data)
 	});
     }
@@ -251,9 +227,6 @@ function showMarkers(list){  // 地図にマーカー表示
 
 function showImages(list){
     console.log(`showImages: listlen=${list.length}`)
-    //imageSize = 195
-    //setImages(imageSize)
-    
     for(var  i=0;i<NIMAGES && i<list.length;i++){
 	// 画像の属性として緯度経度を記録しておく
 	$('#img'+i)[0].lat = list[i].pos.lat
@@ -269,20 +242,10 @@ function showImages(list){
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 
-	    sortData(data)
-	    /*nnn
-	    data.map((e) => {
-		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-	    })
-	    data.sort((a, b) => { // curposに近い順にソート
-		return a.distance > b.distance ? 1 : -1;
-	    })
-	    console.log(data[0])
-	    */
-	    
 	    imageSize = 400
 	    setImages(imageSize)
 
+	    sortData(data)
 	    showData(data)
 	    
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -299,14 +262,6 @@ map.on('dragend', () => {
     
     curpos = map.getCenter();
     sortData(data)
-    /*
-    data.map((e) => {
-	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
-    })
-    data.sort((a, b) => { // curposに近い順にソート
-	return a.distance > b.distance ? 1 : -1;
-    })
-    */
     showData(data)
 });
 
@@ -338,11 +293,6 @@ $(window).keydown(function(e){
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
 	
         showData(data.slice(topIndex,data.length))
-	/*
-        showPOIList(data.slice(topIndex,data.length))
-	showImages(data.slice(topIndex,data.length))
-	showMarkers(data.slice(topIndex,data.length))
-	*/
 
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
