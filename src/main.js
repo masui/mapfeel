@@ -125,7 +125,7 @@ function showData(list){
 }
 
 function sortData(list){
-    list.map((e) => {
+    list.forEach((e) => {
 	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
     })
     list.sort((a, b) => { // curposに近い順にソート
@@ -138,7 +138,7 @@ function sortData(list){
 //
 function showPOIList(list){
     $('#POIlist').empty()
-    list.map((e) => {
+    list.forEach((e) => {
 	var div = $('<div>')
 	var span;
 
