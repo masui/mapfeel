@@ -118,6 +118,13 @@ window.addEventListener('popstate', (event) => {
     location.href = location
 })
 
+function showData(list){
+    showPOIList(list)
+    showImages(list)
+    showMarkers(list)
+}
+
+
 //
 // POIリストの表示
 //
@@ -146,9 +153,12 @@ function showPOIList(list){
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
+	    showData(data)
+	    /*
 	    showPOIList(data)
 	    showImages(data)
 	    showMarkers(data)
+	    */
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -185,9 +195,13 @@ function showPOIList(list){
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
+
+	    showData(data)
+	    /*
 	    showPOIList(data)
 	    showImages(data)
 	    showMarkers(data)
+	    */
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -225,9 +239,13 @@ function showMarkers(list){  // 地図にマーカー表示
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
+
+	    showData(data)
+	    /*
 	    showPOIList(data)
 	    showImages(data)
 	    showMarkers(data)
+	    */
 	});
     }
 }
@@ -261,19 +279,25 @@ function showImages(list){
 
 	    imageSize = 400
 	    setImages(imageSize)
-	    
+
+	    showData(data)
+	    /*
 	    showPOIList(data)
 	    showImages(data)
 	    showMarkers(data)
+	    */
 	    
             history.pushState(state,null,`?loc=${locstr()}`)
 	})
     }
 }
 
+showData(data)
+/*
 showPOIList(data)
 showImages(data)
 showMarkers(data)
+*/
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
@@ -287,9 +311,13 @@ map.on('dragend', () => {
     data.sort((a, b) => { // curposに近い順にソート
 	return a.distance > b.distance ? 1 : -1;
     })
+
+    showData(data)
+    /*
     showPOIList(data)
     showImages(data)
     showMarkers(data)
+    */
 });
 
 $(window).keydown(function(e){
@@ -319,9 +347,12 @@ $(window).keydown(function(e){
 	console.log(`topindex=${topIndex}`)
         console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
 	
+        showData(data.slice(topIndex,data.length))
+	/*
         showPOIList(data.slice(topIndex,data.length))
 	showImages(data.slice(topIndex,data.length))
 	showMarkers(data.slice(topIndex,data.length))
+	*/
 
 	curpos.lat = data[topIndex].pos.lat 
 	curpos.lng = data[topIndex].pos.lng 
