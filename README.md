@@ -1,14 +1,13 @@
 # Vercel版Mapfeel
 
-Gyamapを作りなおしたもの
-
- Scrapboxプロジェクトの位置情報付きページを地図上に表示するアプリ。
+- Gyamapを作りなおしたもの
+- Scrapboxプロジェクトの位置情報付きページを地図上に表示するアプリ
 
 ## 使い方
 
-  `https://your-domain.vercel.app/プロジェクト名` にアクセス
+`https://mapfeel.com/プロジェクト名` にアクセス
 
-例: `https://mapfeel.vercel.app/masuimap`
+例: `https://mapfeel.com/masuimap`
 
 ## Scrapboxページの書き方
 
