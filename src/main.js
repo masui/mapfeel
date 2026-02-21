@@ -68,7 +68,13 @@ if (!project) {
 }
 
 console.log('Scrapboxのデータ取得')
-var data = await getScrapboxData(project);
+var data;
+try {
+    data = await getScrapboxData(project);
+} catch (error) {
+    alert(error.message);
+    data = [];
+}
 
 // 方向の角度計算
 function angle(lat1, lng1, lat2, lng2) {
