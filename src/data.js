@@ -50,6 +50,11 @@ function getValidData(data){
 
 export async function getScrapboxData(project) {
     const res = await fetch(`/api/scrapbox/${project}`);
+
+    if (!res.ok) {
+        throw new Error(`プロジェクト "${project}" が見つかりません`);
+    }
+
     const sbdata = await res.json();
 
     console.log(sbdata);

@@ -20,23 +20,24 @@
 export default async function handler(req, res) {
     const { project } = req.query;
 
+    // プロジェクト名のバリデーション
+    if (!project || !/^[\w-]+$/.test(project)) {
+        res.status(400).json({ error: "Invalid project name" });
+        return;
+    }
+
     const url = `https://scrapbox.io/api/pages/${project}?limit=1000`;
 
     const r = await fetch(url);
+
+    // プロジェクトが存在しない場合
+    if (!r.ok) {
+        res.status(r.status).json({ error: "Project not found" });
+        return;
+    }
+
     const data = await r.json();
 
-    /*
-    const html = await fetch("https://scrapbox.io/${project}/settings").then(r => r.text());
-    const title = html.match(/(<title>(.*?)<\/title>)/i)[1];
-    data.title = html
-    */
-
     res.setHeader("Access-Control-Allow-Origin", "*");
-    /*
-    res.setHeader(
-      "Cache-Control",
-      "s-maxage=60, stale-while-revalidate"
-    );
-    */
     res.status(200).json(data);
 }
