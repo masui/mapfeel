@@ -57,7 +57,5 @@ export async function getScrapboxData(project) {
 
     const sbdata = await res.json();
 
-    console.log(sbdata);
-
     return getValidData(sbdata)
 }
