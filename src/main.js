@@ -42,9 +42,16 @@ function getCurrentPositionAsync(options) { // GPSから現在位置を得る
 }
 if(! curpos.lat){
     // 現在地の緯度経度を取得
-    const pos = await getCurrentPositionAsync();
-    curpos.lat = pos.coords.latitude;
-    curpos.lng = pos.coords.longitude;
+    try {
+        const pos = await getCurrentPositionAsync();
+        curpos.lat = pos.coords.latitude;
+        curpos.lng = pos.coords.longitude;
+    } catch (error) {
+        // GPS取得失敗時はデフォルト位置（東京駅）を使用
+        console.warn('GPS取得失敗:', error.message);
+        curpos.lat = 35.6812;
+        curpos.lng = 139.7671;
+    }
 }
 
 console.log('地図表示')

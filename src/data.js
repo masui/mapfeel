@@ -5,13 +5,13 @@
 // Mapfeelに関係するページだけ抽出する
 function getValidData(data){
     const datalist = []
-    data.pages.map((page) => {
+    data.pages.forEach((page) => {
 	let entry = {}
 	entry.title = page.title;
 	entry.descriptions = []
 
 	// page.descriptions にはScrapboxページの最初の5行だけ格納されるらしい
-	page.descriptions.map((description) => {
+	page.descriptions.forEach((description) => {
 	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
 	    if(match){
 		let pos = {}
