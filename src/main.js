@@ -124,6 +124,14 @@ function showData(list){
     showMarkers(list)
 }
 
+function sortData(list){
+    list.map((e) => {
+	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
+    })
+    list.sort((a, b) => { // curposに近い順にソート
+	return a.distance > b.distance ? 1 : -1;
+    })
+}
 
 //
 // POIリストの表示
@@ -145,20 +153,17 @@ function showPOIList(list){
 	    imageSize = 400
 	    setImages(imageSize); // 拡大表示
 
-
 	    // listをソート
+	    sortData(data)
+	    /*
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
-	    })
-	    showData(data)
-	    /*
-	    showPOIList(data)
-	    showImages(data)
-	    showMarkers(data)
+		})
 	    */
+	    showData(data)
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -189,19 +194,16 @@ function showPOIList(list){
 	    setImages(imageSize)
 
 	    // listをソート
+	    sortData(data)
+	    /*
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
-
-	    showData(data)
-	    /*
-	    showPOIList(data)
-	    showImages(data)
-	    showMarkers(data)
 	    */
+	    showData(data)
 
 	    console.log(`locstr = ${locstr()}`)
             history.pushState(state,null,`?loc=${locstr()}`)
@@ -233,19 +235,16 @@ function showMarkers(list){  // 地図にマーカー表示
 	    imageSize = 400
 	    setImages(imageSize); // 拡大表示
 
+	    sortData(data)
+	    /*
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
 	    data.sort((a, b) => { // curposに近い順にソート
 		return a.distance > b.distance ? 1 : -1;
 	    })
-
-	    showData(data)
-	    /*
-	    showPOIList(data)
-	    showImages(data)
-	    showMarkers(data)
 	    */
+	    showData(data)
 	});
     }
 }
@@ -269,6 +268,9 @@ function showImages(list){
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+	    sortData(data)
+	    /*nnn
 	    data.map((e) => {
 		e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
 	    })
@@ -276,16 +278,12 @@ function showImages(list){
 		return a.distance > b.distance ? 1 : -1;
 	    })
 	    console.log(data[0])
-
+	    */
+	    
 	    imageSize = 400
 	    setImages(imageSize)
 
 	    showData(data)
-	    /*
-	    showPOIList(data)
-	    showImages(data)
-	    showMarkers(data)
-	    */
 	    
             history.pushState(state,null,`?loc=${locstr()}`)
 	})
@@ -293,11 +291,6 @@ function showImages(list){
 }
 
 showData(data)
-/*
-showPOIList(data)
-showImages(data)
-showMarkers(data)
-*/
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
@@ -305,19 +298,16 @@ map.on('dragend', () => {
     setImages(imageSize)
     
     curpos = map.getCenter();
+    sortData(data)
+    /*
     data.map((e) => {
 	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
     })
     data.sort((a, b) => { // curposに近い順にソート
 	return a.distance > b.distance ? 1 : -1;
     })
-
-    showData(data)
-    /*
-    showPOIList(data)
-    showImages(data)
-    showMarkers(data)
     */
+    showData(data)
 });
 
 $(window).keydown(function(e){
