@@ -128,7 +128,7 @@ function showPOIList(list){
 	var span;
 
 	// 矢印表示
-	span = $('<span>')
+	span = $('<span class="clickable">')
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
 	span.on('click', function(evt){ //クリックで移動
 	    curpos.lat = e.pos.lat
