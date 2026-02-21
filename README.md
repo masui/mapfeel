@@ -1,7 +1,7 @@
-# Vercel版Mapfeel
+# Mapfeel
 
-- Gyamapを作りなおしたもの
 - Scrapboxプロジェクトの位置情報付きページを地図上に表示するアプリ
+- GyamapをVercelで作りなおした
 
 ## 使い方
 

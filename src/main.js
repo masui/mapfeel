@@ -247,8 +247,6 @@ function showImages(list){
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){
-	    console.log('image clicked')
-	    console.log(e)
 	    curpos.lat = e.target.lat
 	    curpos.lng = e.target.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
@@ -297,9 +295,6 @@ $(window).keydown(function(e){
 
 	imageSize = 400
 	setImages(imageSize); // 拡大表示
-	
-	console.log(`topindex=${topIndex}`)
-        console.log(`datalen = ${data.slice(topIndex,data.length).length}`)
 	
         showData(data.slice(topIndex,data.length))
 
