@@ -168,7 +168,7 @@ function showPOIList(list){
 	div.append($('<span>　</span>'))
 
 	// description表示
-	span = $('<span style="color:#666">')
+	span = $('<span style="color:#666" class="clickable">')
 	span.text(e.descriptions.join('・'));
 	span.on('click', function(evt){ //クリックで移動
 	    curpos.lat = e.pos.lat
