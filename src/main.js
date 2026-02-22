@@ -180,7 +180,7 @@ function showPOIList(list){
 		
 	div.append($('<span>　</span>'))
 
-	span = $('<span style="color:#88f;">')
+	span = $('<span style="color:#66f;">')
 	span.text(e.title + ' ')
 	span.on('click', function(evt){
 	    // window.open(`https://scrapbox.io/${project}/${e.title}`)
