@@ -53,6 +53,7 @@ if(! curpos.lat){
     }
 }
 
+/*
 console.log('地図表示')
 const map = initMap(curpos.lat, curpos.lng);
 
@@ -62,6 +63,7 @@ console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 sortData(data)
 showData(data)
+*/
 
 console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
@@ -78,6 +80,16 @@ try {
     alert(error.message);
     data = [];
 }
+
+console.log('地図表示')
+const map = initMap(curpos.lat, curpos.lng);
+
+console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
+
+// 起動時の表示
+map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+sortData(data)
+showData(data)
 
 // 方向の角度計算
 function angle(lat1, lng1, lat2, lng2) {
