@@ -183,7 +183,6 @@ function showPOIList(list){
 	span = $('<span style="color:#66f;">')
 	span.text(e.title + ' ')
 	span.on('click', function(evt){
-	    // window.open(`https://scrapbox.io/${project}/${e.title}`)
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
@@ -200,9 +199,10 @@ function showPOIList(list){
 	div.append(span)
 	
 	span = $('<span style="color:#22c;">')
-	span.text('✎️')
+	span.text('✎️') // 鉛筆アイコン
 	span.on('click', function(evt){
-	     window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    /*
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
 	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
@@ -215,6 +215,7 @@ function showPOIList(list){
 	    showData(data)
 
             history.pushState(state,null,`?loc=${locstr()}`)
+	    */
 	})
 	div.append(span)
 	
