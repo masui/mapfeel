@@ -258,6 +258,7 @@ function showImages(list){
 
 // 最初の表示
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+sortData(data)
 showData(data)
 
 map.on('dragend', () => {
@@ -270,6 +271,7 @@ map.on('dragend', () => {
     showData(data)
 });
 
+// 上下カーソル移動キー
 $(window).keydown(function(e){
     e.preventDefault()
     const UP = 38
