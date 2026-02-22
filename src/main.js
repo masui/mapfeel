@@ -180,10 +180,22 @@ function showPOIList(list){
 		
 	div.append($('<span>　</span>'))
 
-	span = $('<span style="color:#33f;">')
+	span = $('<span style="color:#ddf;">')
 	span.text(e.title)
 	span.on('click', function(evt){
-	    window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    // window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    curpos.lat = e.pos.lat
+	    curpos.lng = e.pos.lng
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+	    imageSize = 400
+	    setImages(imageSize); // 拡大表示
+
+	    // listをソート
+	    sortData(data)
+	    showData(data)
+
+            history.pushState(state,null,`?loc=${locstr()}`)
 	})
 	div.append(span)
 	
