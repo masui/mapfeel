@@ -70,7 +70,9 @@ try {
     data = [];
 }
 
+//
 // 起動時の表示
+//
 console.log('地図表示')
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 const map = initMap(curpos.lat, curpos.lng);
@@ -205,7 +207,6 @@ function showPOIList(list){
             history.pushState(state,null,`?loc=${locstr()}`)
 
 	})
-	
 	div.append(span)
 
 	$('#POIlist').append(div)
@@ -244,7 +245,6 @@ function showImages(list){
 	$('#img'+i)[0].lat = list[i].pos.lat
 	$('#img'+i)[0].lng = list[i].pos.lng
 
-	// console.log(list[i].image);
  	$('#img'+i).attr('src',list[i].image)
 	// 画像クリックで移動
 	$('#img'+i).on('click', function(e){

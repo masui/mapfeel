@@ -1,3 +1,7 @@
+//
+// 地図操作関連のモジュール
+//
+
 var map = null;
 
 export function initMap(lat, lng) {
