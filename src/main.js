@@ -4,10 +4,6 @@
 import { initMap, distance } from "/src/map.js"
 import { getScrapboxData } from "/src/data.js";
 
-//window.addEventListener('keydown', event => {
-//}, /* useCapture= */ false)
-
-
 // 表示する画像/マーカーの数
 const NIMAGES = 20
 
@@ -26,7 +22,7 @@ document.location.search.substring(1).split('&').forEach((s) => {
 })
 if (args.loc) { // ?loc=N35.12E135.12Z13 のように指定されていた場合
     var match
-    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+)(,?Z([\d\.]+))?/)
+    match = args.loc.match(/([NS])([\d\.]+),?([EW])([\d\.]+),?(Z([\d\.]+))?/)
     if (match) {
         curpos.lat = Number(match[2]) * (match[1] == 'N' ? 1 : -1)
         curpos.lng = Number(match[4]) * (match[3] == 'E' ? 1 : -1)
@@ -126,8 +122,6 @@ function locstr(){
 
 window.addEventListener('popstate', (event) => {
     console.log('popstate')
-    console.log(event)
-    console.log(location + ", state: " + JSON.stringify(event.state))
     location.href = location
 })
 
@@ -262,6 +256,8 @@ function showImages(list){
     }
 }
 
+// 最初の表示
+map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 showData(data)
 
 map.on('dragend', () => {
