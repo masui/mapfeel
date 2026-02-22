@@ -199,7 +199,7 @@ function showPOIList(list){
 	})
 	div.append(span)
 	
-	span = $('<span style="color:#66f;">')
+	span = $('<span style="color:#44f;">')
 	span.text('✎️')
 	span.on('click', function(evt){
 	     window.open(`https://scrapbox.io/${project}/${e.title}`)
