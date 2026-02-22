@@ -207,7 +207,7 @@ function showPOIList(list){
 	})
 	div.append(span)
 	
-	div.append($('<span>　</span>'))
+	div.append($('<span> </span>'))
 
 	// description表示
 	span = $('<span style="color:#666" class="clickable">')
