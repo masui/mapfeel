@@ -11,6 +11,7 @@ var sortedByTitle = false // カーソルでPOI移動してるかどうか
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
 var curpos = {}  // 表示している地図の中心座標
+var imageSize = 195
 
 // URLの引数解析
 let args = {}
@@ -88,6 +89,8 @@ console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
 
 // 起動時の表示
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+imageSize = 195 // 195または400
+setImages(imageSize); // 小さい画像を表示
 sortData(data)
 showData(data)
 
@@ -130,8 +133,10 @@ function setImages(size){
     }
 }
 
-var imageSize = 195 // 195または400
+/*
+imageSize = 195 // 195または400
 setImages(imageSize); // 小さい画像を表示
+*/
 
 function locstr(){
     return (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
