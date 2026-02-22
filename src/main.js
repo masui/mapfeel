@@ -130,6 +130,7 @@ window.addEventListener('popstate', (event) => {
     location.href = location
 })
 
+// POIリスト、画像などを表示
 function showData(list){
     showPOIList(list)
     showImages(list)
@@ -263,7 +264,7 @@ function showImages(list){
 }
 
 map.on('dragend', () => {
-    // ドラッグすると縮小画像を表示
+    // 地図をドラッグすると縮小画像を表示
     imageSize = 195
     setImages(imageSize)
     
