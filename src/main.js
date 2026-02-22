@@ -178,7 +178,7 @@ function showPOIList(list){
 	})
 	div.append(span)
 		
-	div.append($('<span>　</span>'))
+	div.append($('<span> </span>'))
 
 	span = $('<span style="color:#66f;">')
 	span.text(e.title)
