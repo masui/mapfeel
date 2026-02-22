@@ -200,7 +200,7 @@ function showPOIList(list){
 	div.append(span)
 	
 	span = $('<span style="color:#88f;">')
-	span.text('🖊️')
+	span.text('✎️')
 	span.on('click', function(evt){
 	     window.open(`https://scrapbox.io/${project}/${e.title}`)
 	    curpos.lat = e.pos.lat
