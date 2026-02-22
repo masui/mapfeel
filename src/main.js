@@ -54,18 +54,6 @@ if(! curpos.lat){
     }
 }
 
-/*
-console.log('地図表示')
-const map = initMap(curpos.lat, curpos.lng);
-
-console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
-
-// 起動時の表示
-map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-sortData(data)
-showData(data)
-*/
-
 console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
 if (!project) {
@@ -82,12 +70,10 @@ try {
     data = [];
 }
 
-console.log('地図表示')
-const map = initMap(curpos.lat, curpos.lng);
-
-console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
-
 // 起動時の表示
+console.log('地図表示')
+console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
+const map = initMap(curpos.lat, curpos.lng);
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 imageSize = 195 // 195または400
 setImages(imageSize); // 小さい画像を表示
@@ -132,11 +118,6 @@ function setImages(size){
 	$('#images').append(div)
     }
 }
-
-/*
-imageSize = 195 // 195または400
-setImages(imageSize); // 小さい画像を表示
-*/
 
 function locstr(){
     return (curpos.lat > 0 ? `N${curpos.lat.toFixed(5)}` : `S${-curpos.lat.toFixed(5)}`)
@@ -280,13 +261,6 @@ function showImages(list){
 	})
     }
 }
-
-/*
-// 起動時の表示
-map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-sortData(data)
-showData(data)
-*/
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
