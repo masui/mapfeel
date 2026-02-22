@@ -180,7 +180,7 @@ function showPOIList(list){
 		
 	div.append($('<span> </span>'))
 
-	span = $('<span style="color:#66f;">')
+	span = $('<span style="color:#44f;">')
 	span.text(e.title)
 	span.on('click', function(evt){
 	    curpos.lat = e.pos.lat
