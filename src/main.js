@@ -199,6 +199,25 @@ function showPOIList(list){
 	})
 	div.append(span)
 	
+	span = $('<span style="color:#88f;">')
+	span.text('🟨')
+	span.on('click', function(evt){
+	     window.open(`https://scrapbox.io/${project}/${e.title}`)
+	    curpos.lat = e.pos.lat
+	    curpos.lng = e.pos.lng
+	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+	    imageSize = 400
+	    setImages(imageSize); // 拡大表示
+
+	    // listをソート
+	    sortData(data)
+	    showData(data)
+
+            history.pushState(state,null,`?loc=${locstr()}`)
+	})
+	div.append(span)
+	
 	div.append($('<span>　</span>'))
 
 	// description表示
