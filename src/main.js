@@ -10,7 +10,7 @@ const NIMAGES = 20
 var sortedByTitle = false // カーソルでPOI移動してるかどうか
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
-var curpos = {}  // 地図の中心座標
+var curpos = {}  // 表示している地図の中心座標
 
 // URLの引数解析
 let args = {}
@@ -28,6 +28,9 @@ if (args.loc) { // ?loc=N35.12E135.12Z13 のように指定されていた場合
         curpos.lng = Number(match[4]) * (match[3] == 'E' ? 1 : -1)
         curpos.zoom = 12
         if (match[6])curpos.zoom = Number(match[6])
+    }
+    else {
+	alert("?loc=N35E135 のような形式で位置を指定してください");
     }
 }
 
@@ -54,7 +57,11 @@ console.log('地図表示')
 const map = initMap(curpos.lat, curpos.lng);
 
 console.log(`curpos = ${curpos.lat}, ${curpos.lng}`)
+
+// 起動時の表示
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+sortData(data)
+showData(data)
 
 console.log('プロジェクト名取得')
 var project = location.pathname.replace(/^\//, "");
@@ -131,6 +138,7 @@ function showData(list){
     showMarkers(list)
 }
 
+// curposとの距離でデータをソート
 function sortData(list){
     list.forEach((e) => {
 	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
@@ -256,10 +264,12 @@ function showImages(list){
     }
 }
 
-// 最初の表示
+/*
+// 起動時の表示
 map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 sortData(data)
 showData(data)
+*/
 
 map.on('dragend', () => {
     // ドラッグすると縮小画像を表示
