@@ -181,7 +181,7 @@ function showPOIList(list){
 	div.append($('<span>　</span>'))
 
 	span = $('<span style="color:#66f;">')
-	span.text(e.title + ' ')
+	span.text(e.title)
 	span.on('click', function(evt){
 	    curpos.lat = e.pos.lat
 	    curpos.lng = e.pos.lng
@@ -198,24 +198,12 @@ function showPOIList(list){
 	})
 	div.append(span)
 	
+	div.append($('<span> </span>'))
+	
 	span = $('<span style="color:#22c;">')
-	span.text('✎️') // 鉛筆アイコン
+	span.text('✎️') // 鉛筆アイコン ⇒Scrapboxを開く
 	span.on('click', function(evt){
 	    window.open(`https://scrapbox.io/${project}/${e.title}`)
-	    /*
-	    curpos.lat = e.pos.lat
-	    curpos.lng = e.pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-
-	    imageSize = 400
-	    setImages(imageSize); // 拡大表示
-
-	    // listをソート
-	    sortData(data)
-	    showData(data)
-
-            history.pushState(state,null,`?loc=${locstr()}`)
-	    */
 	})
 	div.append(span)
 	
