@@ -19,6 +19,14 @@
 - `E/W`: 東経/西経
 - `Z`: ズームレベル
 
+## Tampermonkeyで使う
+
+Scrapboxのページから直接Mapfeelを起動できるTampermonkeyスクリプトも用意しています。
+
+1. [Tampermonkey](https://www.tampermonkey.net/) をブラウザにインストール
+2. [mapfeel.user.js](https://raw.githubusercontent.com/masui/mapfeel/main/userscripts/mapfeel.user.js) にアクセスしてスクリプトをインストール
+3. Scrapboxのプロジェクトページを開くと右下に「🗺 Mapfeel」ボタンが表示される
+
 ## 操作方法
 
 - 地図ドラッグ: 近くのPOIを表示
