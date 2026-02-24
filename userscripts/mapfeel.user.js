@@ -6,6 +6,7 @@
 // @match        https://scrapbox.io/*
 // @grant        GM_xmlhttpRequest
 // @connect      scrapbox.io
+// @run-at       context-menu
 // ==/UserScript==
 
 (function() {
@@ -13,28 +14,23 @@
 
     var path = location.pathname;
     var pmatch = path.match(/^\/([^\/]+)/);
-    if (!pmatch) return;
+    if (!pmatch) {
+        alert('Scrapboxのプロジェクトページで実行してください');
+        return;
+    }
     var project = pmatch[1];
-    if (['api', 'login', 'signup', 'settings', 'billing', 'stream'].includes(project)) return;
-
-    function addButton() {
-        if (document.getElementById('mapfeel-btn')) return;
-        var btn = document.createElement('a');
-        btn.id = 'mapfeel-btn';
-        btn.textContent = '🗺 Mapfeel';
-        btn.href = '#';
-        btn.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;background:#4a90d9;color:white;padding:8px 16px;border-radius:20px;font-size:14px;font-weight:bold;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.3);cursor:pointer;';
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openMapfeel(project);
-        });
-        document.body.appendChild(btn);
+    if (['api', 'login', 'signup', 'settings', 'billing', 'stream'].includes(project)) {
+        alert('Scrapboxのプロジェクトページで実行してください');
+        return;
     }
 
-    addButton();
-    new MutationObserver(addButton).observe(document.body, { childList: true, subtree: true });
+    // 現在開いているページのタイトルを取得（/project/PageTitle の形式）
+    var pageMatch = path.match(/^\/[^\/]+\/(.+?)\/?\s*$/);
+    var currentPage = pageMatch ? decodeURIComponent(pageMatch[1]).replace(/_/g, ' ') : null;
 
-    function openMapfeel(proj) {
+    openMapfeel(project, currentPage);
+
+    function openMapfeel(proj, currentPage) {
         GM_xmlhttpRequest({
             method: 'GET',
             url: 'https://scrapbox.io/api/pages/' + proj + '?limit=1000',
@@ -49,7 +45,7 @@
                     alert('位置情報のあるページが見つかりませんでした');
                     return;
                 }
-                launchMapWindow(proj, validData);
+                launchMapWindow(proj, validData, currentPage);
             },
             onerror: function() {
                 alert('Scrapbox APIへの接続に失敗しました');
@@ -102,7 +98,7 @@
         doc.head.appendChild(script);
     }
 
-    function launchMapWindow(proj, data) {
+    function launchMapWindow(proj, data, currentPage) {
         var w = window.open('', '_blank');
         if (!w) {
             alert('ポップアップがブロックされました。ポップアップを許可してください。');
@@ -135,12 +131,12 @@
         loadScript(w.document, 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js', function() {
             loadScript(w.document, 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js', function() {
                 // jQuery・Leaflet読み込み完了 → 親スクリプトから新ウィンドウのDOMを操作
-                runMapfeel(w, proj, data);
+                runMapfeel(w, proj, data, currentPage);
             });
         });
     }
 
-    function runMapfeel(w, proj, data) {
+    function runMapfeel(w, proj, data, currentPage) {
         var $ = w.jQuery;
         var L = w.L;
 
@@ -151,9 +147,9 @@
         var imageSize = 195;
         var map = null;
 
-        function initMap(lat, lng) {
+        function initMap(lat, lng, zoom) {
             map = L.map("map", { keyboard: false });
-            map.setView([lat, lng], 13);
+            map.setView([lat, lng], zoom || 13);
             L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 { attribution: "\u00a9 OpenStreetMap contributors" }
@@ -303,10 +299,10 @@
             }
         }
 
-        function start(lat, lng) {
+        function start(lat, lng, zoom) {
             curpos.lat = lat;
             curpos.lng = lng;
-            map = initMap(curpos.lat, curpos.lng);
+            map = initMap(curpos.lat, curpos.lng, zoom);
             imageSize = 195;
             setImages(imageSize);
             sortData(data);
@@ -342,7 +338,24 @@
             });
         }
 
-        if (w.navigator.geolocation) {
+        // 現在のページに位置情報があればそこを中心にする
+        var pageEntry = null;
+        if (currentPage) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].title === currentPage) {
+                    pageEntry = data[i];
+                    break;
+                }
+            }
+        }
+
+        if (pageEntry) {
+            start(pageEntry.pos.lat, pageEntry.pos.lng, 16);
+            imageSize = 400;
+            setImages(imageSize);
+            sortData(data);
+            showData(data);
+        } else if (w.navigator.geolocation) {
             w.navigator.geolocation.getCurrentPosition(
                 function(pos) { start(pos.coords.latitude, pos.coords.longitude); },
                 function() { start(35.6812, 139.7671); }

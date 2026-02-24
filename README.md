@@ -19,13 +19,23 @@
 - `E/W`: 東経/西経
 - `Z`: ズームレベル
 
-## Tampermonkeyで使う
+## Tampermonkeyで使う（Privateプロジェクト対応）
 
-Scrapboxのページから直接Mapfeelを起動できるTampermonkeyスクリプトも用意しています。
+Scrapboxのページから直接Mapfeelを起動できるTampermonkeyスクリプトを用意しています。
+ブラウザ上で動作するため、Privateプロジェクトでも利用できます。
 
-1. [Tampermonkey](https://www.tampermonkey.net/) をブラウザにインストール
-2. [mapfeel.user.js](https://raw.githubusercontent.com/masui/mapfeel/main/userscripts/mapfeel.user.js) にアクセスしてスクリプトをインストール
-3. Scrapboxのプロジェクトページを開くと右下に「🗺 Mapfeel」ボタンが表示される
+### インストール手順
+
+1. **Tampermonkeyをインストール**
+   - [Tampermonkey公式サイト](https://www.tampermonkey.net/) からお使いのブラウザ用の拡張機能をインストール
+   - Chrome、Firefox、Safari、Edgeに対応しています
+2. **Mapfeelスクリプトをインストール**
+   - [ここをクリック](https://raw.githubusercontent.com/masui/mapfeel/main/userscripts/mapfeel.user.js) するとTampermonkeyのインストール画面が開きます
+   - 「インストール」ボタンを押してください
+3. **使う**
+   - Scrapboxのページを開いた状態で右クリック → 「Tampermonkey」 → 「Mapfeel」を選択
+   - 位置情報付きページの地図が新しいウィンドウで開きます
+   - 個別ページから起動すると、そのページの場所にズームして表示します
 
 ## 操作方法
 
