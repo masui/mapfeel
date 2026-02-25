@@ -11,69 +11,60 @@
 
 (function() {
     'use strict';
+        var path = location.pathname;
+        var pmatch = path.match(/^\/([^\/]+)/);
+        if (!pmatch) return;
+        var project = pmatch[1];
+        if (['api', 'login', 'signup', 'settings', 'billing', 'stream'].includes(project)) return;
 
-    var path = location.pathname;
-    var pmatch = path.match(/^\/([^\/]+)/);
-    if (!pmatch) {
-        alert('Scrapboxのプロジェクトページで実行してください');
-        return;
-    }
-    var project = pmatch[1];
-    if (['api', 'login', 'signup', 'settings', 'billing', 'stream'].includes(project)) {
-        alert('Scrapboxのプロジェクトページで実行してください');
-        return;
-    }
+        var titleParts = document.title.split(' - ');
+        var projectDisplayName = titleParts[titleParts.length - 1];
+        var currentPage = titleParts.length > 1 ? titleParts.slice(0, -1).join(' - ') : null;
 
-    // Scrapboxのdocument.titleは「ページ名 - プロジェクト表示名」またはトップページでは「プロジェクト表示名」
-    var titleParts = document.title.split(' - ');
-    var projectDisplayName = titleParts[titleParts.length - 1];
-    var currentPage = titleParts.length > 1 ? titleParts.slice(0, -1).join(' - ') : null;
-
-    // 現在のページの位置情報を個別ページAPIから取得
-    if (currentPage) {
-        var pageTitle = encodeURIComponent(currentPage.replace(/ /g, '_'));
-        GM_xmlhttpRequest({
-            method: 'GET',
-            url: 'https://scrapbox.io/api/pages/' + project + '/' + pageTitle,
-            onload: function(response) {
-                var currentPageEntry = null;
-                if (response.status === 200) {
-                    var pageData = JSON.parse(response.responseText);
-                    var pos = null;
-                    var descs = [];
-                    pageData.lines.forEach(function(line) {
-                        var m = line.text.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)/);
-                        if (m && !pos) {
-                            pos = {};
-                            pos.lat = Number(m[2]) * (m[1] == 'S' ? -1 : 1);
-                            pos.lng = Number(m[4]) * (m[3] == 'W' ? -1 : 1);
-                            pos.zoom = Number(m[5]);
-                        } else if (!m && line.text && !line.text.match(/gyazo\.com/i) && !line.text.match(/\[.*\.jpeg\]/)) {
-                            var s = line.text;
-                            s = s.replace(/\[.*\.icon\]/g, "\u{1F610}");
-                            s = s.replace(/\[([^\]]+)\]/g, "$1");
-                            s = s.replace(/#(\S*)/g, "($1)");
-                            if (s.trim()) descs.push(s);
+        if (currentPage) {
+            var pageTitle = encodeURIComponent(currentPage.replace(/ /g, '_'));
+            GM_xmlhttpRequest({
+                method: 'GET',
+                url: 'https://scrapbox.io/api/pages/' + project + '/' + pageTitle,
+                onload: function(response) {
+                    var currentPageEntry = null;
+                    if (response.status === 200) {
+                        var pageData = JSON.parse(response.responseText);
+                        var pos = null;
+                        var descs = [];
+                        pageData.lines.forEach(function(line) {
+                            var m = line.text.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)/);
+                            if (m && !pos) {
+                                pos = {};
+                                pos.lat = Number(m[2]) * (m[1] == 'S' ? -1 : 1);
+                                pos.lng = Number(m[4]) * (m[3] == 'W' ? -1 : 1);
+                                pos.zoom = Number(m[5]);
+                            } else if (!m && line.text && !line.text.match(/gyazo\.com/i) && !line.text.match(/\[.*\.jpeg\]/)) {
+                                var s = line.text;
+                                s = s.replace(/\[.*\.icon\]/g, "\u{1F610}");
+                                s = s.replace(/\[([^\]]+)\]/g, "$1");
+                                s = s.replace(/#(\S*)/g, "($1)");
+                                if (s.trim()) descs.push(s);
+                            }
+                        });
+                        if (pos) {
+                            currentPageEntry = {
+                                title: pageData.title,
+                                pos: pos,
+                                descriptions: descs.slice(0, 5),
+                                image: pageData.image
+                            };
                         }
-                    });
-                    if (pos) {
-                        currentPageEntry = {
-                            title: pageData.title,
-                            pos: pos,
-                            descriptions: descs.slice(0, 5),
-                            image: pageData.image
-                        };
                     }
+                    openMapfeel(project, currentPageEntry, projectDisplayName);
+                },
+                onerror: function() {
+                    openMapfeel(project, null, projectDisplayName);
                 }
-                openMapfeel(project, currentPageEntry, projectDisplayName);
-            },
-            onerror: function() {
-                openMapfeel(project, null, projectDisplayName);
-            }
-        });
-    } else {
-        openMapfeel(project, null, projectDisplayName);
-    }
+            });
+        } else {
+            openMapfeel(project, null, projectDisplayName);
+        }
 
     function openMapfeel(proj, currentPageEntry, displayName) {
         GM_xmlhttpRequest({
@@ -90,7 +81,6 @@
                     alert('位置情報のあるページが見つかりませんでした');
                     return;
                 }
-                // 現在のページがデータに含まれていなければ追加
                 if (currentPageEntry) {
                     var found = false;
                     for (var i = 0; i < validData.length; i++) {
@@ -163,7 +153,6 @@
             return;
         }
 
-        // HTMLを書き出す（インラインスクリプトは一切なし）
         w.document.write(
             '<!doctype html><html lang="ja"><head><meta charset="UTF-8">' +
             '<title>Mapfeel - ' + displayName + '</title>' +
@@ -185,10 +174,8 @@
         );
         w.document.close();
 
-        // 親スクリプトから新ウィンドウにスクリプトを動的注入（cdnjs = CSP許可済み）
         loadScript(w.document, 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js', function() {
             loadScript(w.document, 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js', function() {
-                // jQuery・Leaflet読み込み完了 → 親スクリプトから新ウィンドウのDOMを操作
                 runMapfeel(w, proj, data, currentPageEntry);
             });
         });
@@ -397,7 +384,6 @@
             });
         }
 
-        // 現在のページに位置情報があればそこを中心にする
         if (currentPageEntry) {
             start(currentPageEntry.pos.lat, currentPageEntry.pos.lng, 16);
             imageSize = 400;
