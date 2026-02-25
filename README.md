@@ -6,12 +6,13 @@
 
 ## 使い方
 
-`https://mapfeel.com/プロジェクト名` にアクセス
+- `https://mapfeel.com/プロジェクト名` にアクセス
+- [https://scrapbox.io/Mapfeel/](https://scrapbox.io/Mapfeel/)に解説があります
 
 ## サンプル
 
-[https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
-[https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
+- [https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
+- [https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
 
 
 ## Scrapboxページの書き方
