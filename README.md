@@ -8,7 +8,7 @@
 
 `https://mapfeel.com/プロジェクト名` にアクセス
 
-例: [https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
+例: [https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
 
 ## Scrapboxページの書き方
 
@@ -60,5 +60,4 @@ vercel dev
 デプロイ
 
 vercel --prod
-
 
