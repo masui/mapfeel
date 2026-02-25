@@ -8,7 +8,11 @@
 
 `https://mapfeel.com/プロジェクト名` にアクセス
 
-例: [https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
+## サンプル
+
+[https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
+[https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
+
 
 ## Scrapboxページの書き方
 
