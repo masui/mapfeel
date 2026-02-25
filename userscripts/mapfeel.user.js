@@ -5,12 +5,38 @@
 // @description  Scrapboxプロジェクトの位置情報ページを地図上に表示
 // @match        https://scrapbox.io/*
 // @grant        GM_xmlhttpRequest
+// @grant        GM_registerMenuCommand
 // @connect      scrapbox.io
-// @run-at       context-menu
+// @run-at       document-idle
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    // Tampermonkeyツールバーメニューから起動
+    GM_registerMenuCommand('Mapfeel', launchMapfeel);
+
+    // 地図画像のクリックでMapfeelを起動
+    function hookMapImages() {
+        var imgs = document.querySelectorAll('img[src*="google-map/static-map"]');
+        imgs.forEach(function(img) {
+            if (img.dataset.mapfeelHooked) return;
+            img.dataset.mapfeelHooked = 'true';
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function(e) {
+                if (e.shiftKey) return; // Shift+クリックは元の挙動
+                e.preventDefault();
+                e.stopPropagation();
+                launchMapfeel();
+            }, true);
+        });
+    }
+
+    // ScrapboxはSPAなのでDOMの変化を監視
+    hookMapImages();
+    new MutationObserver(hookMapImages).observe(document.body, { childList: true, subtree: true });
+
+    function launchMapfeel() {
         var path = location.pathname;
         var pmatch = path.match(/^\/([^\/]+)/);
         if (!pmatch) return;
@@ -65,6 +91,7 @@
         } else {
             openMapfeel(project, null, projectDisplayName);
         }
+    }
 
     function openMapfeel(proj, currentPageEntry, displayName) {
         GM_xmlhttpRequest({
