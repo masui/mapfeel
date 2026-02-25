@@ -11,8 +11,14 @@
 
 ## サンプル
 
-- [https://mapfeel.com/haramura-info](https://mapfeel.com/haramura-info)
-- [https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
+- [原村情報](https://mapfeel.com/haramura-info)
+- [東海道五十三次](https://mapfeel.com/toukaidou-map)
+
+ [https://mapfeel.com/nara-tour-map 奈良観光ガイド]
+ [https://mapfeel.com/kyoto-sightseeing-map 京都観光ガイド]
+ [https://mapfeel.com/kanagawa-ramen-map 神奈川ラーメンマップ]
+ [https://mapfeel.com/iniad-20230307 赤羽飲み]
+ [https://mapfeel.com/haramura-info 原村情報]
 
 
 ## Scrapboxページの書き方
