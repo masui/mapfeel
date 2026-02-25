@@ -1,13 +1,14 @@
 # Mapfeel
 
-- Scrapboxプロジェクトの位置情報付きページを地図上に表示するアプリ
+- Cosenseプロジェクトの位置情報付きページを地図上に表示するアプリ
 - GyamapをVercelで作りなおした
+- Tampermonkeyでも動く
 
 ## 使い方
 
 `https://mapfeel.com/プロジェクト名` にアクセス
 
-例: `https://mapfeel.com/masuimap`
+例: [https://mapfeel.com/masuimap](https://mapfeel.com/masuimap)
 
 ## Scrapboxページの書き方
 

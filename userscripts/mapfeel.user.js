@@ -28,9 +28,14 @@
     var pageMatch = path.match(/^\/[^\/]+\/(.+?)\/?\s*$/);
     var currentPage = pageMatch ? decodeURIComponent(pageMatch[1]).replace(/_/g, ' ') : null;
 
-    openMapfeel(project, currentPage);
+    // Scrapboxのdocument.titleからプロジェクト表示名を取得
+    // Scrapboxのdocument.titleは「ページ名 - プロジェクト表示名」またはトップページでは「プロジェクト表示名」
+    var titleParts = document.title.split(' - ');
+    var projectDisplayName = titleParts[titleParts.length - 1];
 
-    function openMapfeel(proj, currentPage) {
+    openMapfeel(project, currentPage, projectDisplayName);
+
+    function openMapfeel(proj, currentPage, displayName) {
         GM_xmlhttpRequest({
             method: 'GET',
             url: 'https://scrapbox.io/api/pages/' + proj + '?limit=1000',
@@ -45,7 +50,7 @@
                     alert('位置情報のあるページが見つかりませんでした');
                     return;
                 }
-                launchMapWindow(proj, validData, currentPage);
+                launchMapWindow(proj, validData, currentPage, displayName);
             },
             onerror: function() {
                 alert('Scrapbox APIへの接続に失敗しました');
@@ -98,7 +103,7 @@
         doc.head.appendChild(script);
     }
 
-    function launchMapWindow(proj, data, currentPage) {
+    function launchMapWindow(proj, data, currentPage, displayName) {
         var w = window.open('', '_blank');
         if (!w) {
             alert('ポップアップがブロックされました。ポップアップを許可してください。');
@@ -108,7 +113,7 @@
         // HTMLを書き出す（インラインスクリプトは一切なし）
         w.document.write(
             '<!doctype html><html lang="ja"><head><meta charset="UTF-8">' +
-            '<title>Mapfeel - ' + proj + '</title>' +
+            '<title>Mapfeel - ' + displayName + '</title>' +
             '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>' +
             '<style>' +
             'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:5px;}' +
@@ -117,7 +122,7 @@
             '.clickable:hover{background-color:#f3f6ff;transform:translateY(-1px);}' +
             '</style></head><body>' +
             '<div style="font-size:18px;font-weight:bold;padding:5px;">' +
-            '<a href="https://scrapbox.io/' + proj + '/" target="_blank">Mapfeel: ' + proj + '</a></div>' +
+            '<a href="https://scrapbox.io/Mapfeel/">Mapfeel</a>: ' + displayName + '</div>' +
             '<div style="display:flex;margin:5px;">' +
             '<div id="map" style="position:relative;width:400px;height:400px;display:block;flex-grow:1;min-width:400px;max-width:400px;"></div>' +
             '<div style="flex-grow:0;"><div id="images" style="display:flex;flex-wrap:wrap;margin-left:5px;max-height:400px;overflow-y:hidden;"></div></div>' +

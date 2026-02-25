@@ -60,6 +60,8 @@ if (!project) {
     alert("URLにプロジェクト名を指定してください");
     project = "masuimap"
 }
+$('#projectName').text(project);
+document.title = 'Mapfeel - ' + project;
 
 console.log('Scrapboxのデータ取得')
 var data;
