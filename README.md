@@ -13,7 +13,7 @@
 
 - [原村情報](https://mapfeel.com/haramura-info)
 - [東海道五十三次](https://mapfeel.com/toukaidou-map)
-- [奈良観光ガイド][https://mapfeel.com/nara-tour-map]
+- [奈良観光ガイド](https://mapfeel.com/nara-tour-map)
 - [神奈川ラーメンマップ](https://mapfeel.com/kanagawa-ramen-map)
 
 ## Scrapboxページの書き方
