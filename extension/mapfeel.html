@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Mapfeel</title>
+<link rel="stylesheet" href="leaflet.css"/>
+<script src="jquery.min.js"></script>
+<script src="leaflet.js"></script>
+<style>
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:5px;}
+a:link,a:visited{color:#0000f0;}a{text-decoration:none;}
+.clickable{cursor:pointer;transition:background-color 0.2s,transform 0.15s;}
+.clickable:hover{background-color:#f3f6ff;transform:translateY(-1px);}
+</style>
+</head>
+<body>
+<div style="font-size:18px;font-weight:bold;padding:5px;">
+<a href="https://scrapbox.io/Mapfeel/">Mapfeel</a>: <span id="displayName"></span></div>
+<div style="display:flex;margin:5px;">
+<div id="map" style="position:relative;width:400px;height:400px;display:block;flex-grow:1;min-width:400px;max-width:400px;"></div>
+<div style="flex-grow:0;"><div id="images" style="display:flex;flex-wrap:wrap;margin-left:5px;max-height:400px;overflow-y:hidden;"></div></div>
+</div>
+<div id="POIlist" style="margin:0px 5px 5px;"></div>
+<script src="mapfeel_app.js"></script>
+</body>
+</html>
