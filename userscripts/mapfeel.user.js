@@ -59,12 +59,12 @@
                         var pos = null;
                         var descs = [];
                         pageData.lines.forEach(function(line) {
-                            var m = line.text.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)/);
+                            var m = line.text.match(/\[([NS])([\d\.]+),([EW])([\d\.]+)(?:,Z([\d\.]+))?/);
                             if (m && !pos) {
                                 pos = {};
                                 pos.lat = Number(m[2]) * (m[1] == 'S' ? -1 : 1);
                                 pos.lng = Number(m[4]) * (m[3] == 'W' ? -1 : 1);
-                                pos.zoom = Number(m[5]);
+                                pos.zoom = m[5] ? Number(m[5]) : 12;
                             } else if (!m && line.text && !line.text.match(/gyazo\.com/i) && !line.text.match(/\[.*\.jpeg\]/)) {
                                 var s = line.text;
                                 s = s.replace(/\[.*\.icon\]/g, "\u{1F610}");
@@ -135,7 +135,7 @@
             entry.title = page.title;
             entry.descriptions = [];
             page.descriptions.forEach(function(description) {
-                var m = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/);
+                var m = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+)(?:,Z([\d\.]+))?(\s+\S+)?\]/);
                 if (m) {
                     var pos = {};
                     pos.lat = Number(m[2]);
@@ -143,7 +143,7 @@
                     pos.lng = Number(m[4]);
                     if (m[3] == 'W') pos.lng = -pos.lng;
                     pos.zoom = 12;
-                    if (m[6]) pos.zoom = Number(m[6]);
+                    if (m[5]) pos.zoom = Number(m[5]);
                     entry.pos = pos;
                 } else {
                     if (description.match(/gyazo.com/i)) {

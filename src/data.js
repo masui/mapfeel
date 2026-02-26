@@ -12,7 +12,7 @@ function getValidData(data){
 
 	// page.descriptions にはScrapboxページの最初の5行だけ格納されるらしい
 	page.descriptions.forEach((description) => {
-	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+),Z([\d\.]+)(\s+\S+)?\]/) // 地図が登録されている場合
+	    let match = description.match(/\[([NS])([\d\.]+),([EW])([\d\.]+)(?:,Z([\d\.]+))?(\s+\S+)?\]/) // 地図が登録されている場合
 	    if(match){
 		let pos = {}
 		pos.lat = Number(match[2])
@@ -20,7 +20,7 @@ function getValidData(data){
 		pos.lng = Number(match[4])
 		if (match[3] == 'W') pos.lng = -pos.lng
 		pos.zoom = 12
-		if (match[6]) pos.zoom = Number(match[6])
+		if (match[5]) pos.zoom = Number(match[5])
 		entry.pos = pos
 	    }
 	    else {
