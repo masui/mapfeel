@@ -74,14 +74,10 @@ function getValidData(data) {
     return datalist;
 }
 
-var launching = false;
-
 // content.jsからのメッセージを処理
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'launch') {
-        if (launching) return;
-        launching = true;
-        handleLaunch(message).finally(() => { launching = false; });
+        handleLaunch(message);
         return;
     }
     if (message.action === 'fetch') {
@@ -156,7 +152,7 @@ async function handleLaunch(params) {
         // CSSを注入
         await chrome.scripting.insertCSS({ target: { tabId: tab.id }, files: ['leaflet.css'] });
         await chrome.scripting.insertCSS({ target: { tabId: tab.id }, css:
-            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;margin:0;padding:5px;}' +
+            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;}' +
             'a:link,a:visited{color:#0000f0;}a{text-decoration:none;}' +
             '.clickable{cursor:pointer;transition:background-color 0.2s,transform 0.15s;}' +
             '.clickable:hover{background-color:#f3f6ff;transform:translateY(-1px);}'
