@@ -185,7 +185,7 @@
             '<title>Mapfeel - ' + displayName + '</title>' +
             '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>' +
             '<style>' +
-            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;}' +
+            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;background:#fff;}' +
             'a:link,a:visited{color:#0000f0;}a{text-decoration:none;}' +
             '.clickable{cursor:pointer;transition:background-color 0.2s,transform 0.15s;}' +
             '.clickable:hover{background-color:#f3f6ff;transform:translateY(-1px);}' +

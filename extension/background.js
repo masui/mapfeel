@@ -152,7 +152,7 @@ async function handleLaunch(params) {
         // CSSを注入
         await chrome.scripting.insertCSS({ target: { tabId: tab.id }, files: ['leaflet.css'] });
         await chrome.scripting.insertCSS({ target: { tabId: tab.id }, css:
-            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:18px;}' +
+            'body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif !important;font-size:18px !important;background:#fff !important;}' +
             'a:link,a:visited{color:#0000f0;}a{text-decoration:none;}' +
             '.clickable{cursor:pointer;transition:background-color 0.2s,transform 0.15s;}' +
             '.clickable:hover{background-color:#f3f6ff;transform:translateY(-1px);}'
