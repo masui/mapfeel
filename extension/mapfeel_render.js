@@ -23,7 +23,7 @@
     // ページ内容を置き換え
     document.title = 'Mapfeel - ' + displayName;
     document.body.innerHTML =
-        '<div style="font-size:18px;font-weight:bold;">' +
+        '<div style="font-size:18px;font-weight:bold;margin-left:5px;">' +
         '<a href="https://scrapbox.io/Mapfeel/">Mapfeel</a>: ' + displayName + '</div>' +
         '<div style="display:flex;margin:5px;">' +
         '<div id="map" style="position:relative;width:400px;height:400px;display:block;flex-grow:1;min-width:400px;max-width:400px;"></div>' +
