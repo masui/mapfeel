@@ -5,8 +5,8 @@
   "description": "Scrapboxプロジェクトの位置情報ページを地図上に表示",
   "action": {
     "default_icon": {
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "48": "mapfeel_icon_48.png",
+      "128": "mapfeel_icon_128.png"
     },
     "default_title": "Mapfeel"
   },
@@ -31,7 +31,7 @@
     }
   ],
   "icons": {
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "48": "mapfeel_icon_48.png",
+    "128": "mapfeel_icon_128.png"
   }
 }
