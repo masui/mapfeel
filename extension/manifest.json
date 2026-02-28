@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Mapfeel",
-  "version": "1.0",
-  "description": "Scrapboxプロジェクトの位置情報ページを地図上に表示",
+  "version": "1.1",
+  "description": "Cosenseプロジェクトの位置情報ページを地図上に表示",
   "action": {
     "default_icon": {
       "48": "mapfeel_icon_48.png",
