@@ -196,9 +196,12 @@ function onPOIClick(e){
     imageSize = 400
     setImages(imageSize)
 
-    scrollToEntry = e
     sortData(data)
     showData(data)
+
+    // ソート後にクリックした項目の行へスクロール
+    var idx = data.indexOf(e)
+    if(idx >= 0) scrollPOITo(idx)
 
     history.pushState(state,null,`?loc=${locstr()}`)
 }
