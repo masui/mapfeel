@@ -436,7 +436,6 @@
                     curpos.lng = data[topIndex].pos.lng;
                     map.flyTo([curpos.lat, curpos.lng], map.getZoom());
                     showImages(data.slice(topIndex, data.length));
-                    showMarkers(data.slice(topIndex, data.length));
                 }
             });
         }

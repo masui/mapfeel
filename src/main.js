@@ -333,7 +333,6 @@ $(window).keydown(function(e){
 
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
 	showImages(data.slice(topIndex, data.length))
-	showMarkers(data.slice(topIndex, data.length))
 
         history.pushState(state,null,`?loc=${locstr()}`)
     }
