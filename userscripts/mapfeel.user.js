@@ -391,8 +391,8 @@
             });
 
             $(w).keydown(function(ev) {
-                ev.preventDefault();
                 if (ev.keyCode == 38 || ev.keyCode == 40) {
+                    ev.preventDefault();
                     if (!sortedByTitle) {
                         sortedByTitle = true;
                         var curtitle = data[0].title;

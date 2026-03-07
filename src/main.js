@@ -298,11 +298,11 @@ map.on('dragend', () => {
 
 // 上下カーソル移動キー
 $(window).keydown(function(e){
-    e.preventDefault()
     const UP = 38
     const DOWN = 40
 
     if(e.keyCode == UP || e.keyCode == DOWN){
+        e.preventDefault()
         if(! sortedByTitle){
             sortedByTitle = true
             var curtitle = data[0].title
