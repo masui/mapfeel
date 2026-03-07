@@ -196,7 +196,7 @@
             '<div id="map" style="position:relative;width:400px;height:400px;display:block;flex-grow:1;min-width:400px;max-width:400px;"></div>' +
             '<div style="flex-grow:0;"><div id="images" style="display:flex;flex-wrap:wrap;margin-left:5px;max-height:400px;overflow-y:hidden;"></div></div>' +
             '</div>' +
-            '<div id="POIlist" style="margin:0px 5px 5px;"></div>' +
+            '<div id="POIlist" style="margin:0px 5px 5px;max-height:300px;overflow-y:auto;"></div>' +
             '</body></html>'
         );
         w.document.close();
