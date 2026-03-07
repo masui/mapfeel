@@ -155,6 +155,7 @@ function sortData(list){
 // POIリストの表示
 //
 function showPOIList(list){
+    $('#POIlist').scrollTop(0)
     $('#POIlist').empty()
     list.forEach((e) => {
 	var div = $('<div>')

@@ -145,6 +145,7 @@
     }
 
     function showPOIList(list) {
+        $('#POIlist').scrollTop(0);
         $('#POIlist').empty();
         list.forEach(function(e) {
             var div = $('<div>');
