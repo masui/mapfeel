@@ -310,21 +310,30 @@ $(window).keydown(function(e){
                 return a.title > b.title ? 1 : -1;
             })
             for(topIndex = 0; data[topIndex].title != curtitle; topIndex++);
+
+	    imageSize = 400
+	    setImages(imageSize)
+	    showData(data)
         }
         else {
             if(e.keyCode == UP && topIndex > 0) { topIndex -= 1 }
             if(e.keyCode == DOWN && topIndex < data.length - 1) { topIndex += 1 }
         }
 
-	imageSize = 400
-	setImages(imageSize); // 拡大表示
-	
-        showData(data.slice(topIndex,data.length))
+        // 該当行までスクロール
+        var target = $('#POIlist').children().eq(topIndex)
+        if(target.length){
+            $('#POIlist').scrollTop(
+                $('#POIlist').scrollTop() + target.position().top - $('#POIlist').position().top
+            )
+        }
 
-	curpos.lat = data[topIndex].pos.lat 
-	curpos.lng = data[topIndex].pos.lng 
-	
+	curpos.lat = data[topIndex].pos.lat
+	curpos.lng = data[topIndex].pos.lng
+
 	map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+	showImages(data.slice(topIndex, data.length))
+	showMarkers(data.slice(topIndex, data.length))
 
         history.pushState(state,null,`?loc=${locstr()}`)
     }
