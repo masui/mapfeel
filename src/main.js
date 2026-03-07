@@ -136,19 +136,30 @@ window.addEventListener('popstate', (event) => {
 })
 
 // POIリスト、画像などを表示
+function highlightPOIRows(startIndex, count, listLen){
+    $('#POIlist').children().css('background-color', '')
+    var end = Math.min(startIndex + count, listLen)
+    for(var i = startIndex; i < end; i++){
+	$('#POIlist').children().eq(i).css('background-color', '#f0f0f0')
+    }
+}
+
 function showData(list){
     showPOIList(list)
     var imageList = list
+    var imageStartIndex = 0
     if(scrollToEntry){
 	var idx = list.indexOf(scrollToEntry)
 	if(idx >= 0){
 	    scrollPOITo(idx)
 	    imageList = list.slice(idx)
+	    imageStartIndex = idx
 	}
 	scrollToEntry = null
     }
     showImages(imageList)
     showMarkers(imageList)
+    highlightPOIRows(imageStartIndex, NIMAGES, list.length)
 }
 
 // curposとの距離でデータをソート
