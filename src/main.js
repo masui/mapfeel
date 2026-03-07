@@ -146,9 +146,15 @@ function sortData(list){
     list.forEach((e) => {
 	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
     })
-    list.sort((a, b) => { // curposに近い順にソート
-	return a.distance > b.distance ? 1 : -1;
-    })
+    if(sortedByTitle){
+	list.sort((a, b) => {
+	    return a.title > b.title ? 1 : -1;
+	})
+    } else {
+	list.sort((a, b) => { // curposに近い順にソート
+	    return a.distance > b.distance ? 1 : -1;
+	})
+    }
 }
 
 //
