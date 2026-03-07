@@ -197,11 +197,20 @@ function onPOIClick(e){
     setImages(imageSize)
 
     sortData(data)
-    showData(data)
+    showPOIList(data)
 
-    // ソート後にクリックした項目の行へスクロール
+    // クリックした項目の位置を見つける
     var idx = data.indexOf(e)
-    if(idx >= 0) scrollPOITo(idx)
+    if(idx >= 0){
+	scrollPOITo(idx)
+	showImages(data.slice(idx))
+	showMarkers(data.slice(idx))
+    } else {
+	showImages(data)
+	showMarkers(data)
+    }
+    // 先頭画像に対応する行をハイライト
+    highlightPOIRow(idx >= 0 ? idx : 0)
 
     history.pushState(state,null,`?loc=${locstr()}`)
 }
