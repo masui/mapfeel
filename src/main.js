@@ -181,6 +181,8 @@ function onPOIClick(e){
     sortData(data)
     var idx = data.indexOf(e)
     imageStartIndex = idx >= 0 ? idx : 0
+    topIndex = imageStartIndex
+    sortedByTitle = true
     showData(data)
     scrollPOITo(imageStartIndex)
 
