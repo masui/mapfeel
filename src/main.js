@@ -317,13 +317,10 @@ $(window).keydown(function(e){
             if(e.keyCode == DOWN && topIndex < data.length - 1) { topIndex += 1 }
         }
 
-        // 該当行までスクロール
-        var target = $('#POIlist').children().eq(topIndex)
-        if(target.length){
-            $('#POIlist').scrollTop(
-                $('#POIlist').scrollTop() + target.position().top - $('#POIlist').position().top
-            )
-        }
+        // ハイライト更新とスクロール
+        $('#POIlist').children().css('background-color', '')
+        $('#POIlist').children().eq(topIndex).css('background-color', '#f0f0f0')
+        scrollPOITo(topIndex)
 
 	curpos.lat = data[topIndex].pos.lat
 	curpos.lng = data[topIndex].pos.lng
