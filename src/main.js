@@ -144,7 +144,6 @@ function showData(list){
 
 // curposとの距離でデータをソート
 function sortData(list){
-    console.log('sortData: sortedByTitle=' + sortedByTitle)
     list.forEach((e) => {
 	e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng)
     })
