@@ -17,6 +17,7 @@
     var sortedByTitle = false;
     var topIndex = 0;
     var curpos = {};
+    var imageStartIndex = 0;
     var imageSize = 195;
     var map = null;
 
@@ -29,7 +30,7 @@
         '<div id="map" style="position:relative;width:400px;height:400px;display:block;flex-grow:1;min-width:400px;max-width:400px;"></div>' +
         '<div style="flex-grow:0;"><div id="images" style="display:flex;flex-wrap:wrap;margin-left:5px;max-height:400px;overflow-y:hidden;"></div></div>' +
         '</div>' +
-        '<div id="POIlist" style="margin:0px 5px 5px;"></div>';
+        '<div id="POIlist" style="margin:0px 5px 5px;max-height:300px;overflow-y:auto;"></div>';
 
     function initMap(lat, lng, zoom) {
         map = L.map("map", { keyboard: false });
@@ -82,44 +83,65 @@
 
     function showData(list) {
         showPOIList(list);
-        showImages(list);
-        showMarkers(list);
+        showImages(list.slice(imageStartIndex));
+        showMarkers(list.slice(imageStartIndex));
     }
 
     function sortData(list) {
         list.forEach(function(e) {
             e.distance = distance(e.pos.lat, e.pos.lng, curpos.lat, curpos.lng);
         });
-        list.sort(function(a, b) {
-            return a.distance > b.distance ? 1 : -1;
-        });
+        if (sortedByTitle) {
+            list.sort(function(a, b) { return a.title > b.title ? 1 : -1; });
+        } else {
+            list.sort(function(a, b) { return a.distance > b.distance ? 1 : -1; });
+        }
     }
 
-    function moveTo(e) {
+    function scrollPOITo(index) {
+        var target = $('#POIlist').children().eq(index);
+        if (target.length) {
+            $('#POIlist').scrollTop(
+                $('#POIlist').scrollTop() + target.position().top - $('#POIlist').position().top
+            );
+        }
+    }
+
+    function onPOIClick(e) {
         curpos.lat = e.pos.lat;
         curpos.lng = e.pos.lng;
         map.flyTo([curpos.lat, curpos.lng], map.getZoom());
         imageSize = 400;
         setImages(imageSize);
-        sortData(data);
-        showData(data);
+        var idx = data.indexOf(e);
+        imageStartIndex = idx >= 0 ? idx : 0;
+        topIndex = imageStartIndex;
+        $('#POIlist').children().css('background-color', '');
+        $('#POIlist').children().eq(imageStartIndex).css('background-color', '#f0f0f0');
+        scrollPOITo(imageStartIndex);
+        showImages(data.slice(imageStartIndex));
+        showMarkers(data.slice(imageStartIndex));
     }
 
     function showPOIList(list) {
+        $('#POIlist').scrollTop(0);
         $('#POIlist').empty();
-        list.forEach(function(e) {
+        list.forEach(function(e, index) {
             var div = $('<div>');
+            if (index === imageStartIndex) {
+                div.css('background-color', '#f0f0f0');
+            }
             var span;
 
             span = $('<span class="clickable">');
             span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)));
-            span.on('click', function() { moveTo(e); });
+            span.on('click', function() { onPOIClick(e); });
             div.append(span);
             div.append($('<span> </span>'));
 
             span = $('<span style="color:#77f;">');
             span.text(e.title);
-            span.on('click', function() { moveTo(e); });
+            span.on('click', function() { onPOIClick(e); });
             div.append(span);
             div.append($('<span> </span>'));
 
@@ -133,7 +155,7 @@
 
             span = $('<span style="color:#666" class="clickable">');
             span.text(e.descriptions.join('\u30FB'));
-            span.on('click', function() { moveTo(e); });
+            span.on('click', function() { onPOIClick(e); });
             div.append(span);
 
             $('#POIlist').append(div);
@@ -176,6 +198,7 @@
                     map.flyTo([curpos.lat, curpos.lng], map.getZoom());
                     imageSize = 400;
                     setImages(imageSize);
+                    imageStartIndex = 0;
                     sortData(data);
                     showData(data);
                 });
@@ -197,28 +220,35 @@
             imageSize = 195;
             setImages(imageSize);
             curpos = map.getCenter();
+            imageStartIndex = 0;
             sortData(data);
             showData(data);
         });
 
         $(window).keydown(function(ev) {
-            ev.preventDefault();
             if (ev.keyCode == 38 || ev.keyCode == 40) {
+                ev.preventDefault();
                 if (!sortedByTitle) {
                     sortedByTitle = true;
                     var curtitle = data[0].title;
                     data.sort(function(a, b) { return a.title > b.title ? 1 : -1; });
                     for (topIndex = 0; data[topIndex].title != curtitle; topIndex++);
+                    imageSize = 400;
+                    setImages(imageSize);
+                    showData(data);
                 } else {
                     if (ev.keyCode == 38 && topIndex > 0) topIndex -= 1;
                     if (ev.keyCode == 40 && topIndex < data.length - 1) topIndex += 1;
                 }
-                imageSize = 400;
-                setImages(imageSize);
-                showData(data.slice(topIndex, data.length));
+                // ハイライト更新とスクロール
+                $('#POIlist').children().css('background-color', '');
+                $('#POIlist').children().eq(topIndex).css('background-color', '#f0f0f0');
+                scrollPOITo(topIndex);
                 curpos.lat = data[topIndex].pos.lat;
                 curpos.lng = data[topIndex].pos.lng;
                 map.flyTo([curpos.lat, curpos.lng], map.getZoom());
+                showImages(data.slice(topIndex, data.length));
+                showMarkers(data.slice(topIndex, data.length));
             }
         });
     }

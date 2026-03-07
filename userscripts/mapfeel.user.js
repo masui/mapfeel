@@ -301,13 +301,14 @@
             map.flyTo([curpos.lat, curpos.lng], map.getZoom());
             imageSize = 400;
             setImages(imageSize);
-            sortData(data);
             var idx = data.indexOf(e);
             imageStartIndex = idx >= 0 ? idx : 0;
             topIndex = imageStartIndex;
-            sortedByTitle = true;
-            showData(data);
+            $('#POIlist').children().css('background-color', '');
+            $('#POIlist').children().eq(imageStartIndex).css('background-color', '#f0f0f0');
             scrollPOITo(imageStartIndex);
+            showImages(data.slice(imageStartIndex));
+            showMarkers(data.slice(imageStartIndex));
         }
 
         function showPOIList(list) {
@@ -403,6 +404,7 @@
             showData(data);
 
             map.on('dragend', function() {
+                sortedByTitle = false;
                 imageSize = 195;
                 setImages(imageSize);
                 curpos = map.getCenter();
