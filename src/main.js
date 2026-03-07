@@ -11,7 +11,7 @@ var sortedByTitle = false // カーソルでPOI移動してるかどうか
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
 var curpos = {}  // 表示している地図の中心座標
-var scrollToEntry = null // showData後にスクロールする項目
+var imageStartIndex = 0 // 画像表示の開始インデックス
 var imageSize = 195
 
 // URLの引数解析
@@ -136,28 +136,10 @@ window.addEventListener('popstate', (event) => {
 })
 
 // POIリスト、画像などを表示
-function highlightPOIRow(index){
-    $('#POIlist').children().css('background-color', '')
-    $('#POIlist').children().eq(index).css('background-color', '#f0f0f0')
-}
-
 function showData(list){
     showPOIList(list)
-    var imageList = list
-    if(scrollToEntry){
-	var idx = list.indexOf(scrollToEntry)
-	if(idx >= 0){
-	    scrollPOITo(idx)
-	    imageList = list.slice(idx)
-	}
-	scrollToEntry = null
-    }
-    showImages(imageList)
-    showMarkers(imageList)
-    // 先頭画像に対応する行をハイライト
-    if(imageList.length > 0){
-	highlightPOIRow(list.indexOf(imageList[0]))
-    }
+    showImages(list.slice(imageStartIndex))
+    showMarkers(list.slice(imageStartIndex))
 }
 
 // curposとの距離でデータをソート
@@ -197,20 +179,10 @@ function onPOIClick(e){
     setImages(imageSize)
 
     sortData(data)
-    showPOIList(data)
-
-    // クリックした項目の位置を見つける
     var idx = data.indexOf(e)
-    if(idx >= 0){
-	scrollPOITo(idx)
-	showImages(data.slice(idx))
-	showMarkers(data.slice(idx))
-    } else {
-	showImages(data)
-	showMarkers(data)
-    }
-    // 先頭画像に対応する行をハイライト
-    highlightPOIRow(idx >= 0 ? idx : 0)
+    imageStartIndex = idx >= 0 ? idx : 0
+    showData(data)
+    scrollPOITo(imageStartIndex)
 
     history.pushState(state,null,`?loc=${locstr()}`)
 }
@@ -220,6 +192,9 @@ function showPOIList(list){
     $('#POIlist').empty()
     list.forEach((e, index) => {
 	var div = $('<div>')
+	if(index === imageStartIndex){
+	    div.css('background-color', '#f0f0f0')
+	}
 	var span;
 
 	// 矢印表示
@@ -298,6 +273,7 @@ function showImages(list){
 	    imageSize = 400
 	    setImages(imageSize)
 
+	    imageStartIndex = 0
 	    sortData(data)
 	    showData(data)
 	    
@@ -310,8 +286,9 @@ map.on('dragend', () => {
     // 地図をドラッグすると縮小画像を表示
     imageSize = 195
     setImages(imageSize)
-    
+
     curpos = map.getCenter();
+    imageStartIndex = 0
     sortData(data)
     showData(data)
 });
