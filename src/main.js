@@ -144,19 +144,20 @@ function highlightPOIRow(index){
 function showData(list){
     showPOIList(list)
     var imageList = list
-    var imageStartIndex = 0
     if(scrollToEntry){
 	var idx = list.indexOf(scrollToEntry)
 	if(idx >= 0){
 	    scrollPOITo(idx)
 	    imageList = list.slice(idx)
-	    imageStartIndex = idx
 	}
 	scrollToEntry = null
     }
     showImages(imageList)
     showMarkers(imageList)
-    highlightPOIRow(imageStartIndex)
+    // 先頭画像に対応する行をハイライト
+    if(imageList.length > 0){
+	highlightPOIRow(list.indexOf(imageList[0]))
+    }
 }
 
 // curposとの距離でデータをソート
