@@ -11,6 +11,7 @@ var sortedByTitle = false // カーソルでPOI移動してるかどうか
 var topIndex = 0 // タイトルでソートしたときのトップ行のインデクス
 var state = {} // pushState() で使うもの
 var curpos = {}  // 表示している地図の中心座標
+var scrollToEntry = null // showData後にスクロールする項目
 var imageSize = 195
 
 // URLの引数解析
@@ -137,6 +138,11 @@ window.addEventListener('popstate', (event) => {
 // POIリスト、画像などを表示
 function showData(list){
     showPOIList(list)
+    if(scrollToEntry){
+	var idx = list.indexOf(scrollToEntry)
+	if(idx >= 0) scrollPOITo(idx)
+	scrollToEntry = null
+    }
     showImages(list)
     showMarkers(list)
 }
@@ -160,82 +166,65 @@ function sortData(list){
 //
 // POIリストの表示
 //
+function scrollPOITo(index){
+    var target = $('#POIlist').children().eq(index)
+    if(target.length){
+	$('#POIlist').scrollTop(
+	    $('#POIlist').scrollTop() + target.position().top - $('#POIlist').position().top
+	)
+    }
+}
+
+function onPOIClick(e){
+    curpos.lat = e.pos.lat
+    curpos.lng = e.pos.lng
+    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
+
+    imageSize = 400
+    setImages(imageSize)
+
+    scrollToEntry = e
+    sortData(data)
+    showData(data)
+
+    history.pushState(state,null,`?loc=${locstr()}`)
+}
+
 function showPOIList(list){
     $('#POIlist').scrollTop(0)
     $('#POIlist').empty()
-    list.forEach((e) => {
+    list.forEach((e, index) => {
 	var div = $('<div>')
 	var span;
 
 	// 矢印表示
 	span = $('<span class="clickable">')
 	span.text(dirIcon(angle(curpos.lat, curpos.lng, e.pos.lat, e.pos.lng)))
-	span.on('click', function(evt){ //クリックで移動
-	    curpos.lat = e.pos.lat
-	    curpos.lng = e.pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-
-	    imageSize = 400
-	    setImages(imageSize); // 拡大表示
-
-	    // listをソート
-	    sortData(data)
-	    showData(data)
-
-            history.pushState(state,null,`?loc=${locstr()}`)
-
-	})
+	span.on('click', function(){ onPOIClick(e) })
 	div.append(span)
-		
+
 	div.append($('<span> </span>'))
 
 	span = $('<span style="color:#77f;">')
 	span.text(e.title)
-	span.on('click', function(evt){
-	    curpos.lat = e.pos.lat
-	    curpos.lng = e.pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-
-	    imageSize = 400
-	    setImages(imageSize); // 拡大表示
-
-	    // listをソート
-	    sortData(data)
-	    showData(data)
-
-            history.pushState(state,null,`?loc=${locstr()}`)
-	})
+	span.on('click', function(){ onPOIClick(e) })
 	div.append(span)
-	
+
 	div.append($('<span> </span>'))
-	
+
 	span = $('<span style="color:#22c;">')
 	span.text('✎️') // 鉛筆アイコン ⇒Scrapboxを開く
 	span.on('click', function(evt){
 	    window.open(`https://scrapbox.io/${project}/${e.title}`)
 	})
 	div.append(span)
-	
+
 	div.append($('<span> </span>'))
 
 	// description表示
 	span = $('<span style="color:#666" class="clickable">')
 	span.text(e.descriptions.join('・'));
-	span.on('click', function(evt){ //クリックで移動
-	    curpos.lat = e.pos.lat
-	    curpos.lng = e.pos.lng
-	    map.flyTo([curpos.lat, curpos.lng], map.getZoom())
-
-	    imageSize = 400
-	    setImages(imageSize)
-
-	    // listをソート
-	    sortData(data)
-	    showData(data)
-
-            history.pushState(state,null,`?loc=${locstr()}`)
-
-	})
+	span.on('click', function(){ onPOIClick(e) })
 	div.append(span)
 
 	$('#POIlist').append(div)
