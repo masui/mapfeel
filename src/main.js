@@ -138,13 +138,17 @@ window.addEventListener('popstate', (event) => {
 // POIリスト、画像などを表示
 function showData(list){
     showPOIList(list)
+    var imageList = list
     if(scrollToEntry){
 	var idx = list.indexOf(scrollToEntry)
-	if(idx >= 0) scrollPOITo(idx)
+	if(idx >= 0){
+	    scrollPOITo(idx)
+	    imageList = list.slice(idx)
+	}
 	scrollToEntry = null
     }
-    showImages(list)
-    showMarkers(list)
+    showImages(imageList)
+    showMarkers(imageList)
 }
 
 // curposとの距離でデータをソート
