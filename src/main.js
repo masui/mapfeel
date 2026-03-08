@@ -226,9 +226,10 @@ function showPOIList(list){
 
 	div.append($('<span> </span>'))
 
-	// description表示
+	// description表示 (タイトルと同じテキストは除外)
+	var descs = e.descriptions.filter(d => d !== e.title)
 	span = $('<span style="color:#666" class="clickable">')
-	span.text(e.descriptions.join('・'));
+	span.text(descs.join('・'));
 	span.on('click', function(){ onPOIClick(e) })
 	div.append(span)
 

@@ -341,8 +341,9 @@
                 div.append(span);
                 div.append($('<span> </span>'));
 
+                var descs = e.descriptions.filter(function(d) { return d !== e.title; });
                 span = $('<span style="color:#666" class="clickable">');
-                span.text(e.descriptions.join('\u30FB'));
+                span.text(descs.join('\u30FB'));
                 span.on('click', function() { onPOIClick(e); });
                 div.append(span);
 
