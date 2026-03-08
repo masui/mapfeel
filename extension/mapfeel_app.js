@@ -192,7 +192,9 @@
             div.append(span);
             div.append($('<span> </span>'));
 
-            var descs = e.descriptions.filter(function(d) { return d !== e.title && d !== '[' + e.title + ']'; });
+            var ocrIndex = e.descriptions.indexOf('(OCR Text)');
+            var descs = (ocrIndex >= 0 ? e.descriptions.slice(0, ocrIndex) : e.descriptions)
+                .filter(function(d) { return d !== e.title && d !== '[' + e.title + ']'; });
             span = $('<span style="color:#666" class="clickable">');
             span.text(descs.join('\u30FB'));
             span.on('click', function() { onPOIClick(e); });
