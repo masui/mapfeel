@@ -227,7 +227,7 @@ function showPOIList(list){
 	div.append($('<span> </span>'))
 
 	// description表示 (タイトルと同じテキストは除外)
-	var ocrIndex = e.descriptions.indexOf('(OCR Text)')
+	var ocrIndex = e.descriptions.indexOf('(OCR text)')
 	var descs = (ocrIndex >= 0 ? e.descriptions.slice(0, ocrIndex) : e.descriptions)
 	    .filter(d => d !== e.title && d !== '[' + e.title + ']')
 	span = $('<span style="color:#666" class="clickable">')
