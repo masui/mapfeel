@@ -9,11 +9,11 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   </head>
   
-  <body>
+  <body style="margin: 0; height: 100vh; display: flex; flex-direction: column;">
     <div style="font-size: 18px; font-weight: bold; margin-left: 5px;">
       <a href="https://scrapbox.io/Mapfeel/">Mapfeel</a>: <span id="projectName"></span>
     </div>
-    <div style="display: flex; margin: 5px;">
+    <div style="display: flex; margin: 5px; flex-shrink: 0;">
       <div id="map" style="position: relative; width: 400px; height: 400px; display: block; flex-grow: 1; min-width: 400px; max-width: 400px;">
       </div>
       <div style="flex-grow: 0;">
@@ -21,8 +21,8 @@
 	</div>
       </div>
     </div>
-    
-    <div id="POIlist" style="margin: 0px 5px 5px; max-height: 300px; overflow-y: auto;">
+
+    <div id="POIlist" style="margin: 0px 5px 5px; flex: 1; overflow-y: auto;">
     </div>
 
     <script type="module" src="/src/main.js"></script>
