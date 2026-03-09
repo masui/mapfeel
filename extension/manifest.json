@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Mapfeel",
-  "version": "1.4",
+  "version": "1.5",
   "description": "Cosenseプロジェクトの位置情報ページを地図上に表示",
   "action": {
     "default_icon": {
